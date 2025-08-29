@@ -96,28 +96,28 @@ export default function LoginPage() {
   const currentCredentials = demoCredentials[activeCredential];
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex mt-16 lg:mt-14">
+    <div className="min-h-screen bg-background dark:bg-background-dark flex mt-16 lg:mt-14">
       
       {/* Left Sidebar - Demo Credentials */}
-      <div className="hidden lg:flex lg:w-80 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex-col">
+      <div className="hidden lg:flex lg:w-80 bg-background dark:bg-background-dark border-r border-gray-200 dark:border-gray-700 flex-col">
         <div className="p-6 border-b border-gray-200 dark:border-gray-700">
           <div className="flex items-center mb-4">
-            <div className="w-8 h-8 bg-emerald-600 rounded-lg flex items-center justify-center mr-3">
-              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center mr-3">
+              <svg className="w-4 h-4 text-text-inverse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m0 0a2 2 0 012 2m-2-2a2 2 0 00-2 2m0 0a2 2 0 01-2 2m2-2H9m12 0v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6a2 2 0 012-2h12zM9 7V5a2 2 0 012-2h2a2 2 0 012 2v2" />
               </svg>
             </div>
-            <h3 className="font-semibold text-gray-900 dark:text-white">Demo Access</h3>
+            <h3 className="font-semibold text-text dark:text-gray-200">Demo Access</h3>
           </div>
           
           {/* Role Toggle */}
-          <div className="flex bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
+          <div className="flex bg-background-secondary dark:bg-gray-700 rounded-lg p-1">
             <button
               onClick={() => setActiveCredential("superadmin")}
               className={`flex-1 flex items-center justify-center px-3 py-2 text-sm font-medium rounded-md transition-all ${
                 activeCredential === "superadmin"
-                  ? "bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm"
-                  : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                  ? "bg-background dark:bg-gray-600 text-text dark:text-gray-200 shadow-sm"
+                  : "text-text-secondary dark:text-gray-300 hover:text-text dark:hover:text-gray-200"
               }`}
             >
               <MdAdminPanelSettings className="w-4 h-4 mr-1" />
@@ -127,8 +127,8 @@ export default function LoginPage() {
               onClick={() => setActiveCredential("user")}
               className={`flex-1 flex items-center justify-center px-3 py-2 text-sm font-medium rounded-md transition-all ${
                 activeCredential === "user"
-                  ? "bg-white dark:bg-gray-600 text-gray-900 dark:text-white shadow-sm"
-                  : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                  ? "bg-background dark:bg-gray-600 text-text dark:text-gray-200 shadow-sm"
+                  : "text-text-secondary dark:text-gray-300 hover:text-text dark:hover:text-gray-200"
               }`}
             >
               <MdPerson className="w-4 h-4 mr-1" />
@@ -146,17 +146,17 @@ export default function LoginPage() {
             ].map((item, index) => (
               <div key={index} className="group">
                 <div className="flex items-center justify-between mb-1">
-                  <label className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">{item.label}</label>
+                  <label className="text-xs font-medium text-text-secondary dark:text-gray-400 uppercase tracking-wider">{item.label}</label>
                   <button
                     onClick={() => copyToClipboard(item.value, item.label)}
-                    className="opacity-0 group-hover:opacity-100 p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded transition-all"
+                    className="opacity-0 group-hover:opacity-100 p-1 hover:bg-background-secondary dark:hover:bg-gray-700 rounded transition-all"
                   >
                     <IoCopyOutline className="w-3 h-3 text-gray-400" />
                   </button>
                 </div>
-                <div className="flex items-center bg-gray-50 dark:bg-gray-700 rounded-lg p-3">
-                  <item.icon className="w-4 h-4 text-emerald-600 mr-3 flex-shrink-0" />
-                  <span className="font-mono text-sm text-gray-900 dark:text-white truncate">{item.value}</span>
+                <div className="flex items-center bg-background-secondary dark:bg-gray-700 rounded-lg p-3">
+                  <item.icon className="w-4 h-4 text-primary mr-3 flex-shrink-0" />
+                  <span className="font-mono text-sm text-text dark:text-gray-200 truncate">{item.value}</span>
                 </div>
               </div>
             ))}
@@ -164,7 +164,7 @@ export default function LoginPage() {
 
           <button
             onClick={() => setUser(currentCredentials)}
-            className="w-full mt-6 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium py-2.5 px-4 rounded-lg transition-colors"
+            className="w-full mt-6 bg-primary hover:bg-primary-hover text-text-inverse text-sm font-medium py-2.5 px-4 rounded-lg transition-colors"
           >
             Auto-Fill Form
           </button>
@@ -177,19 +177,19 @@ export default function LoginPage() {
           
           {/* Header */}
           <div className="text-center mb-8">
-            <div className="inline-flex items-center justify-center w-12 h-12 bg-emerald-600 rounded-xl mb-4">
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="inline-flex items-center justify-center w-12 h-12 bg-primary rounded-xl mb-4">
+              <svg className="w-6 h-6 text-text-inverse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
             </div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+            <h1 className="text-2xl font-bold text-text dark:text-gray-200 mb-2">
               {loading ? "Signing In..." : "Welcome Back"}
             </h1>
-            <p className="text-gray-600 dark:text-gray-400">Sign in to your account</p>
+            <p className="text-text-secondary dark:text-gray-400">Sign in to your account</p>
           </div>
 
           {/* Login Form */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-300 dark:border-gray-700 p-5 shadow-lg">
+          <div className="bg-background dark:bg-background-dark rounded-lg border border-gray-300 dark:border-gray-700 p-5 shadow-lg">
             
             {/* Error Message */}
             {error && (
@@ -206,10 +206,10 @@ export default function LoginPage() {
             <div className="space-y-4">
               {/* Email Field */}
               <div>
-                <label className="block text-sm font-medium text-gray-800 dark:text-gray-200 mb-1">Email</label>
+                <label className="block text-sm font-medium text-text dark:text-gray-200 mb-1">Email</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <IoMail className="w-4 h-4 text-emerald-600 dark:text-emerald-500" />
+                    <IoMail className="w-4 h-4 text-primary" />
                   </div>
                   <input
                     type="email"
@@ -218,7 +218,7 @@ export default function LoginPage() {
                       setUser({ ...user, email: e.target.value });
                       setError("");
                     }}
-                    className="w-full pl-10 pr-3 py-2 border border-gray-400 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors"
+                    className="w-full pl-10 pr-3 py-2 border border-gray-400 dark:border-gray-600 bg-background-secondary dark:bg-gray-700 text-text dark:text-gray-200 rounded-md focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
                     placeholder="Enter your email"
                   />
                 </div>
@@ -226,10 +226,10 @@ export default function LoginPage() {
 
               {/* Password Field */}
               <div>
-                <label className="block text-sm font-medium text-gray-800 dark:text-gray-200 mb-1">Password</label>
+                <label className="block text-sm font-medium text-text dark:text-gray-200 mb-1">Password</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <IoLockClosedOutline className="w-4 h-4 text-emerald-600 dark:text-emerald-500" />
+                    <IoLockClosedOutline className="w-4 h-4 text-primary" />
                   </div>
                   <input
                     type="password"
@@ -238,7 +238,7 @@ export default function LoginPage() {
                       setUser({ ...user, password: e.target.value });
                       setError("");
                     }}
-                    className="w-full pl-10 pr-3 py-2 border border-gray-400 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors"
+                    className="w-full pl-10 pr-3 py-2 border border-gray-400 dark:border-gray-600 bg-background-secondary dark:bg-gray-700 text-text dark:text-gray-200 rounded-md focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
                     placeholder="Enter your password"
                   />
                 </div>
@@ -246,10 +246,10 @@ export default function LoginPage() {
 
               {/* PIN Field */}
               <div>
-                <label className="block text-sm font-medium text-gray-800 dark:text-gray-200 mb-1">Security PIN</label>
+                <label className="block text-sm font-medium text-text dark:text-gray-200 mb-1">Security PIN</label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <MdFiberPin className="w-4 h-4 text-emerald-600 dark:text-emerald-500" />
+                    <MdFiberPin className="w-4 h-4 text-primary" />
                   </div>
                   <input
                     type="text"
@@ -258,7 +258,7 @@ export default function LoginPage() {
                       setUser({ ...user, pin: e.target.value });
                       setError("");
                     }}
-                    className="w-full pl-10 pr-3 py-2 border border-gray-400 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white rounded-md focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-colors"
+                    className="w-full pl-10 pr-3 py-2 border border-gray-400 dark:border-gray-600 bg-background-secondary dark:bg-gray-700 text-text dark:text-gray-200 rounded-md focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
                     placeholder="Enter your PIN"
                   />
                 </div>
@@ -269,14 +269,14 @@ export default function LoginPage() {
                 <div className="grid grid-cols-2 gap-2 mb-4">
                   <button
                     onClick={() => setUser(demoCredentials.superadmin)}
-                    className="flex items-center justify-center px-3 py-2 bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300 rounded-md text-sm font-medium border border-emerald-300 dark:border-emerald-700 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 transition-colors"
+                    className="flex items-center justify-center px-3 py-2 bg-primary-light dark:bg-primary-light text-primary dark:text-primary rounded-md text-sm font-medium border border-primary/30 dark:border-primary/50 hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors"
                   >
                     <MdAdminPanelSettings className="w-4 h-4 mr-1" />
                     Admin
                   </button>
                   <button
                     onClick={() => setUser(demoCredentials.user)}
-                    className="flex items-center justify-center px-3 py-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md text-sm font-medium border border-gray-400 dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                    className="flex items-center justify-center px-3 py-2 bg-background-secondary dark:bg-gray-700 text-text dark:text-gray-200 rounded-md text-sm font-medium border border-gray-400 dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
                   >
                     <MdPerson className="w-4 h-4 mr-1" />
                     Staff
@@ -288,11 +288,11 @@ export default function LoginPage() {
               <button
                 onClick={onLogin}
                 disabled={buttonDisabled || loading}
-                className="w-full bg-emerald-600 hover:bg-emerald-700 disabled:bg-gray-500 dark:disabled:bg-gray-600 text-white font-medium py-2.5 px-4 rounded-md transition-colors disabled:cursor-not-allowed shadow-sm"
+                className="w-full bg-primary hover:bg-primary-hover disabled:bg-gray-500 dark:disabled:bg-gray-600 text-text-inverse font-medium py-2.5 px-4 rounded-md transition-colors disabled:cursor-not-allowed shadow-sm"
               >
                 {loading ? (
                   <div className="flex items-center justify-center">
-                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-text-inverse" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>

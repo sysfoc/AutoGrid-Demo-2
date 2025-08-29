@@ -1,163 +1,192 @@
-"use client"
-import { useEffect, useState } from "react"
-import Link from "next/link"
-import { ArrowUpRight, ChevronDown, ChevronUp, MessageCircle, Eye, Calendar } from "lucide-react"
-import Image from "next/image"
-import { useTranslations } from "next-intl"
+"use client";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import {
+  ArrowUpRight,
+  ChevronDown,
+  ChevronUp,
+  MessageCircle,
+  Eye,
+  Calendar,
+  ArrowRight,
+} from "lucide-react";
+import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 const Blog = () => {
-  const t = useTranslations("HomePage")
-  const [blogs, setBlogs] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState("")
-  const [showAll, setShowAll] = useState(false)
+  const t = useTranslations("HomePage");
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [showAll, setShowAll] = useState(false);
 
-  const INITIAL_DISPLAY_COUNT = 3
+  const INITIAL_DISPLAY_COUNT = 3;
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch("/api/blog")
-        if (!response.ok) throw new Error("Failed to fetch blogs")
-        const data = await response.json()
-        setBlogs(data.blogs)
+        const response = await fetch("/api/blog");
+        if (!response.ok) throw new Error("Failed to fetch blogs");
+        const data = await response.json();
+        setBlogs(data.blogs);
       } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to fetch blogs")
+        setError(err instanceof Error ? err.message : "Failed to fetch blogs");
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
+    };
 
-    fetchBlogs()
-  }, [])
+    fetchBlogs();
+  }, []);
 
   const formatCount = (count) => {
-    if (count === 0) return "0"
-    if (count === 1) return "1"
-    if (count < 1000) return count.toString()
-    if (count < 1000000) return (count / 1000).toFixed(1) + "K"
-    return (count / 1000000).toFixed(1) + "M"
-  }
+    if (count === 0) return "0";
+    if (count === 1) return "1";
+    if (count < 1000) return count.toString();
+    if (count < 1000000) return (count / 1000).toFixed(1) + "K";
+    return (count / 1000000).toFixed(1) + "M";
+  };
 
   const getUniqueViewsCount = (views) => {
-    if (!views || !Array.isArray(views)) return 0
-    return new Set(views.map((view) => view.ip)).size
-  }
+    if (!views || !Array.isArray(views)) return 0;
+    return new Set(views.map((view) => view.ip)).size;
+  };
 
   if (error) {
     return (
-      <section className="relative py-8">
-        <div className="container mx-auto px-4 text-center">
-          <div className="inline-block rounded-2xl bg-red-50 border border-red-200 p-6 shadow-lg dark:bg-red-900/20 dark:border-red-800/30">
-            <h3 className="mb-2 text-xl font-bold text-red-800 dark:text-red-200">Error Loading Blogs</h3>
+      <section>
+        <div className="text-center">
+          <div className="inline-block rounded border border-red-200 bg-red-50 p-3 dark:border-red-800/30 dark:bg-red-900/20">
+            <h3 className="text-lg font-bold text-red-800 dark:text-red-200">
+              Error Loading Blogs
+            </h3>
             <p className="text-red-700 dark:text-red-300">{error}</p>
           </div>
         </div>
       </section>
-    )
+    );
   }
 
   return (
-    <section className="py-8 bg-background dark:bg-background-dark">
-      <div className="container mx-auto px-4">
-        <div className="mb-8 text-center">
-          <h2 className="text-3xl font-bold text-text dark:text-text-inverse mb-4 md:text-4xl">{t("blogHeading")}</h2>
-          <Link href={"/blogs"} className="group inline-flex">
-            <div className="flex items-center gap-2 rounded-xl bg-primary px-4 py-2 font-medium text-text-inverse shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 hover:bg-primary-hover">
-              <span>{t("viewAll")}</span>
-              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
-            </div>
-          </Link>
+    <section className="bg-background sm:mx-8 dark:bg-background-dark">
+      <div className="container mx-auto px-2 sm:px-4">
+        <div className="mb-8 flex items-center justify-between">
+          <div>
+            <h2 className="mb-2 text-3xl font-bold text-primary md:text-4xl lg:text-5xl">
+              {t("blogHeading")}
+            </h2>
+            <p className="text-sm text-text-secondary dark:text-text-inverse/70 md:text-base">
+              Discover our latest insights and stories
+            </p>
+          </div>
+
+          <div className="flex items-center gap-4">
+            <Link href={"/blogs"}>
+              <div className="group inline-flex transform items-center gap-3 rounded-2xl border border-blue-600 bg-blue-600 px-4 py-2 text-sm font-bold text-white shadow-xl transition-all duration-300 hover:scale-105 hover:bg-blue-700 hover:shadow-2xl dark:border-blue-400 dark:bg-blue-500 dark:hover:bg-blue-600 dark:hover:shadow-blue-900/25 md:px-6 md:py-3 md:text-base">
+                <span>View All</span>
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 md:h-5 md:w-5" />
+              </div>
+            </Link>
+          </div>
         </div>
 
         {loading && (
-          <div className="flex justify-center py-8">
-            <div className="relative">
-              <div className="h-12 w-12 animate-spin rounded-full border-4 border-gray-200 border-t-primary dark:border-gray-700 dark:border-t-primary"></div>
-              <div className="absolute inset-0 h-12 w-12 animate-ping rounded-full border-4 border-primary/30 opacity-20"></div>
-            </div>
+          <div className="flex justify-center py-4">
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-200 border-t-primary dark:border-gray-700 dark:border-t-primary"></div>
           </div>
         )}
 
         {!loading && blogs.length > 0 && (
-          <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {(showAll ? blogs : blogs.slice(0, INITIAL_DISPLAY_COUNT)).map((blog) => (
-                <Link href={`/blog/${blog.slug}`} key={blog.slug}>
-                  <article className="group relative h-full overflow-hidden rounded-xl bg-background shadow-lg transition-all duration-300 hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-2 dark:bg-background-dark border border-gray-200 dark:border-gray-700 flex flex-col">
-                    {/* Image */}
-                    <div className="relative aspect-[16/9] overflow-hidden">
-                      <Image
-                        src={blog.image || "/sydney.jpg"}
-                        alt={blog.metaTitle || blog.h1 || "Blog post"}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-6 flex-1 flex flex-col">
-                      <div className="mb-4 flex-1">
-                        <h3 className="text-lg font-bold line-clamp-2 text-text dark:text-text-inverse mb-3 leading-tight group-hover:text-primary transition-colors">
-                          {blog.h1 || blog.metaTitle}
-                        </h3>
-                        {blog.metaDescription && (
-                          <p className="text-text-secondary dark:text-text-inverse leading-relaxed text-sm line-clamp-2">
-                            {blog.metaDescription}
-                          </p>
-                        )}
+          <div>
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+              {(showAll ? blogs : blogs.slice(0, INITIAL_DISPLAY_COUNT)).map(
+                (blog) => (
+                  <Link href={`/blog/${blog.slug}`} key={blog.slug}>
+                    <article className="group relative h-full overflow-hidden rounded border border-gray-200 bg-background transition-shadow hover:shadow-md dark:border-gray-700 dark:bg-background-dark">
+                      {/* Image */}
+                      <div className="relative aspect-[16/9] overflow-hidden">
+                        <Image
+                          src={blog.image || "/sydney.jpg"}
+                          alt={blog.metaTitle || blog.h1 || "Blog post"}
+                          fill
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        />
                       </div>
 
-                      {/* Date */}
-                      <div className="mb-4 flex items-center text-sm text-primary font-medium">
-                        <Calendar className="mr-2 h-4 w-4" />
-                        <time dateTime={blog.createdAt}>
-                          {new Date(blog.createdAt).toLocaleDateString("en-US", {
-                            year: "numeric",
-                            month: "short",
-                            day: "numeric",
-                          })}
-                        </time>
-                      </div>
-
-                      {/* Stats */}
-                      <div className="flex items-center justify-between border-t border-gray-200 dark:border-gray-700 pt-4">
-                        <div className="flex space-x-4 text-sm">
-                          <div className="flex items-center bg-primary-light dark:bg-primary-light/20 px-3 py-1 rounded-full">
-                            <MessageCircle className="mr-1 h-4 w-4 text-primary dark:text-gray-100" />
-                            <span className="font-semibold text-primary dark:text-gray-100">
-                              {formatCount(blog.comments?.length || 0)}
-                            </span>
-                          </div>
-                          <div className="flex items-center bg-background-secondary dark:bg-primary-light/20 px-3 py-1 rounded-full">
-                            <Eye className="mr-1 h-4 w-4 text-text-secondary dark:text-gray-100" />
-                            <span className="font-semibold text-text-secondary dark:text-gray-100">
-                              {formatCount(getUniqueViewsCount(blog.views))}
-                            </span>
-                          </div>
+                      {/* Content */}
+                      <div className="p-3">
+                        <div className="mb-2">
+                          <h3 className="mb-1 line-clamp-2 text-base font-semibold leading-tight text-text dark:text-text-inverse">
+                            {blog.h1 || blog.metaTitle}
+                          </h3>
+                          {blog.metaDescription && (
+                            <p className="line-clamp-2 text-xs leading-relaxed text-text-secondary dark:text-text-inverse">
+                              {blog.metaDescription}
+                            </p>
+                          )}
                         </div>
 
-                        <div className="flex items-center text-sm font-bold text-primary group-hover:text-primary-hover transition-colors">
-                          Read more
-                          <ArrowUpRight className="ml-1 h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                        {/* Date */}
+                        <div className="mb-2 flex items-center text-xs text-primary">
+                          <Calendar className="mr-1 h-3 w-3" />
+                          <time dateTime={blog.createdAt}>
+                            {new Date(blog.createdAt).toLocaleDateString(
+                              "en-US",
+                              {
+                                year: "numeric",
+                                month: "short",
+                                day: "numeric",
+                              },
+                            )}
+                          </time>
+                        </div>
+
+                        {/* Stats */}
+                        <div className="flex items-center justify-between border-t border-gray-200 pt-2 dark:border-gray-700">
+                          <div className="flex space-x-2 text-xs">
+                            <div className="flex items-center rounded bg-primary-light px-2 py-0.5 dark:bg-primary-light/20">
+                              <MessageCircle className="mr-1 h-3 w-3 text-primary dark:text-gray-100" />
+                              <span className="text-primary dark:text-gray-100">
+                                {formatCount(blog.comments?.length || 0)}
+                              </span>
+                            </div>
+                            <div className="flex items-center rounded bg-background-secondary px-2 py-0.5 dark:bg-primary-light/20">
+                              <Eye className="mr-1 h-3 w-3 text-text-secondary dark:text-gray-100" />
+                              <span className="text-text-secondary dark:text-gray-100">
+                                {formatCount(getUniqueViewsCount(blog.views))}
+                              </span>
+                            </div>
+                          </div>
+
+                          <div className="flex items-center text-xs font-medium text-primary">
+                            Read
+                            <ArrowUpRight className="ml-0.5 h-3 w-3" />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </article>
-                </Link>
-              ))}
+                    </article>
+                  </Link>
+                ),
+              )}
             </div>
 
             {blogs.length > INITIAL_DISPLAY_COUNT && (
-              <div className="flex justify-center pt-4">
+              <div className="flex justify-center pt-3">
                 <button
                   onClick={() => setShowAll(!showAll)}
-                  className="flex items-center gap-2 rounded-xl bg-primary px-4 py-2 font-medium text-text-inverse shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 hover:bg-primary-hover"
+                  className="flex items-center gap-1 rounded bg-primary px-3 py-1.5 text-sm font-medium text-text-inverse hover:bg-primary-hover"
                 >
-                  <span>{showAll ? "Show Less" : `Show More (${blogs.length - INITIAL_DISPLAY_COUNT})`}</span>
-                  {showAll ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                  <span>
+                    {showAll
+                      ? "Show Less"
+                      : `Show More (${blogs.length - INITIAL_DISPLAY_COUNT})`}
+                  </span>
+                  {showAll ? (
+                    <ChevronUp className="h-3 w-3" />
+                  ) : (
+                    <ChevronDown className="h-3 w-3" />
+                  )}
                 </button>
               </div>
             )}
@@ -165,15 +194,14 @@ const Blog = () => {
         )}
 
         {!loading && blogs.length === 0 && (
-          <div className="py-8 text-center">
-            <div className="mx-auto max-w-lg rounded-3xl bg-primary-light border border-gray-200 p-6 shadow-2xl dark:bg-primary-light/20 dark:border-gray-700">
-              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary text-text-inverse shadow-lg">
+          <div className="py-4 text-center">
+            <div className="mx-auto max-w-sm rounded border border-gray-200 bg-primary-light p-4 dark:border-gray-700 dark:bg-primary-light/20">
+              <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-primary text-text-inverse">
                 <svg
-                  className="h-8 w-8"
+                  className="h-5 w-5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
                     strokeLinecap="round"
@@ -183,16 +211,18 @@ const Blog = () => {
                   />
                 </svg>
               </div>
-              <h3 className="mb-3 text-2xl font-bold text-primary">No Blogs Available</h3>
-              <p className="text-text-secondary leading-relaxed">
-                We're preparing fresh content. Check back soon for updates!
+              <h3 className="mb-1 text-lg font-bold text-primary">
+                No Blogs Available
+              </h3>
+              <p className="text-sm text-text-secondary">
+                Check back soon for updates!
               </p>
             </div>
           </div>
         )}
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Blog
+export default Blog;

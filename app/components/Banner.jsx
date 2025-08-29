@@ -92,12 +92,12 @@ const websiteOptions = [
           >
             <div className="hidden flex-shrink-0 flex-col items-center text-center lg:flex">
               <div className="mb-0.5 flex items-center gap-1">
-                <TbSettingsCode size={30} className=" text-app-bg" />
+                <TbSettingsCode size={30} className=" text-green-600" />
                 <h2 className="text-xl font-semibold text-white">
                   Theme Customization
                 </h2>
               </div>
-              <p className="text-app-bg relative -right-12 -top-2 text-xs font-medium">
+              <p className="text-green-600 relative -right-12 -top-2 text-xs font-medium">
                 Get a free quote
               </p>
             </div>
@@ -122,7 +122,7 @@ const websiteOptions = [
                 href="https://sysfoc.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-app-bg text-xs font-bold hover:underline md:ml-1 lg:text-sm"
+                className="text-blue-300 text-xs font-bold hover:underline md:ml-1 lg:text-sm"
               >
                 Sysfoc
               </Link>

@@ -1,8 +1,6 @@
 "use client"
 import { useEffect, useState } from "react"
-import Link from "next/link"
 import { MdOutlineArrowOutward, MdSearch, MdViewModule, MdViewList } from "react-icons/md"
-import Image from "next/image"
 
 const BlogsPage = () => {
   const [blogs, setBlogs] = useState([])
@@ -41,7 +39,8 @@ const BlogsPage = () => {
       filtered = filtered.filter(
         (blog) =>
           blog.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          blog.slug?.toLowerCase().includes(searchTerm.toLowerCase()),
+          blog.slug?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          blog.category?.toLowerCase().includes(searchTerm.toLowerCase()),
       )
     }
 
@@ -61,11 +60,11 @@ const BlogsPage = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 mt-20">
+      <div className="min-h-screen bg-background dark:bg-background-dark mt-20">
         <div className="container mx-auto px-4 py-20">
           <div className="max-w-md mx-auto">
-            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 p-8 text-center">
-              <div className="w-16 h-16 bg-red-100 dark:bg-red-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="bg-background dark:bg-background-dark rounded-2xl shadow-lg border border-gray-200 dark:border-gray-600 p-8 text-center">
+              <div className="w-16 h-16 bg-red-50 dark:bg-red-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg
                   className="w-8 h-8 text-red-600 dark:text-red-400"
                   fill="none"
@@ -80,14 +79,11 @@ const BlogsPage = () => {
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">Error Loading Blogs</h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-6">{error}</p>
-              <Link
-                href="/"
-                className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
-              >
+              <h2 className="text-xl font-semibold text-text dark:text-text-dark mb-2">Error Loading Articles</h2>
+              <p className="text-text-secondary dark:text-text-secondary-dark mb-6">{error}</p>
+              <button className="inline-flex items-center gap-2 bg-primary hover:bg-primary-hover text-text-inverse px-6 py-3 rounded-lg font-medium transition-colors">
                 Go Back Home
-              </Link>
+              </button>
             </div>
           </div>
         </div>
@@ -96,56 +92,56 @@ const BlogsPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 mt-14">
+    <div className="min-h-screen bg-background-secondary dark:bg-background-dark mt-14">
       {/* Header Section */}
-      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+      <div className="bg-background dark:bg-background-dark border-b border-gray-200 dark:border-gray-600">
         <div className="container mx-auto px-4 py-12">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-400 px-4 py-2 rounded-full text-sm font-medium mb-6">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+            <div className="inline-flex items-center gap-2 bg-primary-light dark:bg-primary-light text-primary dark:text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
               Knowledge Hub
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-              Insights & <span className="text-green-600 dark:text-green-400">Articles</span>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-text dark:text-gray-200 mb-6">
+              Professional <span className="text-primary">Insights</span>
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
-              Explore our collection of in-depth articles, tutorials, and industry insights crafted by our expert team.
+            <p className="text-xl text-text-secondary dark:text-text-secondary-dark max-w-2xl mx-auto leading-relaxed">
+              Expert articles and industry insights to drive your business forward with proven strategies and best practices.
             </p>
           </div>
         </div>
       </div>
 
       {/* Controls Section */}
-      <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+      <div className="bg-background dark:bg-background-dark border-b border-gray-200 dark:border-gray-600">
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
             {/* Search */}
             <div className="relative flex-1 max-w-md">
-              <MdSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <MdSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-text-secondary dark:text-text-secondary-dark w-5 h-5" />
               <input
                 type="text"
                 placeholder="Search articles..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-all"
+                className="w-full pl-12 pr-4 py-3 bg-background-secondary dark:bg-background-dark border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-text dark:text-text-dark placeholder-text-secondary dark:placeholder-text-secondary-dark transition-all"
               />
             </div>
 
             {/* Results Count */}
             {!loading && filteredBlogs.length > 0 && (
-              <div className="text-gray-600 dark:text-gray-400 text-sm">
+              <div className="text-text-secondary dark:text-text-secondary-dark text-sm">
                 {filteredBlogs.length} article{filteredBlogs.length !== 1 ? "s" : ""} found
               </div>
             )}
 
             {/* View Toggle */}
-            <div className="flex items-center gap-2 bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
+            <div className="flex items-center gap-2 bg-background-secondary dark:bg-background-dark rounded-lg p-1 border border-gray-200 dark:border-gray-600">
               <button
                 onClick={() => setViewMode("grid")}
                 className={`p-2 rounded-md transition-colors ${
                   viewMode === "grid"
-                    ? "bg-white dark:bg-gray-600 text-green-600 dark:text-green-400 shadow-sm"
-                    : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
+                    ? "bg-primary text-text-inverse shadow-sm"
+                    : "text-text-secondary dark:text-text-secondary-dark hover:text-text dark:hover:text-text-dark"
                 }`}
               >
                 <MdViewModule className="w-5 h-5" />
@@ -154,8 +150,8 @@ const BlogsPage = () => {
                 onClick={() => setViewMode("list")}
                 className={`p-2 rounded-md transition-colors ${
                   viewMode === "list"
-                    ? "bg-white dark:bg-gray-600 text-green-600 dark:text-green-400 shadow-sm"
-                    : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
+                    ? "bg-primary text-text-inverse shadow-sm"
+                    : "text-text-secondary dark:text-text-secondary-dark hover:text-text dark:hover:text-text-dark"
                 }`}
               >
                 <MdViewList className="w-5 h-5" />
@@ -170,8 +166,8 @@ const BlogsPage = () => {
         {loading && (
           <div className="flex justify-center items-center py-20">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 border-3 border-green-200 dark:border-green-800 rounded-full animate-spin border-t-green-600"></div>
-              <span className="text-gray-600 dark:text-gray-400">Loading articles...</span>
+              <div className="w-8 h-8 border-3 border-primary-light rounded-full animate-spin border-t-primary"></div>
+              <span className="text-text-secondary dark:text-text-secondary-dark">Loading articles...</span>
             </div>
           </div>
         )}
@@ -183,43 +179,42 @@ const BlogsPage = () => {
                 {currentBlogs.map((blog, index) => (
                   <article
                     key={`${blog.slug}-${index}`}
-                    className="group bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300 hover:-translate-y-1"
+                    className="group bg-background dark:bg-background-dark rounded-2xl shadow-sm hover:shadow-xl border border-gray-200 dark:border-gray-600 overflow-hidden transition-all duration-300 hover:-translate-y-1"
                   >
-                    <Link href={`/blog/${blog.slug}`}>
+                    <div className="cursor-pointer">
                       <div className="relative h-48 overflow-hidden">
-                        <Image
+                        <img
                           src={blog.image || "/placeholder.svg?height=200&width=400&query=blog article"}
                           alt={blog.title || blog.slug}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                       </div>
-                    </Link>
+                    </div>
 
                     <div className="p-6">
                       <div className="flex items-center gap-3 mb-4">
-                        <span className="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 px-3 py-1 rounded-full text-sm font-medium">
+                        <span className="bg-primary-light dark:bg-primary-light text-primary px-3 py-1 rounded-full text-sm font-medium">
                           {blog.category || "Article"}
                         </span>
                         {blog.readTime && (
-                          <span className="text-gray-500 dark:text-gray-400 text-sm">{blog.readTime} min read</span>
+                          <span className="text-text-secondary dark:text-text-secondary-dark text-sm">{blog.readTime} min read</span>
                         )}
                       </div>
 
-                      <Link href={`/blog/${blog.slug}`} className="group/title">
-                        <h2 className="text-xl font-semibold text-gray-900 dark:text-white group-hover/title:text-green-600 dark:group-hover/title:text-green-400 transition-colors duration-200 line-clamp-2 mb-3">
+                      <div className="group/title cursor-pointer">
+                        <h2 className="text-xl font-semibold text-text dark:text-gray-200 group-hover/title:text-primary transition-colors duration-200 line-clamp-2 mb-3">
                           {blog.title || blog.slug}
                         </h2>
-                      </Link>
+                      </div>
 
                       {blog.excerpt && (
-                        <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-3 mb-4">{blog.excerpt}</p>
+                        <p className="text-text-secondary dark:text-text-secondary-dark text-sm line-clamp-3 mb-4">{blog.excerpt}</p>
                       )}
 
                       <div className="flex items-center justify-between">
                         {blog.publishedAt && (
-                          <time className="text-gray-500 dark:text-gray-400 text-sm">
+                          <time className="text-text-secondary dark:text-text-secondary-dark text-sm">
                             {new Date(blog.publishedAt).toLocaleDateString("en-US", {
                               month: "short",
                               day: "numeric",
@@ -228,13 +223,10 @@ const BlogsPage = () => {
                           </time>
                         )}
 
-                        <Link
-                          href={`/blog/${blog.slug}`}
-                          className="inline-flex items-center gap-1 text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-300 text-sm font-medium transition-colors group/link"
-                        >
+                        <button className="inline-flex items-center gap-1 text-primary hover:text-primary-hover text-sm font-medium transition-colors group/link">
                           Read more
                           <MdOutlineArrowOutward className="w-4 h-4 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                        </Link>
+                        </button>
                       </div>
                     </div>
                   </article>
@@ -245,45 +237,44 @@ const BlogsPage = () => {
                 {currentBlogs.map((blog, index) => (
                   <article
                     key={`${blog.slug}-${index}`}
-                    className="group bg-white dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300"
+                    className="group bg-background dark:bg-background-dark rounded-2xl shadow-sm hover:shadow-lg border border-gray-200 dark:border-gray-600 overflow-hidden transition-all duration-300"
                   >
                     <div className="flex flex-col md:flex-row">
-                      <Link href={`/blog/${blog.slug}`} className="md:w-80 flex-shrink-0">
+                      <div className="md:w-80 flex-shrink-0 cursor-pointer">
                         <div className="relative h-48 md:h-full overflow-hidden">
-                          <Image
+                          <img
                             src={blog.image || "/placeholder.svg?height=200&width=320&query=blog article"}
                             alt={blog.title || blog.slug}
-                            fill
-                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                           />
                         </div>
-                      </Link>
+                      </div>
 
                       <div className="flex-1 p-6 flex flex-col justify-between">
                         <div>
                           <div className="flex items-center gap-3 mb-3">
-                            <span className="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 px-3 py-1 rounded-full text-sm font-medium">
+                            <span className="bg-primary-light dark:bg-primary-light text-primary px-3 py-1 rounded-full text-sm font-medium">
                               {blog.category || "Article"}
                             </span>
                             {blog.readTime && (
-                              <span className="text-gray-500 dark:text-gray-400 text-sm">{blog.readTime} min read</span>
+                              <span className="text-text-secondary dark:text-text-secondary-dark text-sm">{blog.readTime} min read</span>
                             )}
                           </div>
 
-                          <Link href={`/blog/${blog.slug}`} className="group/title">
-                            <h2 className="text-2xl font-semibold text-gray-900 dark:text-white group-hover/title:text-green-600 dark:group-hover/title:text-green-400 transition-colors duration-200 mb-3">
+                          <div className="group/title cursor-pointer">
+                            <h2 className="text-2xl font-semibold text-text dark:text-text-dark group-hover/title:text-primary transition-colors duration-200 mb-3">
                               {blog.title || blog.slug}
                             </h2>
-                          </Link>
+                          </div>
 
                           {blog.excerpt && (
-                            <p className="text-gray-600 dark:text-gray-400 line-clamp-2 mb-4">{blog.excerpt}</p>
+                            <p className="text-text-secondary dark:text-text-secondary-dark line-clamp-2 mb-4">{blog.excerpt}</p>
                           )}
                         </div>
 
                         <div className="flex items-center justify-between">
                           {blog.publishedAt && (
-                            <time className="text-gray-500 dark:text-gray-400 text-sm">
+                            <time className="text-text-secondary dark:text-text-secondary-dark text-sm">
                               {new Date(blog.publishedAt).toLocaleDateString("en-US", {
                                 month: "long",
                                 day: "numeric",
@@ -292,13 +283,10 @@ const BlogsPage = () => {
                             </time>
                           )}
 
-                          <Link
-                            href={`/blog/${blog.slug}`}
-                            className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-                          >
+                          <button className="inline-flex items-center gap-2 bg-primary hover:bg-primary-hover text-text-inverse px-4 py-2 rounded-lg text-sm font-medium transition-colors">
                             Read Article
                             <MdOutlineArrowOutward className="w-4 h-4" />
-                          </Link>
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -312,13 +300,13 @@ const BlogsPage = () => {
         {!loading && filteredBlogs.length === 0 && (
           <div className="text-center py-20">
             <div className="max-w-md mx-auto">
-              <div className="w-20 h-20 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-6">
-                <MdSearch className="w-10 h-10 text-gray-400" />
+              <div className="w-20 h-20 bg-background-secondary dark:bg-background-dark rounded-full flex items-center justify-center mx-auto mb-6 border border-gray-200 dark:border-gray-600">
+                <MdSearch className="w-10 h-10 text-text-secondary dark:text-text-secondary-dark" />
               </div>
-              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-3">
+              <h3 className="text-2xl font-semibold text-text dark:text-text-dark mb-3">
                 {searchTerm ? "No articles found" : "No articles available"}
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-6">
+              <p className="text-text-secondary dark:text-text-secondary-dark mb-6">
                 {searchTerm
                   ? `We couldn't find any articles matching "${searchTerm}". Try adjusting your search terms.`
                   : "We're working on bringing you fresh content. Check back soon!"}
@@ -326,7 +314,7 @@ const BlogsPage = () => {
               {searchTerm && (
                 <button
                   onClick={() => setSearchTerm("")}
-                  className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                  className="bg-primary hover:bg-primary-hover text-text-inverse px-6 py-3 rounded-lg font-medium transition-colors"
                 >
                   Clear Search
                 </button>
@@ -344,8 +332,8 @@ const BlogsPage = () => {
                 disabled={currentPage === 1}
                 className={`px-4 py-2 rounded-lg border transition-colors ${
                   currentPage === 1
-                    ? "border-gray-200 dark:border-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed"
-                    : "border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+                    ? "border-gray-200 dark:border-gray-600 text-text-secondary dark:text-text-secondary-dark cursor-not-allowed"
+                    : "border-gray-200 dark:border-gray-600 text-text dark:text-text-dark hover:bg-background-secondary dark:hover:bg-background-dark"
                 }`}
               >
                 Previous
@@ -358,8 +346,8 @@ const BlogsPage = () => {
                     onClick={() => handlePageChange(page)}
                     className={`w-10 h-10 rounded-lg transition-colors ${
                       currentPage === page
-                        ? "bg-green-600 text-white"
-                        : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                        ? "bg-primary text-text-inverse"
+                        : "text-text dark:text-text-dark hover:bg-background-secondary dark:hover:bg-background-dark"
                     }`}
                   >
                     {page}
@@ -372,8 +360,8 @@ const BlogsPage = () => {
                 disabled={currentPage === totalPages}
                 className={`px-4 py-2 rounded-lg border transition-colors ${
                   currentPage === totalPages
-                    ? "border-gray-200 dark:border-gray-700 text-gray-400 dark:text-gray-500 cursor-not-allowed"
-                    : "border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+                    ? "border-gray-200 dark:border-gray-600 text-text-secondary dark:text-text-secondary-dark cursor-not-allowed"
+                    : "border-gray-200 dark:border-gray-600 text-text dark:text-text-dark hover:bg-background-secondary dark:hover:bg-background-dark"
                 }`}
               >
                 Next

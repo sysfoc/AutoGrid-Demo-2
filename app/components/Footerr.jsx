@@ -423,10 +423,10 @@ const Footerr = () => {
                 >
                   {t("copyright")}
                 </Link>
-                <span className="mx-2 text-gray-300 dark:text-gray-600">
+                <span className="mx-2 text-text-secondary dark:text-text-secondary">
                   •
                 </span>
-                <span className="text-text dark:text-text-inverse">
+                <span className="">
                   by{" "}
                   <Link
                     className="hover:underline hover:text-primary"
