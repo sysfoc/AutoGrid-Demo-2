@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "target": "ES2017"
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "types.d.ts",
+    "app/api/cars.js",
+    "app/components/Herosection.jsx",
+    "app/components/Herosection.jsx",
+    "app/car-detail/[slug]/page.jsx",
+    "app/components/Slider.jsx",
+    "app/page.jsx",
+    "app/components/LayoutRenderer.jsx",
+    "app/signup/page.jsx",
+    "app/login/page.jsx",
+    "app/api/cars/route.js"
+, "app/api/blog/slug/[slug]/route.ts", "app/components/Cookiebox.tsx", "app/components/SidebarFilters.tsx", "app/api/users/favorites/route.ts", "app/api/blog/[slug]/route.js", "app/admin/contact/page.jsx", "app/admin/create-dealer/page.jsx", "app/cars/about-us/page.tsx", "app/components/Car-search-sidebar.jsx", "app/admin/manage-website/testimonial/page.jsx", "app/components/BrandsList.jsx", "app/components/Valuation.jsx", "app/car-financing/page.tsx", "app/admin/finance/page.jsx", "app/api/rate-requests/route.js", "app/api/save-rate-request/route.js"  ],
+  "exclude": ["node_modules"]
+}

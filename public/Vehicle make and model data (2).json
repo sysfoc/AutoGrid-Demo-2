@@ -1,0 +1,594 @@
+{
+"Sheet1":[
+ {
+  "Maker": "ACE EV",
+  "model ": "V1 Transformer"
+ },
+ {
+  "Maker": "Abarth",
+  "model ": "124, 500, 500E, 595, 595C, 695, 695C"
+ },
+ {
+  "Maker": "Alfa Romeo",
+  "model ": "147, 156, 159, 164, 166, 1750, 2000, 2600, 33, 4C, 75, 90, Alfasud, Alfetta, Brera, Giulia, Giulietta, GT, GTV, Junior, Mito, Montreal, Spider, Sprint, Stelvio, Tonale"
+ },
+ {
+  "Maker": "Alpine",
+  "model ": "110, A110"
+ },
+ {
+  "Maker": "Armstrong Siddeley",
+  "model ": "Star Sapphire"
+ },
+ {
+  "Maker": "Asia Motors"
+ },
+ {
+  "Maker": "Aston Martin",
+  "model ": "DB11, DB12, DB4, DB5, DB6, DB7, DB9, DBS, DBX, Lagonda, Rapide, V12, V8, Vanquish, Vantage, Virage"
+ },
+ {
+  "Maker": "Atlis",
+  "model ": "XT"
+ },
+ {
+  "Maker": "Audi",
+  "model ": "100, 200, 5+5, 5E, 80, 90, A1, A3, A4, A5, A6, A7, A8, Allroad Quattro, Cabriolet, E-Tron, e-tron GT, Fox, Q2, Q3, Q4, Q4 E-Tron, Q5, Q6, Q7, Q8, R8, RS Q3, RS Q8, RS3, RS4, RS5, RS6, RS7, S1, S2, S3, S4, S5, S6, S7, S8, SQ2, SQ5, SQ6, SQ7, SQ8, TT, V8 Quattro"
+ },
+ {
+  "Maker": "Austin",
+  "model ": "1800, A 40, A 60, A 99, Freeway, Kimberley, Lancer, Tasman"
+ },
+ {
+  "Maker": "Austin Healey",
+  "model ": "3000, Sprite"
+ },
+ {
+  "Maker": "Automobili Pininfarina",
+  "model ": "PF-ZERO"
+ },
+ {
+  "Maker": "Bedford",
+  "model ": "CFL, CFS"
+ },
+ {
+  "Maker": "Bentley",
+  "model ": "Arnage, Azure, Bentayga, Brooklands, Continental, Corniche, Eight, Flying Spur, Mulsanne, Mulsanne Speed, S2, S3, T Series, Turbo"
+ },
+ {
+  "Maker": "Bertone",
+  "model ": "X1\/9"
+ },
+ {
+  "Maker": "BMW",
+  "model ": "1 Series, 1600, 1602, 1800, 2 Series, 2000, 2002, 2500, 2800, 3 Series, 3.0, 3.3, 4 Series, 5 Series, 6 Series, 7 Series, 8 Series, i Series, I5, I7, IX1, IX2, M Models, X Models, XM, Z Models"
+ },
+ {
+  "Maker": "BMW ALPINA",
+  "model ": "B3, B4, B5, B7, B8, XB7, XD3"
+ },
+ {
+  "Maker": "Bolwell",
+  "model ": "Nagari"
+ },
+ {
+  "Maker": "Borgward",
+  "model ": "Isabella"
+ },
+ {
+  "Maker": "Brabham",
+  "model ": "BT62"
+ },
+ {
+  "Maker": "BUFORI",
+  "model ": "GENEVA, LA JOYA"
+ },
+ {
+  "Maker": "BUGATTI",
+  "model ": "VEYRON"
+ },
+ {
+  "Maker": "Buick",
+  "model ": "Electra, Riviera"
+ },
+ {
+  "Maker": "BYD",
+  "model ": "Atto 3, Atto 4, Dolphin, E6, Seal, Sealion 6, Sealion 7, Shark, Shark 6, Song Plus, T3, Yangwang U9"
+ },
+ {
+  "Maker": "Cadillac",
+  "model ": "De Ville, Lyriq, Optiq"
+ },
+ {
+  "Maker": "Caterham",
+  "model ": "Seven, Super 7"
+ },
+ {
+  "Maker": "Chery",
+  "model ": "J1, J11, J3, Omoda 5, Omoda E5, Omoda5, Tiggo 4 , Tiggo 7 , Tiggo 8"
+ },
+ {
+  "Maker": "Chevrolet",
+  "model ": "Bel Air, C20, C30, Camaro, Corvette, Impala, Silverado"
+ },
+ {
+  "Maker": "Chrysler",
+  "model ": "300, 300C, Centura, Charger, Chrysler, Crossfire, Dodge, Galant, Grand Voyager, Lancer, Neon, PT Cruiser, Regal, Royal, Sebring, Valiant, Viper, Voyager"
+ },
+ {
+  "Maker": "Citroen",
+  "model ": "Ax, Berlingo, BX, C2, C3, C3 Aircross, C4, C4 Aircross, C4 Cactus, C4 Picasso, C5, C5 Aircross, C5 X, C5X, C6, CX, D, Dispatch, DS, DS3, DS4, DS5, G, Grand C4, Grand C4 Picasso, GS, ID, Xantia, XM, Xsara"
+ },
+ {
+  "Maker": "Corsa Specialized Vehicles",
+  "model ": "Bullet, LA Classe, Strada, Volanti"
+ },
+ {
+  "Maker": "CSV"
+ },
+ {
+  "Maker": "Cupra",
+  "model ": "Ateca, Born, Formentor, Leon, Tavascan, Terramar"
+ },
+ {
+  "Maker": "Daewoo",
+  "model ": "1.5I, Cielo, Espero, Kalos, Korando, Lacetti, Lanos, Leganza, Matiz, Musso, Nubira, Tacuma"
+ },
+ {
+  "Maker": "Daihatsu",
+  "model ": "1000, 360X, Applause, Charade, Compagno, Copen, Cuore, Delta, F20, F25, F50, F55, F60, F65, Feroza, Handi, Hi-Jet, Mira, Move, Pyzar, Rocky, S60, S65, Sirion, Terios, Yrv"
+ },
+ {
+  "Maker": "Daimler",
+  "model ": "2.5 Litre, 250, Double Six, Six, Sovereign, SP250, Super V8, V8"
+ },
+ {
+  "Maker": "Datsun",
+  "model ": "1000, 1200, 120Y, 1300, 1600, 180B, 2000, 200B, 2300, 2400, 240C, 240K, 240Z, 260C, 260Z, 280C, 520, 620, Bluebird, Fairlady, GT, Patrol, Silvia, Sunny"
+ },
+ {
+  "Maker": "De Tomaso",
+  "model ": "Deauville, Longchamp, Mangusta, Pantera"
+ },
+ {
+  "Maker": "Dodge",
+  "model ": "Avenger, Caliber, CHALLENGER, CHARGER, Journey, Nitro, Phoenix"
+ },
+ {
+  "Maker": "Eunos",
+  "model ": "30X, 500, 800"
+ },
+ {
+  "Maker": "EV Automotive",
+  "model ": "Glory E3"
+ },
+ {
+  "Maker": "Ferrari",
+  "model ": "12Cilindri, 275, 296, 308, 328, 330, 348, 360, 365, 400, 456, 458, 488, 500, 512, 550, 575M, 599, 612, 812, California, Dino, ENZO, F12, F355, f40, F430, F50, F512M, F8, FF, GTC4, GTC4Lusso FY17, Mondial, Monza, Portofino, Purosangue, Roma, SF90 Stradale (phev), Superamerica"
+ },
+ {
+  "Maker": "Fiat",
+  "model ": "1100, 124, 125, 127, 128, 130, 131, 132, 1500, 1800, 2100, 2300, 500, 500C, 500E, 500X, 600, 850, Argenta, Croma, Doblo, Ducato, Freemont, Panda, Punto, Regata, Ritmo, Scudo, Superbrava, X1\/9"
+ },
+ {
+  "Maker": "Fisker",
+  "model ": "Ocean"
+ },
+ {
+  "Maker": "Ford",
+  "model ": "Anglia, Bronco, C-Max, Capri, Cobra, Consul, Corsair, Cortina, Cougar, Courier, E-Transit, E-Transit Custom, Econovan, Ecosport, Endura, Escape, Escort, Everest, Explorer, F100, F150, F250, F350, Fairlane, Fairmont, Falcon, Festiva, Fiesta, Focus, Galaxie, GT, Ka, Kuga, Landau, Laser, LTD, Maverick, Meteor, Mondeo, Mustang, Mustang Mach E, Prefect, Probe, Puma, Raider, Ranger, Spectron, Taurus, TE50, Telstar, Territory, TL50, Tourneo Custom, Transit, Transit Custom, TS50, Zephyr, Zodiac"
+ },
+ {
+  "Maker": "Foton",
+  "model ": "AUMAN, AUMARK, Sauvana, T5, Tunland, Tunland V7, Tunland V9, View CS2"
+ },
+ {
+  "Maker": "FPV",
+  "model ": "Cobra, F6, F6X, Force 6, Force 8, GS, GT, GT F, GT-E, GT-P, Pursuit, Super Pursuit"
+ },
+ {
+  "Maker": "FSM",
+  "model ": "Niki"
+ },
+ {
+  "Maker": "Fuso",
+  "model ": "Rosa"
+ },
+ {
+  "Maker": "Geely",
+  "model ": "EX5, MK"
+ },
+ {
+  "Maker": "GENESIS",
+  "model ": "G70, G80, GV60, GV70, GV80"
+ },
+ {
+  "Maker": "Giocattolo",
+  "model ": "Group"
+ },
+ {
+  "Maker": "GJM",
+  "model ": "Taipan"
+ },
+ {
+  "Maker": "GMC",
+  "model ": "Yukon"
+ },
+ {
+  "Maker": "GMSV"
+ },
+ {
+  "Maker": "Goggomobil",
+  "model ": "Dart, T 300, T 400"
+ },
+ {
+  "Maker": "Great Wall",
+  "model ": "Cannon, SA220, Steed, V200, V240, X200, X240"
+ },
+ {
+  "Maker": "GWM",
+  "model ": "Cannon Alpha, Haval H6, Haval H6GT, Haval Jolion, ORA, Steed, Tank 300, Tank 500, UTE"
+ },
+ {
+  "Maker": "Haval",
+  "model ": "H2, H6, H7, H8, H9, Jolion"
+ },
+ {
+  "Maker": "Hillman",
+  "model ": "Arrow, Gazelle, Hunter, Husky, Hustler, Imp, Minx, Super Minx"
+ },
+ {
+  "Maker": "Hino",
+  "model ": "300, 500, 700, Contessa"
+ },
+ {
+  "Maker": "Holden",
+  "model ": "Acadia, Adventra, Apollo, Astra, Barina, Barina Spark, Calais, Calibra, Camira, Caprice, Captiva, Cascada, Colorado, Colorado 7, Combo, Commodore, Crewman, Cruze, Drover, EH, EJ, EK, Epica, Equinox, FB, Frontera, Gemini, HD, HG, HJ, HK, HQ, HR, HT, HX, HZ, Insignia, Isuzu, Jackaroo, Malibu, Monaro, Nova, Piazza, Rodeo, Scurry, Shuttle, Spark, Statesman, Suburban, Sunbird, Tigra, Torana, Trailblazer, Trax, UTE, Vectra, Viva, Volt, Wb, Zafira"
+ },
+ {
+  "Maker": "Holden Hdt",
+  "model ": " Calais, Commodore"
+ },
+ {
+  "Maker": "Honda",
+  "model ": "1300, 600, Accord, Accord Euro, Acty, City, Civic, Concerto, CR-V, CR-Z, CRX, HR-V, Insight, Integra, Jazz, Legend, Life, MDX, N360, NSX, Odyssey, Prelude, S2000, S600, S800, Z, ZR-V"
+ },
+ {
+  "Maker": "HSV",
+  "model ": "Astra SV 1800, Avalanche, Calais, Caprice, Clubsport, Colorado, Commodore, Coupe, Grange, GTS, Gtsr, Gtsr Maloo, Gtsr W1, Jackaroo, LS, Maloo, Manta, Senator, Sport, Statesman, SV, SV300, SV6000, VXR, W427, XU6, XU8"
+ },
+ {
+  "Maker": "Humber",
+  "model ": "Hawk, Super Snipe, Vogue"
+ },
+ {
+  "Maker": "Hummer",
+  "model ": "H3"
+ },
+ {
+  "Maker": "Hyundai",
+  "model ": "Accent, Coupe, Elantra, Elantra Lavita, Excel, Genesis, Getz, Grandeur, I20, i30, I40, I45, Iload, Imax, Inster, Ioniq, Ioniq 5, Ioniq 6, Ioniq 7, Ioniq 9, IX35, Kona, Lantra, Nexo, Palisade, S Coupe, SANTA CRUZ, Santa Fe, Sonata, Staria, Terracan, Tiburon, Trajet, Tucson, Veloster, Venue"
+ },
+ {
+  "Maker": "Ineos",
+  "model ": "Grenadier"
+ },
+ {
+  "Maker": "Infiniti",
+  "model ": "X30D, FX37, FX50, G37, M30D, M35H, M37, Q30, Q50, Q60, Q70, QX30, QX50, QX70, QX80"
+ },
+ {
+  "Maker": "International",
+  "model ": "PROSTAR, Scout"
+ },
+ {
+  "Maker": "Iso",
+  "model ": "Fidia, Grifo, Lele, Rivolta"
+ },
+ {
+  "Maker": "Isuzu",
+  "model ": "Bellett, D-Max, Florian, FRD, FRR, FSD, FSR, FSS, FTR, FTS, FVD, FVL, FVM, FVR, FVY, FVZ, FXD, FXL, FXR, FXY, FXZ, FYH, FYJ, FYX, GIGA, GIGAMAX, GXD, MU-X, NLR, NLS, NMR, NNR, NPR, NPS, NQR"
+ },
+ {
+  "Maker": "Iveco",
+  "model ": "Daily, EUROCARGO, STRALIS AD 450 (6x4), STRALIS AD 450 (8x4), STRALIS AD 500 (6x4), STRALIS AD 500 (8x4), STRALIS AS-L 500 (6x4), STRALIS AS-L 560 (6x4), STRALIS ATI 360 (4x2), STRALIS ATI 360 (6x2), STRALIS ATI 460 (4x2), STRALIS ATI 460 (6x4), Turbodaily"
+ },
+ {
+  "Maker": "Jaguar",
+  "model ": "240, 340, 420, E Type, E-Pace, F-Pace, F-Type, I-Pace, Majestic, Mk II, Mk IX, Mk X, S Type, Sovereign, V12, Vanden Plas, X Type, XE, XF, XJ, XJ12, XJ6, XJ8, XJR, XJS, Xjsc, XK, XK8, XKR"
+ },
+ {
+  "Maker": "Jeep",
+  "model ": "Avenger, Cherokee, CJ5, CJ6, CJ7, CJ8, Commander, Compass, GlCarens, Carnival, Cerato, Ceres, Combi, Credos, e-Niro, EV3, EV4, EV5, EV6, EV9, Grand Carnival, K2700, K2900, K4, Magentis, Mentor, Niro, Optima, Picanto, Pregio, Pro_Cee'D, Rio, Rondo, Seltos, Shuma, Sonet, Sorento, Soul, Spectra, Sportage, Stinger, Stonic, Tasman, adiator, Grand Cherokee, Grand Cherokee L, J10, J20, Laredo, Patriot, Renegade, Wrangler, Wrangler Unlimited"
+ },
+ {
+  "Maker": "Jensen",
+  "model ": "Healey, Interceptor"
+ },
+ {
+  "Maker": "JMC",
+  "model ": "Vigus"
+ },
+ {
+  "Maker": "Kia",
+  "model ": "Carens, Carnival, Cerato, Ceres, Combi, Credos, e-Niro, EV3, EV4, EV5, EV6, EV9, Grand Carnival, K2700, K2900, K4, Magentis, Mentor, Niro, Optima, Picanto, Pregio, Pro_Cee'D, Rio, Rondo, Seltos, Shuma, Sonet, Sorento, Soul, Spectra, Sportage, Stinger, Stonic, Tasman"
+ },
+ {
+  "Maker": "Koenigsegg",
+  "model ": "AGERA"
+ },
+ {
+  "Maker": "KTM",
+  "model ": "X-Bow"
+ },
+ {
+  "Maker": "Lada",
+  "model ": "Cevaro, Niva, Sable, Samara, Volante"
+ },
+ {
+  "Maker": "Lamborghini",
+  "model ": "350, 400, Aventador, Countach, Diablo, Espada, Gallardo, Huracan, Islero, Jalpa, Jarama, Miura, Murcielago, Silhouette, Temerario, Urraco, Urus"
+ },
+ {
+  "Maker": "Lancia",
+  "model ": "Beta, Flaminia, Flavia, Fulvia"
+ },
+ {
+  "Maker": "Land Rover",
+  "model ": "(4X4), 110, 3.5, 3.9, Defender, Discovery, Discovery 3, Discovery 4, Discovery Sport, Freelander, Freelander 2, Range Rover, Range Rover Autobiograph, Range Rover Evoque, Range Rover Fifty, Range Rover Sport, Range Rover Velar, Range Rover Vogue, Range Rover Westminster"
+ },
+ {
+  "Maker": "LDV",
+  "model ": "D90, Deliver 7, Deliver 9, Edeliver 7, Edeliver 9, ET60, G10, G10+, Mifa, Mifa 9, T60, V80"
+ },
+ {
+  "Maker": "Lexus",
+  "model ": "CT, ES, GS, GX, GX 550, IS, LBX, LC, LF, LM, LM 350H, LM 500H, LS, LX, NX, NX250, NX350, NX350H, NX450H+, RC, RX, RX350H, RX500H, RZ, RZ450E, SC, UX, UX300H"
+ },
+ {
+  "Maker": "Leyland",
+  "model ": "Marina, Mini, Moke, P76"
+ },
+ {
+  "Maker": "LIFAN",
+  "model ": "X80"
+ },
+ {
+  "Maker": "Lotus",
+  "model ": "Cortina, Elan, Eletre, Elise, Elite, Emeya, Emira, Esprit, Europa, Evora, Excel, Exige, Omega, Super Seven"
+ },
+ {
+  "Maker": "Mahindra",
+  "model ": "3X0, Bushranger, Genio, Pik-Up, ROXOR, Scorpio-N, Stockman, Thar, XUV500, XUV700"
+ },
+ {
+  "Maker": "Maserati",
+  "model ": "222, 228, 3200, 3500, 430, 5000, Biturbo, Bora, Coupe, Ghibli, Grancabrio, Gransport, Granturismo, Grecale, Indy, Karif, Khamsin, Kyalami, Levante, MC20, Merak, Mexico, Mistral, Quattroporte, Sebring, Shamal, Spyder"
+ },
+ {
+  "Maker": "Maybach",
+  "model ": "57, 62"
+ },
+ {
+  "Maker": "Mazda",
+  "model ": " 1000, 1200, 121, 1300, 1500, 1600, 1800, 2, 3, 323, 6, 600, 626, 800, 808, 929, B1500, B1600, B1800, B2000, B2200, B2500, B2600, B4000, BT-50, Capella, Capella RX-2, CX-3, CX-30, CX-4, CX-5, CX-50, CX-6, CX-60, CX-7, CX-70, CX-8, CX-80, CX-9, CX-90, E1300, E1400, E1600, E1800, E2000, E2200, E2500, E3000, E4100, F1000, Millenia, MPV, MX-30, MX-5, MX-6, Premacy, R100, RX-3, RX-4, RX-5, RX-7, RX-8, T3000, T3500, Traveller, Tribute"
+ },
+ {
+  "Maker": "Mclaren",
+  "model ": "540C, 570GT, 570S, 600LT, 650S, 720S, 750S, 765LT, Artura, GT, GTS, MP4-12C, Speedtail"
+ },
+ {
+  "Maker": "Mercedes-Benz",
+  "model ": "180, 190, 200, 220, 230, 240, 250, 260, 280, 300, 320, 350, 380, 400, 420, 450, 500, 560, 600, A-Class, AMG GT, B-Class, C, C-Class, CL-Class, CLA-Class, CLC-Class, CLE, CLK-Class, CLS-Class, E-Class, EQ-Class, EQA, EQA250, EQB, EQE, EQE53, EQS, EQS SUV, EQS53, EQV, Esprinter, Evito, G-Class, GL-Class, GLA-Class, GLB-Class, GLC-Class, GLE, GLE-Class, GLS, GLS-Class, M-Class, Marco Polo Activity, Marco Polo Horizon, Maybach, MB100, MB140, R-Class, S-Class, S450L, S580L, S680, SL-Class, SLC-Class, SLK-Class, SLS-Class, Sprinter, V, V-Class, V250, Valente, Viano, Vito, X-Class"
+ },
+ {
+  "Maker": "MG",
+  "model ": "3, 6 Plus, A, B, Comet, Cyberster, ES5, Extender, F, GS, HS, HS +EV, Magnette, MG3, MG3 Auto, MG3 Hybrid+, MG4, MG5, MG6, MG7, Midget, Mulan, TF, ZR, ZS, ZS EV, ZS Hybrid+, ZST, ZT"
+ },
+ {
+  "Maker": "Mini",
+  "model ": "3D Hatch, 5D Hatch, Aceman, Cabrio, Clubman, Convertible, Cooper, Countryman, Coupe, Paceman, Roadster"
+ },
+ {
+  "Maker": "Mitsubishi",
+  "model ": "3000GT, 380, ASX, Challenger, Colt, Cordia, D50, Eclipse Cross, Express, Galant, Grandis, I-Miev, Lancer, Magna, Mirage, Nimbus, Outlander, Pajero, Pajero Sport, Rosa, Sigma, Starion, Starwagon, Triton, Verada"
+ },
+ {
+  "Maker": "Mitsubishi Fuso",
+  "model ": "Fighter, Rosa"
+ },
+ {
+  "Maker": "Morgan",
+  "model ": "3 Wheeler, 4\/4, Aero Coupe, Aero Supersports, Plus, Plus 4, Plus 8, Roadster"
+ },
+ {
+  "Maker": "Morris",
+  "model ": "1100, 1300, 1500, 850, Elite, Major, Marshall, Mini, Minor, Oxford"
+ },
+ {
+  "Maker": "N.S.U.",
+  "model ": "Prinz, RO 80"
+ },
+ {
+  "Maker": "Nissan",
+  "model ": "120Y, 200SX, 280C, 280ZX, 300C, 300ZX, 350Z, 370Z, 720, Almera, Altima, Ariya, Bluebird, C20, Cabstar, Cedric, Civilian, Cube, Dualis, E20, Elgrand, EXA, Gazelle, GT-R, Homer, Infiniti, Juke, LEAF, Maxima, Micra, Murano, Navara, Nomad, NX, Pathfinder, Patrol, Pintara, Prairie, Pulsar, Qashqai, Sakura, Serena, Skyline, Stanza, Sunny, Terrano II, The Ute, TIIda, Titan, Urvan, V30, Vanette, X-Trail, Z"
+ },
+ {
+  "Maker": "OKA",
+  "model ": "4x4"
+ },
+ {
+  "Maker": "Opel",
+  "model ": "Astra, Corsa, Insignia, Zafira"
+ },
+ {
+  "Maker": "Panther",
+  "model ": "Kallista"
+ },
+ {
+  "Maker": "Performax",
+  "model ": "SUPERDUTY"
+ },
+ {
+  "Maker": "Peugeot",
+  "model ": "2008, 205, 206, 207, 208, 3008, 306, 307, 308, 4007, 4008, 403, 404, 405, 406, 407, 408, 5008, 504, 505, 508, 604, 605, 607, Boxer, E-2008, E-3008, e-5008, E-Expert, E-Partner, Expert, Partner, Rcz"
+ },
+ {
+  "Maker": "Pininfarina",
+  "model ": "Battista"
+ },
+ {
+  "Maker": "Polestar",
+  "model ": "2, 2 Long Range, 2 Standard Range, 3, 4, 5"
+ },
+ {
+  "Maker": "Pontiac",
+  "model ": "Firebird, Laurentian, Parisienne"
+ },
+ {
+  "Maker": "Porsche",
+  "model ": "356, 718, 911, 912, 924, 928, 930, 944, 968, Boxster, Cayenne, Cayman, Macan, MISSION E CROSS TURISMO, Panamera, Taycan"
+ },
+ {
+  "Maker": "Prince",
+  "model ": "A200, Gloria, Skyline"
+ },
+ {
+  "Maker": "Proton",
+  "model ": "Exora, Gen.2, Jumbuck, M21, Persona, Preve, S16, Satria, Savvy, Suprima S, Waja, Wira"
+ },
+ {
+  "Maker": "Ram",
+  "model ": "1000, 1500, 2500, 3500"
+ },
+ {
+  "Maker": "Rambler",
+  "model ": "Ambassador, American, Classic, Hornet, Javelin, Matador, Rebel"
+ },
+ {
+  "Maker": "Renault",
+  "model ": "1.4, 10, 12, 15, 16, 17, 18, 19, 20, 21, 25, ALASKAN, Arkana, Austral, Captur, Caravelle, Clio, Dauphine, Floride, Fluence, Fuego, Grand Scenic, Kadjar, Kangoo, Koleos, Laguna, Latitude, Master, Megane, Megane E-Tech, R25, R4, R8, Scenic, Trafic, Virage, ZOE"
+ },
+ {
+  "Maker": "Rivian",
+  "model ": "R1S, R1T"
+ },
+ {
+  "Maker": "Rolls-Royce",
+  "model ": "Camargue, Corniche, Cullinan, Dawn, Flying Spur, Ghost, Mulliner, Park Ward, Phantom, Silver Cloud, Silver Dawn, Silver Seraph, Silver Shadow, Silver Spirit, Silver Spur, Spectre (bev), Wraith"
+ },
+ {
+  "Maker": "Rover",
+  "model ": "2000, 3 Litre, 3.5 Litre, 3500, 416I, 75, 825, 827, Quintet"
+ },
+ {
+  "Maker": "Saab",
+  "model ": "9-3, 9-5, 900, 9000, 99"
+ },
+ {
+  "Maker": "Seat",
+  "model ": "Cordoba, Ibiza, Toledo"
+ },
+ {
+  "Maker": "Simca",
+  "model ": "Aronde, Vedette"
+ },
+ {
+  "Maker": "Singer",
+  "model ": "Gazelle"
+ },
+ {
+  "Maker": "Skoda",
+  "model ": "1000, 120L, Elroq, Enyaq, Fabia, Kamiq, Karoq, Kodiaq, Octavia, Rapid Spaceback, Roomster, S100, S110, Scala, Superb, Yeti"
+ },
+ {
+  "Maker": "Smart",
+  "model ": "#1, #3, #5, 1, 3, Cabrio, City Coupe, Forfour, Fortwo, Roadster"
+ },
+ {
+  "Maker": "Ssangyong",
+  "model ": "Actyon, Actyon Sports, Chairman, Korando, Kyron, Musso, Musso XLV, Rexton, Stavic, Tivoli, Tivoli XLV, Torres"
+ },
+ {
+  "Maker": "SSC",
+  "model ": "Tuatara"
+ },
+ {
+  "Maker": "Standard",
+  "model ": "Vanguard"
+ },
+ {
+  "Maker": "Studebaker",
+  "model ": "Gran, Hawk, Lark"
+ },
+ {
+  "Maker": "Subaru",
+  "model ": "1400, 1600, Brumby, BRZ, Crosstrek, FF-1, Fiori, Forester, Impreza, L Series, Leone, Levorg, Liberty, Outback, Sherpa, Solterra, SVX, Tribeca, Vortex, WRX, XV"
+ },
+ {
+  "Maker": "Sunbeam",
+  "model ": "Alpine, Rapier"
+ },
+ {
+  "Maker": "Suzuki",
+  "model ": "Alto, Apv, Baleno, Carry, Celerio, Grand Vitara, Hatch, Ignis, Jimny, Kizashi, Liana, LJ50, LJ80, LJ81K, Mighty Boy, S-Cross, Sierra, SK410, ST10S, ST20K, ST80K, ST90V, Super, Swift, SX4, Vitara, Wagon R+, X-90, XL-7"
+ },
+ {
+  "Maker": "Tata",
+  "model ": "Safari, Telcoline, Xenon"
+ },
+ {
+  "Maker": "TD 2000",
+  "model ": "TD 2000"
+ },
+ {
+  "Maker": "Tesla",
+  "model ": "Cybertruck, Model 3, Model S, Model X, Model Y, ROADSTER"
+ },
+ {
+  "Maker": "Toyota",
+  "model ": "2000, 4 Runner, 700, 86, Aurion, Avalon, Avensis, Blizzard, Bundera, BZ4X, C-HR, Camry, Celica, Coaster, Corolla, Corolla Cross, Corona, Cressida, Crown, DYNA, Echo, FJ Cruiser, Fortuner, GR 86, GR Corolla, GR Yaris, GR86, Granvia, Hiace, HiLux, Kluger, Landcruiser, Landcruiser 70 Series, Landcruiser Prado, Lexcen, Lite Ace, Mirai, MR2, Paseo, Prius, Prius C, Prius V, Raize, RAV4, Rukus, Spacia, Sprinter, Starlet, Stout, Supra, T-18, Tacoma, Tarago, Tercel, Tiara, Townace, Toyoace, Tundra, Vienta, Yaris, Yaris Cross"
+ },
+ {
+  "Maker": "Triumph",
+  "model ": "12\/50, 2.5, 2000, 2500, Dolomite, GT6, Herald, Spitfire, Stag, TR"
+ },
+ {
+  "Maker": "TVR",
+  "model ": "3000, Cerbera, Chimaera, Griffith"
+ },
+ {
+  "Maker": "Vanden Plas",
+  "model ": "Princess"
+ },
+ {
+  "Maker": "Vauxhall",
+  "model ": "Cresta, Velox, Victor, Viva, VX4"
+ },
+ {
+  "Maker": "Vespa",
+  "model ": 400
+ },
+ {
+  "Maker": "Volkswagen",
+  "model ": "1500, 1600, Amarok, Arteon, Atlas, Beetle, Bora, Caddy, Caddy 5, California, California Beach, Caravelle, CC, Citivan, Crafter, Eos, Golf, Hannover, ID. Buzz, ID.3, ID.4, ID.7, ID.Buzz, Jetta, Karmann Ghia, Kombi, LT, Micro, Multivan, Passat, Polo, Scirocco, T-Cross, T-ROC, Tayron, Tiguan, Touareg, Transporter, Transporter Kombi, Up!, Vento"
+ },
+ {
+  "Maker": "Volvo",
+  "model ": "122, 142, 144, 145, 164, 240, 242, 244, 245, 260, 262, 264, 265, 360, 440, 740, 760, 850, 940, 960, C30, C40, C70, Cross Country, EX30, EX40, EX90, P1800, S40, S60, S70, S80, S90, V40, V50, V60, V70, V90, XC40, XC60, XC70, XC90"
+ },
+ {
+  "Maker": "Wolseley",
+  "model ": "15\/60, 24\/80, 6\/110, 6\/99"
+ },
+ {
+  "Maker": "Zeta",
+  "model ": "Zeta"
+ },
+ {
+  "Maker": "ZX Auto",
+  "model ": "Grand Tiger"
+ }
+],
+"Sheet2":[]
+}
