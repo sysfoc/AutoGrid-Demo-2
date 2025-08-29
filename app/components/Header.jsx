@@ -155,7 +155,7 @@ const Header = () => {
       // Check cache first
       const cachedData = CacheManager.get(CACHE_KEY);
       if (cachedData) {
-        setLogo(cachedData?.settings?.logo5 || "");
+        setLogo(cachedData?.settings?.logo6 || "");
         setTopSettings({
           ...DEFAULT_SETTINGS,
           ...cachedData?.settings?.top,
@@ -182,7 +182,7 @@ const Header = () => {
       CacheManager.set(CACHE_KEY, data);
 
       const updates = {
-        logo: data?.settings?.logo5 || "",
+        logo: data?.settings?.logo6 || "",
         settings: {
           ...DEFAULT_SETTINGS,
           ...data?.settings?.top,
@@ -201,7 +201,7 @@ const Header = () => {
         try {
           const { data } = JSON.parse(staleCache);
           if (data?.settings) {
-            setLogo(data.settings.logo5 || "");
+            setLogo(data.settings.logo6 || "");
             setTopSettings({
               ...DEFAULT_SETTINGS,
               ...data.settings.top,

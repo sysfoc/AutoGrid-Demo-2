@@ -264,14 +264,14 @@ const HeroSection = () => {
     const fetchLogo = async () => {
       try {
         const cachedData = CacheManager.get("header_settings");
-        if (cachedData?.settings?.logo5) {
-          setLogo(cachedData.settings.logo5);
+        if (cachedData?.settings?.logo6) {
+          setLogo(cachedData.settings.logo6);
           return;
         }
         const response = await fetch("/api/settings/general");
         const data = await response.json();
         CacheManager.set("header_settings", data);
-        setLogo(data?.settings?.logo5 || "");
+        setLogo(data?.settings?.logo6 || "");
       } catch (error) {
         console.error("Failed to fetch logo:", error);
       }
@@ -337,23 +337,23 @@ const HeroSection = () => {
     fetchCarsData();
   }, [fetchCarSearchData]);
 
-const ConditionTab = ({ condition, label, selected, onClick }) => (
-  <button
-    type="button"
-    onClick={(e) => {
-      e.preventDefault();
-      console.log(`Clicking ${condition} tab`);
-      onClick();
-    }}
-    className={`rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300 ${
-      selected
-        ? "scale-105 bg-gradient-to-r from-primary to-blue-700 text-white shadow-lg shadow-primary/25"
-        : "bg-gray-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-slate-600 hover:text-primary dark:hover:text-blue-400"
-    }`}
-  >
-    {label}
-  </button>
-);
+  const ConditionTab = ({ condition, label, selected, onClick }) => (
+    <button
+      type="button"
+      onClick={(e) => {
+        e.preventDefault();
+        console.log(`Clicking ${condition} tab`);
+        onClick();
+      }}
+      className={`rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300 ${
+        selected
+          ? "scale-105 bg-gradient-to-r from-primary to-blue-700 text-white shadow-lg shadow-primary/25"
+          : "bg-gray-100 text-slate-600 hover:bg-gray-200 hover:text-primary dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600 dark:hover:text-blue-400"
+      }`}
+    >
+      {label}
+    </button>
+  );
 
   return (
     <>
@@ -363,8 +363,9 @@ const ConditionTab = ({ condition, label, selected, onClick }) => (
           className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm lg:hidden"
           onClick={handleMobileMenuClose}
         >
-          <div className="fixed left-0 top-0 h-full w-80 transform bg-background/95 backdrop-blur-md transition-transform duration-300 ease-out dark:bg-background-dark/95"
-          onClick={(e) => e.stopPropagation()}
+          <div
+            className="fixed left-0 top-0 h-full w-80 transform bg-background/95 backdrop-blur-md transition-transform duration-300 ease-out dark:bg-background-dark/95"
+            onClick={(e) => e.stopPropagation()}
           >
             <div className="p-6">
               <div className="mb-8 flex items-center justify-between">
@@ -625,7 +626,7 @@ const ConditionTab = ({ condition, label, selected, onClick }) => (
                     "The Point Of Using Lorem Ipsum Is That It Has A More-Or-Less Normal Distribution Of Letters, As Opposed To Using 'Content Here, Content Here."}
                 </p>
                 <Link href="/car-for-sale">
-                  <button className="rounded-lg bg-white px-8 py-3 font-semibold text-primary transition-all hover:-translate-y-0.5 hover:bg-blue-50 hover:shadow-lg">
+                  <button className="rounded-lg bg-white px-8 py-3 font-semibold text-primary transition-all hover:-translate-y-0.5 hover:bg-blue-50 dark:bg-gray-800 dark:text-gray-100 hover:shadow-lg">
                     Explore Our Vehicles
                   </button>
                 </Link>
@@ -644,85 +645,85 @@ const ConditionTab = ({ condition, label, selected, onClick }) => (
               </div>
             </div>
 
- {/* Search Section with Professional Dark Mode */}
-<div className="mx-auto max-w-4xl overflow-visible">
-  <div className="rounded-2xl bg-white dark:bg-slate-800 p-5 shadow-2xl dark:shadow-slate-900/50">
-    {/* Condition Tabs */}
-    <div className="mb-8 flex justify-center space-x-2">
-      <ConditionTab
-        condition="all"
-        label="All Cars"
-        selected={selectedCondition === "all"}
-        onClick={() => setSelectedCondition("all")}
-      />
-      <ConditionTab
-        condition="new"
-        label="New Cars"
-        selected={selectedCondition === "new"}
-        onClick={() => setSelectedCondition("new")}
-      />
-      <ConditionTab
-        condition="used"
-        label="Used Cars"
-        selected={selectedCondition === "used"}
-        onClick={() => setSelectedCondition("used")}
-      />
-    </div>
+            {/* Search Section with Professional Dark Mode */}
+            <div className="mx-auto max-w-4xl overflow-visible">
+              <div className="rounded-2xl bg-white p-5 shadow-2xl dark:bg-slate-800 dark:shadow-slate-900/50">
+                {/* Condition Tabs */}
+                <div className="mb-8 flex justify-center space-x-2">
+                  <ConditionTab
+                    condition="all"
+                    label="All Cars"
+                    selected={selectedCondition === "all"}
+                    onClick={() => setSelectedCondition("all")}
+                  />
+                  <ConditionTab
+                    condition="new"
+                    label="New Cars"
+                    selected={selectedCondition === "new"}
+                    onClick={() => setSelectedCondition("new")}
+                  />
+                  <ConditionTab
+                    condition="used"
+                    label="Used Cars"
+                    selected={selectedCondition === "used"}
+                    onClick={() => setSelectedCondition("used")}
+                  />
+                </div>
 
-    {/* Search Fields */}
-    <div className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-4">
-      <CustomSelect
-        id={`${idPrefix}-make`}
-        options={carSearchMakes.map((make) => ({
-          value: make,
-          label: make,
-        }))}
-        value={selectedMake}
-        onChange={(e) => setSelectedMake(e.target.value)}
-        placeholder="Make"
-        disabled={carSearchData ? false : true}
-        className="h-12 rounded-lg border border-gray-200 dark:border-slate-600 bg-gray-50 dark:bg-slate-700 px-4 text-gray-900 dark:text-slate-100 placeholder:text-gray-500 dark:placeholder:text-slate-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
-      />
-      <CustomSelect
-        id={`${idPrefix}-model`}
-        options={carSearchModels.map((model) => ({
-          value: model,
-          label: model,
-        }))}
-        value={selectedModel}
-        onChange={(e) => setSelectedModel(e.target.value)}
-        placeholder="Model"
-        disabled={!selectedMake}
-        className="h-12 rounded-lg border border-gray-200 dark:border-slate-600 bg-gray-50 dark:bg-slate-700 px-4 text-gray-900 dark:text-slate-100 placeholder:text-gray-500 dark:placeholder:text-slate-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
-      />
-      <input
-        type="text"
-        placeholder="Location"
-        value={location}
-        onChange={(e) => setLocation(e.target.value)}
-        className="h-12 rounded-lg border border-gray-200 dark:border-slate-600 bg-gray-50 dark:bg-slate-700 px-4 text-gray-900 dark:text-slate-100 placeholder:text-gray-500 dark:placeholder:text-slate-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
-      />
-      <input
-        type="number"
-        placeholder="Max Price"
-        value={maxPrice}
-        onChange={(e) => setMaxPrice(e.target.value)}
-        className="h-12 rounded-lg border border-gray-200 dark:border-slate-600 bg-gray-50 dark:bg-slate-700 px-4 text-gray-900 dark:text-slate-100 placeholder:text-gray-500 dark:placeholder:text-slate-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
-      />
-    </div>
+                {/* Search Fields */}
+                <div className="mb-6 grid grid-cols-1 gap-4 md:grid-cols-4">
+                  <CustomSelect
+                    id={`${idPrefix}-make`}
+                    options={carSearchMakes.map((make) => ({
+                      value: make,
+                      label: make,
+                    }))}
+                    value={selectedMake}
+                    onChange={(e) => setSelectedMake(e.target.value)}
+                    placeholder="Make"
+                    disabled={carSearchData ? false : true}
+                    className="h-12 rounded-lg border border-gray-200 bg-gray-50 px-4 text-gray-900 placeholder:text-gray-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100 dark:placeholder:text-slate-400 dark:focus:ring-blue-400"
+                  />
+                  <CustomSelect
+                    id={`${idPrefix}-model`}
+                    options={carSearchModels.map((model) => ({
+                      value: model,
+                      label: model,
+                    }))}
+                    value={selectedModel}
+                    onChange={(e) => setSelectedModel(e.target.value)}
+                    placeholder="Model"
+                    disabled={!selectedMake}
+                    className="h-12 rounded-lg border border-gray-200 bg-gray-50 px-4 text-gray-900 placeholder:text-gray-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100 dark:placeholder:text-slate-400 dark:focus:ring-blue-400"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Location"
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                    className="h-12 rounded-lg border border-gray-200 bg-gray-50 px-4 text-gray-900 placeholder:text-gray-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100 dark:placeholder:text-slate-400 dark:focus:ring-blue-400"
+                  />
+                  <input
+                    type="number"
+                    placeholder="Max Price"
+                    value={maxPrice}
+                    onChange={(e) => setMaxPrice(e.target.value)}
+                    className="h-12 rounded-lg border border-gray-200 bg-gray-50 px-4 text-gray-900 placeholder:text-gray-500 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-100 dark:placeholder:text-slate-400 dark:focus:ring-blue-400"
+                  />
+                </div>
 
-    {/* Search Button */}
-    <div className="flex justify-center">
-      <button
-        onClick={handleCarSearch}
-        className="flex items-center space-x-2 rounded-lg bg-primary hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500 px-8 py-3 font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg"
-      >
-        <Search className="h-5 w-5" />
-        <span>Search Cars</span>
-      </button>
-    </div>
-  </div>
-</div>
+                {/* Search Button */}
+                <div className="flex justify-center">
+                  <button
+                    onClick={handleCarSearch}
+                    className="flex items-center space-x-2 rounded-lg bg-primary px-8 py-3 font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-lg dark:bg-blue-600 dark:hover:bg-blue-500"
+                  >
+                    <Search className="h-5 w-5" />
+                    <span>Search Cars</span>
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </main>
       </div>
