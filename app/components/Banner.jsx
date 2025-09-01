@@ -84,7 +84,6 @@ const websiteOptions = [
             </div>
           </div>
 
-          {/* Center Section - Theme Customization */}
           <Link
             href="https://www.automotivewebsolutions.com/add-ons"
             target="_blank"
@@ -92,12 +91,12 @@ const websiteOptions = [
           >
             <div className="hidden flex-shrink-0 flex-col items-center text-center lg:flex">
               <div className="mb-0.5 flex items-center gap-1">
-                <TbSettingsCode size={30} className=" text-green-600" />
+                <TbSettingsCode size={30} className=" text-blue-300" />
                 <h2 className="text-xl font-semibold text-white">
                   Theme Customization
                 </h2>
               </div>
-              <p className="text-green-600 relative -right-12 -top-2 text-xs font-medium">
+              <p className="text-blue-300 relative -right-12 -top-2 text-xs font-medium">
                 Get a free quote
               </p>
             </div>

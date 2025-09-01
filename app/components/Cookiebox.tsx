@@ -259,57 +259,172 @@ const Cookiebox = ({ cookieConsent: propsCookieConsent }: CookieboxProps) => {
       <style jsx>{`
         .cookiebox-container {
           position: fixed;
-          bottom: 0.75rem;
-          right: 0.75rem;
           z-index: 150;
-          box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
           display: flex;
+          
+          /* Mobile first - xs screens (< 475px) - centered with margins */
+          bottom: 0.75rem;
+          left: 0.75rem;
+          right: 0.75rem;
+          max-width: 320px;
+          margin: 0 auto;
+          border-radius: 0.75rem;
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* sm screens (≥ 475px) */
+        @media (min-width: 475px) {
+          .cookiebox-container {
+            bottom: 0.75rem;
+            left: 1rem;
+            right: 1rem;
+            max-width: 340px;
+            border-radius: 0.875rem;
+          }
+        }
+        
+        /* md screens (≥ 768px) */
+        @media (min-width: 768px) {
+          .cookiebox-container {
+            bottom: 1rem;
+            left: auto;
+            right: 1rem;
+            max-width: 350px;
+          }
         }
 
         .cookiebox-content {
-          width: 350px;
-          border-radius: 0.375rem;
-          padding: 1rem 1.5rem;
+          width: 100%;
           background-color: ${cookieConsent.bgColor};
           color: ${cookieConsent.textColor};
+          
+          /* Mobile first - xs screens - compact padding */
+          padding: 1rem;
+          border-radius: 0.75rem;
+        }
+        
+        /* sm screens */
+        @media (min-width: 475px) {
+          .cookiebox-content {
+            padding: 1.125rem;
+            border-radius: 0.875rem;
+          }
+        }
+        
+        /* md screens */
+        @media (min-width: 768px) {
+          .cookiebox-content {
+            padding: 1.25rem;
+          }
         }
 
         .cookiebox-title {
-          font-size: 1.125rem;
-          font-weight: 700;
-          line-height: 1.75rem;
+          font-weight: 600;
+          line-height: 1.3;
+          margin: 0;
+          
+          /* Mobile first - xs screens */
+          font-size: 1rem;
+        }
+        
+        /* sm screens */
+        @media (min-width: 475px) {
+          .cookiebox-title {
+            font-size: 1.05rem;
+          }
+        }
+        
+        /* md screens */
+        @media (min-width: 768px) {
+          .cookiebox-title {
+            font-size: 1.1rem;
+          }
         }
 
         .cookiebox-description {
-          margin-top: 0.5rem;
-          font-size: 0.875rem;
-          line-height: 1.25rem;
           opacity: 0.8;
+          margin: 0;
+          line-height: 1.4;
+          
+          /* Mobile first - xs screens */
+          margin-top: 0.5rem;
+          font-size: 0.85rem;
+        }
+        
+        /* sm screens */
+        @media (min-width: 475px) {
+          .cookiebox-description {
+            margin-top: 0.625rem;
+            font-size: 0.875rem;
+          }
+        }
+        
+        /* md screens */
+        @media (min-width: 768px) {
+          .cookiebox-description {
+            font-size: 0.875rem;
+          }
         }
 
         .cookiebox-buttons {
-          margin-top: 1.25rem;
           display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
+          
+          /* Mobile first - xs screens */
+          margin-top: 1rem;
+          gap: 0.75rem;
+        }
+        
+        /* sm screens */
+        @media (min-width: 475px) {
+          .cookiebox-buttons {
+            margin-top: 1.125rem;
+            gap: 0.875rem;
+          }
         }
 
         .cookiebox-button {
-          padding: 0.5rem 1rem;
-          border-radius: 0.375rem;
-          transition: opacity 0.2s ease-in-out;
-          background-color: ${cookieConsent.buttonBgColor};
-          color: ${cookieConsent.buttonTextColor};
           border: none;
           cursor: pointer;
+          transition: all 0.2s ease;
+          background-color: ${cookieConsent.buttonBgColor};
+          color: ${cookieConsent.buttonTextColor};
+          font-weight: 500;
+          flex: 1;
+          
+          /* Mobile first - xs screens */
+          padding: 0.75rem 1rem;
+          border-radius: 0.5rem;
+          font-size: 0.85rem;
+        }
+        
+        /* sm screens */
+        @media (min-width: 475px) {
+          .cookiebox-button {
+            padding: 0.8125rem 1.125rem;
+            font-size: 0.875rem;
+            border-radius: 0.5625rem;
+          }
+        }
+        
+        /* md screens */
+        @media (min-width: 768px) {
+          .cookiebox-button {
+            padding: 0.7rem 1rem;
+            font-size: 0.875rem;
+          }
         }
 
         .cookiebox-button:hover {
-          opacity: 0.8;
+          transform: translateY(-1px);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cookiebox-button:active {
+          transform: translateY(0);
+          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
         }
       `}</style>
     </section>
   )
 }
-
 export default Cookiebox
