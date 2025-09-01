@@ -169,7 +169,7 @@ export default function SellMyCar() {
   };
 
   return (
-    <div className="mt-10 min-h-screen bg-white dark:bg-gray-900">
+    <div className="mt-16 min-h-screen bg-white dark:bg-gray-900">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-zinc-900 to-stone-900">
         <div className="absolute inset-0 bg-black/20"></div>
@@ -184,7 +184,7 @@ export default function SellMyCar() {
                 </span>
               </div>
               <div className="space-y-6">
-                <h1 className="text-5xl font-bold leading-tight text-white lg:text-6xl">
+                <h1 className="text-2xl md:text-5xl font-bold leading-tight text-white lg:text-6xl">
                   We Sell Cars{" "}
                   <span className="bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
                     Professionally

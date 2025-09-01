@@ -194,7 +194,7 @@ const VehicleFinanceCalculator = () => {
   };
 
   return (
-    <div className="mt-16 min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
+    <div className="mt-32 min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
       <style>
       {`
         input[type="number"]::-webkit-outer-spin-button,
@@ -212,7 +212,7 @@ const VehicleFinanceCalculator = () => {
         <div className="mb-8 text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white dark:bg-gray-800 px-6 py-3 shadow-lg border border-gray-200 dark:border-gray-700">
             <Calculator className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
               Vehicle Finance Calculator
             </h1>
           </div>

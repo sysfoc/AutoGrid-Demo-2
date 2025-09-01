@@ -309,7 +309,7 @@ export default function Home() {
   }
 
   return (
-    <div className="mt-16 min-h-screen bg-gradient-to-br from-purple-50 via-emerald-50 to-teal-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="mt-32 min-h-screen bg-gradient-to-br from-purple-50 via-emerald-50 to-teal-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div className="mx-auto mt-16 max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 xl:grid-cols-12">
           <div className="space-y-8 xl:col-span-8">
@@ -317,53 +317,53 @@ export default function Home() {
               <Slider loadingState={loading} carData={car} />
             </div>
 
-<div className="rounded-xl border border-gray-200 bg-background p-4 shadow-md dark:border-gray-900 dark:bg-gray-800">
-  <div className="mb-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-    <div className="flex-1">
-      <div className="mb-2">
-        <span className="inline-flex items-center rounded-full bg-primary-light px-2.5 py-0.5 text-xs font-medium text-primary dark:bg-primary dark:text-gray-100">
-          {car?.condition || "Premium"}
-        </span>
-      </div>
-      <h2 className="mb-2 text-lg font-semibold text-text dark:text-gray-200 sm:text-xl">
-        {loading ? (
-          <Skeleton width={200} />
-        ) : (
-          `${car?.make} ${car?.model}`
-        )}
-      </h2>
-      <div className="text-lg font-semibold text-primary dark:text-primary sm:text-xl">
-        {loading ? (
-          <Skeleton width={150} />
-        ) : (
-          `${selectedCurrency?.symbol} ${Math.round(
-            car?.price || 0,
-          ).toLocaleString()}`
-        )}
-      </div>
-    </div>
-  </div>
+            <div className="rounded-xl border border-gray-200 bg-background p-4 shadow-md dark:border-gray-900 dark:bg-gray-800">
+              <div className="mb-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex-1">
+                  <div className="mb-2">
+                    <span className="inline-flex items-center rounded-full bg-primary-light px-2.5 py-0.5 text-xs font-medium text-primary dark:bg-primary dark:text-gray-100">
+                      {car?.condition || "Premium"}
+                    </span>
+                  </div>
+                  <h2 className="mb-2 text-lg font-semibold text-text dark:text-gray-200 sm:text-xl">
+                    {loading ? (
+                      <Skeleton width={200} />
+                    ) : (
+                      `${car?.make} ${car?.model}`
+                    )}
+                  </h2>
+                  <div className="text-lg font-semibold text-primary dark:text-primary sm:text-xl">
+                    {loading ? (
+                      <Skeleton width={150} />
+                    ) : (
+                      `${selectedCurrency?.symbol} ${Math.round(
+                        car?.price || 0,
+                      ).toLocaleString()}`
+                    )}
+                  </div>
+                </div>
+              </div>
 
-  {/* Action Buttons */}
-  <div className="flex flex-col gap-2 sm:flex-row">
-    <button
-      onClick={() => setOpenModal(true)}
-      className="flex flex-1 items-center justify-center rounded-lg border border-primary bg-primary px-4 py-2 text-sm font-medium text-text-inverse shadow transition-all duration-200 hover:border-primary-hover hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-primary/20"
-    >
-      <LuMail className="mr-2 h-5 w-5" />
-      {t("enquireNow")}
-    </button>
-    <button
-      onClick={() => {
-        window.location.href = "tel:+1234567890";
-      }}
-      className="flex flex-1 items-center justify-center rounded-lg border border-primary bg-transparent px-4 py-2 text-sm font-medium text-primary shadow transition-all duration-200 hover:bg-primary hover:text-text-inverse focus:outline-none focus:ring-2 focus:ring-primary/20 dark:hover:text-text-inverse"
-    >
-      <LuPhone className="mr-2 h-5 w-5" />
-      {t("callUs")}
-    </button>
-  </div>
-</div>
+              {/* Action Buttons */}
+              <div className="flex flex-col gap-2 sm:flex-row">
+                <button
+                  onClick={() => setOpenModal(true)}
+                  className="flex flex-1 items-center justify-center rounded-lg border border-primary bg-primary px-4 py-2 text-sm font-medium text-text-inverse shadow transition-all duration-200 hover:border-primary-hover hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-primary/20"
+                >
+                  <LuMail className="mr-2 h-5 w-5" />
+                  {t("enquireNow")}
+                </button>
+                <button
+                  onClick={() => {
+                    window.location.href = "tel:+1234567890";
+                  }}
+                  className="flex flex-1 items-center justify-center rounded-lg border border-primary bg-transparent px-4 py-2 text-sm font-medium text-primary shadow transition-all duration-200 hover:bg-primary hover:text-text-inverse focus:outline-none focus:ring-2 focus:ring-primary/20 dark:hover:text-text-inverse"
+                >
+                  <LuPhone className="mr-2 h-5 w-5" />
+                  {t("callUs")}
+                </button>
+              </div>
+            </div>
 
             {/* Features Section */}
             {dealer && (
@@ -393,24 +393,22 @@ export default function Home() {
                       Loading dealer information...
                     </p>
                   </div>
-                ) : dealer ? (
-                  dealer.map ? (
-                    <iframe
-                      src={dealer.map}
-                      width="600"
-                      height="450"
-                      loading="lazy"
-                      title="Dealer Location Map"
-                      className="custom-iframe rounded-xl shadow-inner"
-                    ></iframe>
-                  ) : (
-                    <div className="flex h-96 items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-700">
-                      <p className="text-gray-600 dark:text-gray-400">
-                        Map is not available
-                      </p>
-                    </div>
-                  )
-                ) : null}
+                ) : dealer?.map ? (
+                  <iframe
+                    src={dealer.map}
+                    width="600"
+                    height="450"
+                    loading="lazy"
+                    title="Dealer Location Map"
+                    className="custom-iframe rounded-xl shadow-inner"
+                  ></iframe>
+                ) : (
+                  <div className="flex h-96 items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-700">
+                    <p className="text-gray-600 dark:text-gray-400">
+                      Map is not available
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </div>

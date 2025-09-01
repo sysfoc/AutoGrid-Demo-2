@@ -96,7 +96,7 @@ export default function LoginPage() {
   const currentCredentials = demoCredentials[activeCredential];
 
   return (
-    <div className="min-h-screen bg-background dark:bg-background-dark flex mt-16 lg:mt-14">
+    <div className="min-h-screen bg-background dark:bg-background-dark flex pt-8 lg:pt-0 mt-32">
       
       {/* Left Sidebar - Demo Credentials */}
       <div className="hidden lg:flex lg:w-80 bg-background dark:bg-background-dark border-r border-gray-200 dark:border-gray-700 flex-col">

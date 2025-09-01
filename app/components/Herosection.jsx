@@ -488,127 +488,7 @@ const HeroSection = () => {
       )}
 
       {/* Main Container */}
-      <div className="relative min-h-screen bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600">
-        {/* Header */}
-        <header className="relative z-20">
-          <div className="mx-auto max-w-7xl px-4">
-            <nav className="flex items-center justify-between">
-              {/* Logo */}
-              <Link href="/" className="flex items-center space-x-3">
-                {logo && !logoError ? (
-                  <div className="relative h-16 w-16 overflow-hidden rounded-lg">
-                    <Image
-                      src={logo || "/placeholder.svg"}
-                      alt="Logo"
-                      fill
-                      className="object-contain"
-                      onError={handleLogoError}
-                      priority
-                      sizes="32px"
-                    />
-                  </div>
-                ) : (
-                  <div className="h-8 w-8 rounded-lg bg-white/20"></div>
-                )}
-                <span className="text-xl font-bold text-white">AutoGrid</span>
-              </Link>
-
-              {/* Desktop Navigation */}
-              <div className="hidden items-center space-x-8 lg:flex">
-                <div
-                  className="relative"
-                  onMouseEnter={() => setListingsDropdownOpen(true)}
-                  onMouseLeave={() => setListingsDropdownOpen(false)}
-                >
-                  <button className="flex items-center space-x-1 text-white transition-colors">
-                    <FaCar className="h-4 w-4" />
-                    <span>Listings</span>
-                    <ChevronDown
-                      className={`h-4 w-4 transition-transform ${listingsDropdownOpen ? "rotate-180" : ""}`}
-                    />
-                  </button>
-                  {listingsDropdownOpen && (
-                    <div className="absolute left-0 top-full z-50 w-48 rounded-lg bg-white py-2 shadow-lg">
-                      <Link
-                        href="/car-for-sale"
-                        className="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white"
-                      >
-                        Cars for Sale
-                      </Link>
-                      <Link
-                        href="/cars/leasing"
-                        className="block px-4 py-2 text-gray-800 hover:bg-primary hover:text-white"
-                      >
-                        Lease Deals
-                      </Link>
-                    </div>
-                  )}
-                </div>
-                <Link
-                  href="/cars/valuation"
-                  className="flex items-center space-x-1 text-white"
-                >
-                  <FaCalculator className="h-4 w-4" />
-                  <span>Car Valuation</span>
-                </Link>
-
-                <Link
-                  href="/car-financing"
-                  className="flex items-center space-x-1 text-white"
-                >
-                  <FaCalculator className="h-4 w-4" />
-                  <span>Car Financing</span>
-                </Link>
-
-                <Link
-                  href="/cars/about-us"
-                  className="flex items-center space-x-1 text-white"
-                >
-                  <FaHandshake className="h-4 w-4" />
-                  <span>Vehicle Services</span>
-                </Link>
-              </div>
-
-              {/* Desktop Action Buttons */}
-              <div className="hidden items-center space-x-4 lg:flex">
-                <button
-                  onClick={navigateToLogin}
-                  className="rounded-lg bg-white px-4 py-2 font-medium text-blue-600 transition-colors hover:bg-blue-50"
-                >
-                  Sign Up
-                </button>
-                {!topSettings.hideFavourite && (
-                  <button
-                    onClick={navigateToLikedCars}
-                    className="rounded-lg bg-white/10 p-2 transition-colors hover:bg-white/20"
-                  >
-                    <Heart className="h-5 w-5 text-white" />
-                  </button>
-                )}
-                {!topSettings.hideDarkMode && (
-                  <button
-                    onClick={toggleDarkMode}
-                    className="rounded-lg bg-white/10 p-2 transition-colors hover:bg-white/20"
-                  >
-                    {darkMode ? (
-                      <Sun className="h-5 w-5 text-white" />
-                    ) : (
-                      <Moon className="h-5 w-5 text-white" />
-                    )}
-                  </button>
-                )}
-              </div>
-
-              {/* Mobile Menu Button */}
-              <button
-                onClick={handleMobileMenuOpen}
-                className="rounded-lg p-2 text-white hover:bg-white/10 lg:hidden"
-              >
-                <Menu className="h-5 w-5" />
-              </button>
-            </nav>
-          </div>
-        </header>
+      <div className="relative min-h-screen bg-gradient-to-br from-blue-400 mt-16 via-blue-500 to-blue-600">
 
         {/* Main Content */}
         <main className="relative z-10 px-4">
@@ -626,7 +506,7 @@ const HeroSection = () => {
                     "The Point Of Using Lorem Ipsum Is That It Has A More-Or-Less Normal Distribution Of Letters, As Opposed To Using 'Content Here, Content Here."}
                 </p>
                 <Link href="/car-for-sale">
-                  <button className="rounded-lg bg-white px-8 py-3 font-semibold text-primary transition-all hover:-translate-y-0.5 hover:bg-blue-50 dark:bg-gray-800 dark:text-gray-100 hover:shadow-lg">
+                  <button className="rounded-lg bg-white px-8 py-3 font-semibold text-primary transition-all hover:-translate-y-0.5 hover:bg-blue-50 dark:bg-gray-800 dark:text-slate-200 hover:shadow-lg">
                     Explore Our Vehicles
                   </button>
                 </Link>

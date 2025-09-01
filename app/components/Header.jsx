@@ -351,11 +351,7 @@ const Header = () => {
     <>
       <Banner />
       <nav
-        className={`fixed left-0 right-0 top-16 z-20 border-b border-gray-200 bg-white shadow-lg backdrop-blur-lg transition-all duration-300 dark:border-gray-700 dark:bg-gray-900 ${
-          isVisible
-            ? "translate-y-0 opacity-100"
-            : "-translate-y-full opacity-0"
-        }`}
+        className="fixed left-0 right-0 top-16 z-20 border-b border-gray-200 bg-white shadow-lg backdrop-blur-lg dark:border-gray-700 dark:bg-gray-900"
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-4">
           <div className="flex h-16 items-center justify-between">
@@ -364,27 +360,27 @@ const Header = () => {
             <div className="hidden items-center space-x-6 lg:flex">
               {/* Listings Dropdown */}
               <div className="group relative">
-                <button className="group flex items-center space-x-2 rounded-lg px-4 py-2.5 text-sm font-medium text-[var(--text)] transition-all duration-300 hover:bg-[var(--primary)] hover:text-[var(--text-inverse)] hover:shadow-lg active:scale-95">
-                  <FaCar className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
-                  <span>Listings</span>
-                  <ChevronDown className="h-4 w-4" />
+                <button className="group relative flex items-center space-x-2 rounded-xl border-2 border-transparent px-6 py-3 text-sm font-semibold text-[var(--text)] transition-all duration-300 hover:border-[var(--primary)] hover:shadow-lg hover:shadow-[var(--primary)]/25 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/50">
+                  <FaCar className="h-4 w-4 transition-all duration-300 group-hover:scale-110 group-hover:text-[var(--primary)]" />
+                  <span className="transition-colors duration-300 group-hover:text-[var(--primary)]">Listings</span>
+                  <ChevronDown className="h-4 w-4 transition-all duration-300 group-hover:rotate-180 group-hover:text-[var(--primary)]" />
                 </button>
 
                 <div
-                  className="invisible absolute left-0 top-full z-50 mt-2 w-48 rounded-lg border border-[var(--text-secondary)] bg-[var(--bg)] opacity-0 shadow-lg transition-all duration-200 
-                  group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100"
+                  className="invisible absolute left-0 top-full z-50 mt-2 w-52 rounded-xl border-2 border-gray-100 bg-white opacity-0 shadow-xl transition-all duration-300 dark:border-gray-700 dark:bg-gray-800
+                  group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 translate-y-2"
                 >
                   <Link
                     href="/car-for-sale"
-                    className="block rounded-t-lg px-4 py-3 text-[var(--text)] hover:bg-[var(--primary)] hover:text-white"
+                    className="flex items-center rounded-t-xl px-5 py-4 text-[var(--text)] transition-all duration-200 hover:shadow-inner hover:shadow-[var(--primary)]/10 hover:bg-gradient-to-r hover:from-transparent hover:to-[var(--primary)]/5 hover:border-l-4 hover:border-l-[var(--primary)]"
                   >
-                    Cars for Sale
+                    <span className="font-medium">Cars for Sale</span>
                   </Link>
                   <Link
                     href="/cars/leasing"
-                    className="block rounded-b-lg px-4 py-3 text-[var(--text)] hover:bg-[var(--primary)] hover:text-white"
+                    className="flex items-center rounded-b-xl px-5 py-4 text-[var(--text)] transition-all duration-200 hover:shadow-inner hover:shadow-[var(--primary)]/10 hover:bg-gradient-to-r hover:from-transparent hover:to-[var(--primary)]/5 hover:border-l-4 hover:border-l-[var(--primary)]"
                   >
-                    Lease Deals
+                    <span className="font-medium">Lease Deals</span>
                   </Link>
                 </div>
               </div>
@@ -396,10 +392,10 @@ const Header = () => {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="group flex items-center space-x-2 rounded-lg px-4 py-2.5 text-sm font-medium text-[var(--text)] transition-all duration-300 hover:bg-[var(--primary)] hover:text-[var(--text-inverse)] hover:shadow-lg active:scale-95"
+                    className="group relative flex items-center space-x-2 rounded-xl border-2 border-transparent px-6 py-3 text-sm font-semibold text-[var(--text)] transition-all duration-300 hover:border-[var(--primary)] hover:shadow-lg hover:shadow-[var(--primary)]/25 active:scale-95 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/50"
                   >
-                    <IconComponent className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
-                    <span>{link.name}</span>
+                    <IconComponent className="h-4 w-4 transition-all duration-300 group-hover:scale-110 group-hover:text-[var(--primary)]" />
+                    <span className="transition-colors duration-300 group-hover:text-[var(--primary)]">{link.name}</span>
                   </Link>
                 );
               })}
@@ -409,28 +405,27 @@ const Header = () => {
               <button
                 onClick={navigateToLogin}
                 aria-label="Sign Up"
-                className={`focus:ring-[var(--primary)]/50 hidden items-center space-x-2 rounded-lg border-2 border-[var(--primary)] bg-[var(--bg)] px-4 py-2.5 text-sm font-medium text-[var(--primary)] transition-all duration-300 hover:bg-[var(--primary)] hover:text-[var(--text-inverse)] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 lg:flex ${isLoading ? "opacity-75" : "opacity-100"}`}
+                className={`group relative hidden items-center space-x-2 rounded-xl border-2 border-[var(--primary)] bg-gradient-to-r from-transparent to-[var(--primary)]/5 px-6 py-3 text-sm font-semibold text-[var(--primary)] transition-all duration-300 hover:shadow-lg hover:shadow-[var(--primary)]/30 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/50 lg:flex ${isLoading ? "opacity-75" : "opacity-100"}`}
               >
-                <FaUser className="h-4 w-4" />
+                <FaUser className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
                 <span>Sign Up</span>
               </button>
 
-              {/* Mobile Menu Toggle (Hamburger) - Visible on smaller screens */}
               <button
                 onClick={handleMobileMenuOpen}
                 aria-label="Open Menu"
-                className="focus:ring-[var(--primary)]/50 group relative rounded-lg bg-[var(--bg-secondary)] p-3 transition-all duration-300 hover:scale-105 hover:bg-[var(--primary)] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 lg:hidden"
+                className="group relative rounded-xl bg-gray-50 p-3 shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-[var(--primary)]/20 focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/50 dark:bg-gray-800 lg:hidden"
               >
-                <Menu className="h-5 w-5 text-[var(--text)] transition-colors duration-300 group-hover:text-[var(--text-inverse)]" />
+                <Menu className="h-5 w-5 text-[var(--text)] transition-all duration-300 group-hover:scale-110 group-hover:text-[var(--primary)]" />
               </button>
 
               {!topSettings.hideFavourite && (
                 <button
                   onClick={navigateToLikedCars}
                   aria-label="Liked Cars"
-                  className={`focus:ring-[var(--primary)]/50 group relative hidden rounded-lg bg-[var(--bg-secondary)] p-3 transition-all duration-300 hover:scale-105 hover:bg-[var(--primary)] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 md:flex ${isLoading ? "opacity-75" : "opacity-100"}`}
+                  className={`group relative hidden rounded-xl bg-gradient-to-br from-amber-50 to-blue-50 p-3 shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-amber-200/50 focus:outline-none focus:ring-0 dark:from-blue-900/20 dark:to-indigo-900/20 dark:hover:shadow-blue-400/20 md:flex ${isLoading ? "opacity-75" : "opacity-100"}`}
                 >
-                  <Heart className="h-5 w-5 text-[var(--text)] transition-colors duration-300 group-hover:text-[var(--text-inverse)]" />
+                  <Heart className="h-5 w-5 text-blue-600 transition-all duration-300 group-hover:scale-110 group-hover:text-blue-500" />
                 </button>
               )}
 
@@ -438,13 +433,13 @@ const Header = () => {
                 {!topSettings.hideDarkMode && (
                   <button
                     onClick={toggleDarkMode}
-                    className={`hover:ring-[var(--primary)]/50 group relative rounded-lg bg-[var(--bg-secondary)] p-3 text-[var(--text)] backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-[var(--primary)] hover:text-[var(--text-inverse)] hover:shadow-lg ${isLoading ? "opacity-75" : "opacity-100"}`}
+                    className={`group relative rounded-xl bg-gradient-to-br from-amber-50 to-blue-50 p-3 shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-amber-200/50 dark:from-blue-900/20 dark:to-indigo-900/20 dark:hover:shadow-blue-400/20 ${isLoading ? "opacity-75" : "opacity-100"}`}
                     aria-label="Toggle dark mode"
                   >
                     {darkMode ? (
-                      <Sun className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
+                      <Sun className="h-5 w-5 text-amber-600 transition-all duration-300 group-hover:scale-110 group-hover:rotate-180 group-hover:text-amber-500 dark:text-amber-400" />
                     ) : (
-                      <Moon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
+                      <Moon className="h-5 w-5 text-blue-600 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-12 group-hover:text-blue-500" />
                     )}
                   </button>
                 )}
@@ -454,13 +449,13 @@ const Header = () => {
                 {!topSettings.hideDarkMode && (
                   <button
                     onClick={toggleDarkMode}
-                    className={`hover:ring-[var(--primary)]/50 group rounded-lg bg-[var(--bg-secondary)] p-3 text-[var(--text)] ring-1 ring-[var(--text-secondary)] backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-[var(--primary)] hover:text-[var(--text-inverse)] ${isLoading ? "opacity-75" : "opacity-100"}`}
+                    className={`group relative rounded-xl bg-gradient-to-br from-amber-50 to-blue-50 p-3 shadow-md transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-amber-200/50 dark:from-blue-900/20 dark:to-indigo-900/20 dark:hover:shadow-blue-400/20 ${isLoading ? "opacity-75" : "opacity-100"}`}
                     aria-label="Toggle dark mode"
                   >
                     {darkMode ? (
-                      <Sun className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
+                      <Sun className="h-5 w-5 text-amber-600 transition-all duration-300 group-hover:scale-110 group-hover:rotate-180 group-hover:text-amber-500 dark:text-amber-400" />
                     ) : (
-                      <Moon className="h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
+                      <Moon className="h-5 w-5 text-blue-600 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-12 group-hover:text-blue-500" />
                     )}
                   </button>
                 )}
@@ -491,9 +486,9 @@ const Header = () => {
             <button
               onClick={handleMobileMenuClose}
               aria-label="Close Menu"
-              className="focus:ring-[var(--primary)]/50 rounded-lg p-2 text-[var(--text-secondary)] transition-all duration-300 hover:scale-105 hover:bg-[var(--primary-light)] hover:text-[var(--primary)] focus:outline-none focus:ring-2"
+              className="group rounded-xl p-2 text-[var(--text-secondary)] transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-red-200/50 hover:bg-red-50 hover:text-red-600 focus:outline-none focus:ring-2 focus:ring-red-400/50 dark:hover:bg-red-900/20 dark:hover:text-red-400"
             >
-              <FaTimes className="h-4 w-4" />
+              <FaTimes className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
             </button>
           </div>
 
@@ -505,10 +500,10 @@ const Header = () => {
                   key={link.href}
                   href={link.href}
                   onClick={handleMobileMenuClose}
-                  className="flex items-center space-x-3 rounded-lg px-3 py-2 text-base font-medium text-[var(--text)] transition-all duration-200 hover:bg-[var(--bg-secondary)] hover:text-[var(--primary)]"
+                  className="group flex items-center space-x-3 rounded-xl border-2 border-transparent px-4 py-3 text-base font-medium text-[var(--text)] transition-all duration-300 hover:border-[var(--primary)] hover:shadow-md hover:shadow-[var(--primary)]/20 hover:bg-gradient-to-r hover:from-transparent hover:to-[var(--primary)]/5"
                 >
-                  <IconComponent className="h-5 w-5" />
-                  <span>{link.name}</span>
+                  <IconComponent className="h-5 w-5 transition-all duration-300 group-hover:scale-110 group-hover:text-[var(--primary)]" />
+                  <span className="transition-colors duration-300 group-hover:text-[var(--primary)]">{link.name}</span>
                 </Link>
               );
             })}
