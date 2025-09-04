@@ -255,8 +255,6 @@ const handleSubmit = async (e) => {
       // Reset state
       setSelectedMake("");
       setSelectedModel("");
-      setSelectedImages([]);
-      setImagePreviews([]);
       setFormData({
         make: "",
         model: "",
