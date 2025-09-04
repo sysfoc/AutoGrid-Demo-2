@@ -115,6 +115,7 @@ const Page = () => {
   const [jsonData, setJsonData] = useState([]);
   const [loading, setLoading] = useState(false);
   const { currency, selectedCurrency } = useCurrency();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const fetchJsonData = async () => {
@@ -217,87 +218,98 @@ const Page = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formElement = e.target;
-    const formData = new FormData(formElement);
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  
+  // Prevent multiple submissions
+  if (isSubmitting) return;
+  
+  setIsSubmitting(true);
+  
+  const formElement = e.target;
+  const formData = new FormData(formElement);
 
-    const selectedFeatures = featuresList
-      .filter((feature) => formData.get(feature.id) === "on")
-      .map((feature) => feature.label);
+  const selectedFeatures = featuresList
+    .filter((feature) => formData.get(feature.id) === "on")
+    .map((feature) => feature.label);
 
-    formData.set("features", JSON.stringify(selectedFeatures));
+  formData.set("features", JSON.stringify(selectedFeatures));
 
-    // Handle boolean field properly
-    const isLease = formData.get("isLease");
-    if (isLease === "on") {
-      formData.set("isLease", "true");
-    } else {
-      formData.set("isLease", "false");
-    }
+  // Handle boolean field properly
+  const isLease = formData.get("isLease");
+  if (isLease === "on") {
+    formData.set("isLease", "true");
+  } else {
+    formData.set("isLease", "false");
+  }
 
-    try {
-      const response = await fetch("/api/cars", {
-        method: "POST",
-        body: formData,
+  try {
+    const response = await fetch("/api/cars", {
+      method: "POST",
+      body: formData,
+    });
+    const result = await response.json();
+    if (response.ok) {
+      Swal.fire("Success!", result.message, "success");
+      formElement.reset();
+      // Reset state
+      setSelectedMake("");
+      setSelectedModel("");
+      setSelectedImages([]);
+      setImagePreviews([]);
+      setFormData({
+        make: "",
+        model: "",
+        price: "",
+        description: "",
+        type: "used",
+        tag: "default",
+        kms: "",
+        fuelType: "petrol",
+        fuelTankFillPrice: "",
+        fuelCapacityPerTank: "",
+        noOfGears: "",
+        cylinder: "",
+        features: {},
+        doors: "",
+        seats: "",
+        gearbox: "manual",
+        engineCapacity: "",
+        images: [],
+        video: "",
+        sellerComments: "",
+        condition: "",
+        location: "",
+        year: "",
+        modelYear: "",
+        registerationPlate: "",
+        registerationExpire: "",
+        mileage: "",
+        bodyType: "",
+        color: "",
+        batteryRange: "",
+        unit: "km",
+        chargingTime: "",
+        engineSize: "",
+        enginePower: "",
+        fuelConsumption: "",
+        isFinance: "finance",
+        slug: "",
+        co2Emission: "",
+        driveType: "",
+        isLease: false,
+        dealerId: "",
       });
-      const result = await response.json();
-      if (response.ok) {
-        Swal.fire("Success!", result.message, "success");
-        formElement.reset();
-        // Reset state
-        setSelectedMake("");
-        setSelectedModel("");
-        setFormData({
-          make: "",
-          model: "",
-          price: "",
-          description: "",
-          type: "used",
-          tag: "default",
-          kms: "",
-          fuelType: "petrol",
-          fuelTankFillPrice: "",
-          fuelCapacityPerTank: "",
-          noOfGears: "",
-          cylinder: "",
-          features: {},
-          doors: "",
-          seats: "",
-          gearbox: "manual",
-          engineCapacity: "",
-          images: [],
-          video: "",
-          sellerComments: "",
-          condition: "",
-          location: "",
-          year: "",
-          modelYear: "",
-          registerationPlate: "",
-          registerationExpire: "",
-          mileage: "",
-          bodyType: "",
-          color: "",
-          batteryRange: "",
-          unit: "km",
-          chargingTime: "",
-          engineSize: "",
-          enginePower: "",
-          fuelConsumption: "",
-          isFinance: "finance",
-          slug: "",
-          co2Emission: "",
-          driveType: "",
-          isLease: false,
-          dealerId: "",
-        });
-      } else {
-        Swal.fire("Error!", result.error || "Something went wrong.", "error");
-      }
-    } catch (error) {
-      Swal.fire("Error!", "Server error occurred.", "error");
+    } else {
+      Swal.fire("Error!", result.error || "Something went wrong.", "error");
     }
-  };
+  } catch (error) {
+    Swal.fire("Error!", "Server error occurred.", "error");
+  } finally {
+    // Re-enable the submit button whether successful or not
+    setIsSubmitting(false);
+  }
+};
 
   if (loading) {
     return <div>Loading...</div>;
@@ -930,13 +942,14 @@ const Page = () => {
             </div>
           </div>
           <div className="my-8">
-            <Button 
-              type="submit" 
-              size={"md"} 
-              className="w-full bg-app-button hover:bg-app-button-hover text-white border-app-button hover:border-app-button-hover"
-            >
-              Submit
-            </Button>
+         <Button 
+  type="submit" 
+  size={"md"} 
+  disabled={isSubmitting}
+  className={`w-full bg-app-button hover:bg-app-button-hover text-white border-app-button hover:border-app-button-hover ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+>
+  {isSubmitting ? 'Submitting...' : 'Submit'}
+</Button>
             <div className="mt-5 text-sm text-gray-600">
               By submitting this form, you agree to the Car Dealer App{" "}
               <Link href="/terms" className="text-app-button hover:text-app-button-hover">

@@ -64,54 +64,54 @@ const Page = () => {
   return (
     <section className="my-10">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-app-text">Add New Testimonial</h2>
+        <h2 className="text-2xl font-bold text-text">Add New Testimonial</h2>
         <Link
           href={"/admin/manage-website/testimonial"}
-          className="rounded-lg bg-app-button hover:bg-app-button-hover p-3 text-sm text-white transition-colors duration-200"
+          className="rounded-lg bg-primary hover:bg-primary-hover p-3 text-sm text-text-inverse transition-colors duration-200"
         >
           View All
         </Link>
       </div>
       <form className="mt-5 flex flex-col gap-3" onSubmit={handleSubmit}>
         <div>
-          <Label htmlFor="name" className="text-app-text">Name:</Label>
+          <Label htmlFor="name" className="text-text">Name:</Label>
           <TextInput
             id="name"
             type="text"
             value={formData.name}
             onChange={handleChange}
-            className="text-app-text"
+            className="text-text"
           />
         </div>
         <div>
-          <Label htmlFor="designation" className="text-app-text">Designation:</Label>
+          <Label htmlFor="designation" className="text-text">Designation:</Label>
           <TextInput
             id="designation"
             type="text"
             value={formData.designation}
             onChange={handleChange}
-            className="text-app-text"
+            className="text-text"
           />
         </div>
         <div>
-          <Label htmlFor="content" className="text-app-text">Content:</Label>
+          <Label htmlFor="content" className="text-text">Content:</Label>
           <Textarea
             id="content"
             rows={5}
             value={formData.content}
             onChange={handleChange}
-            className="text-app-text"
+            className="text-text"
           />
         </div>
         <div>
-          <Label htmlFor="image" className="text-app-text">Image:</Label>
-          <FileInput id="image" accept="image/*" onChange={handleChange} className="text-app-text" />
+          <Label htmlFor="image" className="text-text">Image:</Label>
+          <FileInput id="image" accept="image/*" onChange={handleChange} className="text-text" />
         </div>
         <Button 
           type="submit" 
-          className="mt-3 w-full bg-app-button hover:bg-app-button-hover border-app-button hover:border-app-button-hover"
+          className="mt-3 w-full bg-primary hover:bg-primary-hover border-primary hover:border-primary-hover"
         >
-          <span className="text-white">
+          <span className="text-text-inverse">
             Submit
           </span>
         </Button>

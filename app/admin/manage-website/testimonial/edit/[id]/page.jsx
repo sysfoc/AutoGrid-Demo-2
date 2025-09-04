@@ -108,10 +108,10 @@ const Page = () => {
   return (
     <section className="my-10">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-app-text">Edit Testimonial</h2>
+        <h2 className="text-2xl font-bold text-text">Edit Testimonial</h2>
         <Link
           href={"/admin/manage-website/testimonial"}
-          className="rounded-lg bg-app-button hover:bg-app-button-hover p-3 text-sm text-white transition-colors duration-200"
+          className="rounded-lg bg-primary hover:bg-primary-hover p-3 text-sm text-text-inverse transition-colors duration-200"
         >
           View All
         </Link>
@@ -119,7 +119,7 @@ const Page = () => {
 
       <form className="mt-5 flex flex-col gap-3" onSubmit={handleSubmit}>
         <div>
-          <Label htmlFor="name" className="text-app-text">Name:</Label>
+          <Label htmlFor="name" className="text-text">Name:</Label>
           <TextInput
             id="name"
             type="text"
@@ -127,11 +127,11 @@ const Page = () => {
             value={testimonial.name}
             onChange={handleChange}
             required
-            className="text-app-text"
+            className="text-text"
           />
         </div>
         <div>
-          <Label htmlFor="designation" className="text-app-text">Designation:</Label>
+          <Label htmlFor="designation" className="text-text">Designation:</Label>
           <TextInput
             id="designation"
             type="text"
@@ -139,11 +139,11 @@ const Page = () => {
             value={testimonial.designation}
             onChange={handleChange}
             required
-            className="text-app-text"
+            className="text-text"
           />
         </div>
         <div>
-          <Label htmlFor="content" className="text-app-text">Content:</Label>
+          <Label htmlFor="content" className="text-text">Content:</Label>
           <Textarea
             id="content"
             rows={5}
@@ -151,16 +151,16 @@ const Page = () => {
             value={testimonial.content}
             onChange={handleChange}
             required
-            className="text-app-text"
+            className="text-text"
           />
         </div>
         <div>
-          <Label htmlFor="image" className="text-app-text">Image:</Label>
+          <Label htmlFor="image" className="text-text">Image:</Label>
           <FileInput 
             id="image" 
             accept="image/*" 
             onChange={handleFileChange}
-            className="text-app-text"
+            className="text-text"
           />
           {previewImage && (
             <div className="mt-3">
@@ -171,7 +171,7 @@ const Page = () => {
                 height={80}
                 className="rounded-md object-cover"
               />
-              <p className="text-sm text-app-text mt-1">
+              <p className="text-sm text-text mt-1">
                 Current Image (click to change)
               </p>
             </div>
@@ -179,9 +179,9 @@ const Page = () => {
         </div>
         <Button 
           type="submit" 
-          className="mt-3 w-full bg-app-button hover:bg-app-button-hover border-app-button hover:border-app-button-hover"
+          className="mt-3 w-full bg-primary hover:bg-primary-hover border-primary hover:border-primary-hover"
         >
-          <span className="text-white">
+          <span className="text-text-inverse">
             Update Changes
           </span>
         </Button>

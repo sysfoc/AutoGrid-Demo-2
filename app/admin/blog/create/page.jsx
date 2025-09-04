@@ -131,12 +131,12 @@ const Page = () => {
     <section className="my-10">
   <div className="flex items-center justify-between">
     <div>
-      <h2 className="text-2xl font-bold text-app-text">Add New Post</h2>
+      <h2 className="text-2xl font-bold text-text">Add New Post</h2>
     </div>
     <div>
       <Link
         href={"/admin/blog"}
-        className="rounded-lg bg-app-button hover:bg-app-button-hover p-3 text-sm text-white transition-colors duration-200"
+        className="rounded-lg bg-primary hover:bg-primary-hover p-3 text-sm text-text-inverse transition-colors duration-200"
       >
         View All
       </Link>
@@ -144,25 +144,25 @@ const Page = () => {
   </div>
   <form className="mt-5 flex flex-col gap-3" onSubmit={handleSubmit}>
     <div>
-      <Label htmlFor="title" className="text-app-text">H1/Title:</Label>
+      <Label htmlFor="title" className="text-text">H1/Title:</Label>
       <TextInput onChange={handleChange} id="h1" type="text" />
     </div>
     <div>
-      <Label htmlFor="slug" className="text-app-text">Slug:</Label>
+      <Label htmlFor="slug" className="text-text">Slug:</Label>
       <TextInput onChange={handleChange} id="slug" type="text" />
     </div>
     <div>
-      <Label htmlFor="title" className="text-app-text">meta Title:</Label>
+      <Label htmlFor="title" className="text-text">meta Title:</Label>
       <TextInput onChange={handleChange} id="metaTitle" type="text" />
     </div>
     <div>
-      <Label htmlFor="title" className="text-app-text">meta description:</Label>
+      <Label htmlFor="title" className="text-text">meta description:</Label>
       <TextInput onChange={handleChange} id="metaDescription" type="text" />
     </div>
     
     <div>
-      <p className="text-sm text-app-text">Content:</p>
-      <Suspense fallback={<p className="text-app-text">Loading editor...</p>}>
+      <p className="text-sm text-text">Content:</p>
+      <Suspense fallback={<p className="text-text">Loading editor...</p>}>
         <LazyJoditEditor
           value={content}
           config={config}
@@ -174,11 +174,11 @@ const Page = () => {
     </div>
     
     <div>
-      <Label htmlFor="image" className="text-app-text">Select Image:</Label>
+      <Label htmlFor="image" className="text-text">Select Image:</Label>
       <FileInput onChange={handleFileChange} id="image" accept="image/*" />
     </div>
     <div>
-      <Label htmlFor="categoryId" className="text-app-text">Select Category:</Label>
+      <Label htmlFor="categoryId" className="text-text">Select Category:</Label>
       <Select id="categoryId" onChange={handleCategoryChange} required>
         <option value="">Select a category</option>
         {categories.map((category) => (
@@ -192,7 +192,7 @@ const Page = () => {
     <div>
       <Button 
         type="submit" 
-        className="mt-3 w-full bg-app-button hover:bg-app-button-hover border-0 focus:ring-app-button transition-colors duration-200" 
+        className="mt-3 w-full bg-primary hover:bg-primary-hover border-0 focus:ring-primary transition-colors duration-200" 
         color={"dark"}
       >
         Submit

@@ -97,16 +97,16 @@ export default function Page() {
   }
 
   return (
-   <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 p-4 sm:p-6 lg:p-8">
+   <div className="min-h-screen bg-gradient-to-br from-background-secondary to-background p-4 sm:p-6 lg:p-8">
       <div className="mx-auto max-w-7xl">
      
-        <div className="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
+        <div className="bg-background rounded-2xl shadow-xl border border-text-secondary/20 overflow-hidden">
           {/* Card Header */}
-          <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4">
+          <div className="bg-gradient-to-r from-primary to-primary-hover px-6 py-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold text-white">Active Users</h2>
+              <h2 className="text-xl font-semibold text-text-inverse">Active Users</h2>
               <div className="bg-white/20 backdrop-blur-sm rounded-lg px-3 py-1">
-                <span className="text-white text-sm font-medium">
+                <span className="text-text-inverse text-sm font-medium">
                   {users.length} user{users.length !== 1 ? 's' : ''} found
                 </span>
               </div>
@@ -116,8 +116,8 @@ export default function Page() {
           {/* Loading State */}
           {loading && (
             <div className="p-8 text-center">
-              <div className="inline-flex items-center justify-center w-8 h-8 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
-              <p className="mt-2 text-app-text">Loading users...</p>
+              <div className="inline-flex items-center justify-center w-8 h-8 border-4 border-primary/30 border-t-primary rounded-full animate-spin"></div>
+              <p className="mt-2 text-text">Loading users...</p>
             </div>
           )}
 
@@ -125,57 +125,57 @@ export default function Page() {
           {!loading && (
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-slate-50 border-b border-slate-200">
+                <thead className="bg-background-secondary border-b border-text-secondary/20">
                   <tr>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-app-text uppercase tracking-wider">
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-text uppercase tracking-wider">
                       User Information
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-app-text uppercase tracking-wider">
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-text uppercase tracking-wider">
                       Email Address
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-app-text uppercase tracking-wider">
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-text uppercase tracking-wider">
                       Password
                     </th>
-                    <th className="px-6 py-4 text-left text-xs font-semibold text-app-text uppercase tracking-wider">
+                    <th className="px-6 py-4 text-left text-xs font-semibold text-text uppercase tracking-wider">
                       Role & Status
                     </th>
-                    <th className="px-6 py-4 text-center text-xs font-semibold text-app-text uppercase tracking-wider">
+                    <th className="px-6 py-4 text-center text-xs font-semibold text-text uppercase tracking-wider">
                       Actions
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-200">
+                <tbody className="divide-y divide-text-secondary/20">
                   {users.length > 0 ? (
                     users.map((user, index) => (
                       <tr 
                         key={user._id} 
-                        className={`hover:bg-slate-50 transition-colors duration-200 ${
-                          index % 2 === 0 ? 'bg-white' : 'bg-slate-25'
+                        className={`hover:bg-background-secondary transition-colors duration-200 ${
+                          index % 2 === 0 ? 'bg-background' : 'bg-background-secondary/50'
                         }`}
                       >
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center">
-                              <span className="text-white font-semibold text-sm">
+                            <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary-hover rounded-full flex items-center justify-center">
+                              <span className="text-text-inverse font-semibold text-sm">
                                 {(user.username || "U").charAt(0).toUpperCase()}
                               </span>
                             </div>
                             <div>
-                              <p className="font-semibold text-app-text">
+                              <p className="font-semibold text-text">
                                 {user.username || "No username found"}
                               </p>
-                              <p className="text-sm text-slate-500">ID: {user._id}</p>
+                              <p className="text-sm text-text-secondary">ID: {user._id}</p>
                             </div>
                           </div>
                         </td>
                         <td className="px-6 py-4">
-                          <div className="text-app-text font-medium">{user.email}</div>
-                          {/* <div className="text-sm text-slate-500">Primary contact</div> */}
+                          <div className="text-text font-medium">{user.email}</div>
+                          {/* <div className="text-sm text-text-secondary">Primary contact</div> */}
                         </td>
                         <td className="px-6 py-4">
                           <div className="flex items-center gap-2">
-                            <span className="text-slate-400 font-mono text-sm">••••••••</span>
-                            <span className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">
+                            <span className="text-text-secondary font-mono text-sm">••••••••</span>
+                            <span className="text-xs text-text-secondary bg-background-secondary px-2 py-1 rounded">
                               Protected
                             </span>
                           </div>
@@ -187,7 +187,7 @@ export default function Page() {
                               <span className="font-semibold text-sm">Super Admin</span>
                             </div>
                           ) : (
-                            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-slate-100 to-gray-100 text-app-text px-3 py-2 rounded-full border border-slate-200">
+                            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-background-secondary to-background text-text px-3 py-2 rounded-full border border-text-secondary/20">
                               <User className="h-4 w-4" />
                               <span className="font-medium text-sm">User</span>
                             </div>
@@ -196,7 +196,7 @@ export default function Page() {
                         <td className="px-6 py-4 text-center">
                           <button
                             onClick={() => handleDelete(user._id)}
-                            className="inline-flex items-center gap-2 px-4 py-2 bg-app-button hover:bg-app-button-hover text-white rounded-lg transition-colors duration-200 font-medium text-sm shadow-md hover:shadow-lg transform hover:scale-105"
+                            className="inline-flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary-hover text-text-inverse rounded-lg transition-colors duration-200 font-medium text-sm shadow-md hover:shadow-lg transform hover:scale-105"
                           >
                             <Trash2 className="h-4 w-4" />
                             Delete
@@ -208,12 +208,12 @@ export default function Page() {
                     <tr>
                       <td colSpan="5" className="px-6 py-16 text-center">
                         <div className="flex flex-col items-center gap-4">
-                          <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center">
-                            <Users className="h-8 w-8 text-slate-400" />
+                          <div className="w-16 h-16 bg-background-secondary rounded-full flex items-center justify-center">
+                            <Users className="h-8 w-8 text-text-secondary" />
                           </div>
                           <div>
-                            <h3 className="text-lg font-semibold text-app-text mb-1">No users found</h3>
-                            <p className="text-slate-500">There are currently no users to display</p>
+                            <h3 className="text-lg font-semibold text-text mb-1">No users found</h3>
+                            <p className="text-text-secondary">There are currently no users to display</p>
                           </div>
                         </div>
                       </td>
@@ -226,9 +226,9 @@ export default function Page() {
 
           {/* Pagination */}
           {!loading && users.length > 0 && (
-            <div className="bg-slate-50 px-6 py-4 border-t border-slate-200">
+            <div className="bg-background-secondary px-6 py-4 border-t border-text-secondary/20">
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div className="text-sm text-app-text">
+                <div className="text-sm text-text">
                   Showing page <span className="font-semibold">{currentPage}</span> of{" "}
                   <span className="font-semibold">{totalPages}</span>
                 </div>
@@ -237,7 +237,7 @@ export default function Page() {
                   <button
                     onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                     disabled={currentPage === 1}
-                    className="px-4 py-2 bg-white border border-slate-300 text-app-text rounded-lg hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 font-medium text-sm shadow-sm"
+                    className="px-4 py-2 bg-background border border-text-secondary/30 text-text rounded-lg hover:bg-background-secondary disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 font-medium text-sm shadow-sm"
                   >
                     Previous
                   </button>
@@ -251,8 +251,8 @@ export default function Page() {
                           onClick={() => setCurrentPage(pageNum)}
                           className={`w-10 h-10 rounded-lg font-medium text-sm transition-colors duration-200 ${
                             currentPage === pageNum
-                              ? 'bg-blue-600 text-white shadow-md'
-                              : 'bg-white text-app-text border border-slate-300 hover:bg-slate-50'
+                              ? 'bg-primary text-text-inverse shadow-md'
+                              : 'bg-background text-text border border-text-secondary/30 hover:bg-background-secondary'
                           }`}
                         >
                           {pageNum}
@@ -266,7 +266,7 @@ export default function Page() {
                       setCurrentPage((prev) => Math.min(prev + 1, totalPages))
                     }
                     disabled={currentPage === totalPages}
-                    className="px-4 py-2 bg-white border border-slate-300 text-app-text rounded-lg hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 font-medium text-sm shadow-sm"
+                    className="px-4 py-2 bg-background border border-text-secondary/30 text-text rounded-lg hover:bg-background-secondary disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 font-medium text-sm shadow-sm"
                   >
                     Next
                   </button>

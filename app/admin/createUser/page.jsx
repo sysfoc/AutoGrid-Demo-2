@@ -115,12 +115,12 @@ export default function CreateUser() {
   }
 
   return (
-    <div className="flex min-h-screen bg-gray-100">
+    <div className="flex min-h-screen bg-background-secondary">
   <div className="flex-1 flex items-center justify-center p-6">
-    <div className="bg-white rounded-lg p-8 shadow-lg w-full max-w-xl">
+    <div className="bg-background rounded-lg p-8 shadow-lg w-full max-w-xl">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-app-text mb-2">Create New User</h1>
-        <p className="text-gray-600">Add new users to the dealership management system</p>
+        <h1 className="text-3xl font-bold text-text mb-2">Create New User</h1>
+        <p className="text-text-secondary">Add new users to the dealership management system</p>
       </div>
       {errors.general && (
         <div className="mb-6 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
@@ -140,7 +140,7 @@ export default function CreateUser() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Email Field - Full Width */}
           <div className="form-group md:col-span-2">
-            <label htmlFor="email" className="block text-sm font-medium text-app-text mb-1">
+            <label htmlFor="email" className="block text-sm font-medium text-text mb-1">
               Email
             </label>
             <div className="relative">
@@ -154,7 +154,7 @@ export default function CreateUser() {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                className={`w-full border ${errors.email ? "border-red-500" : "border-gray-300"} rounded-md pl-10 pr-3 py-3 focus:outline-none focus:ring-1 focus:ring-app-button`}
+                className={`w-full border ${errors.email ? "border-red-500" : "border-gray-300"} rounded-md pl-10 pr-3 py-3 focus:outline-none focus:ring-1 focus:ring-primary`}
                 placeholder="user@example.com"
               />
             </div>
@@ -163,7 +163,7 @@ export default function CreateUser() {
 
           {/* Password Field - Full Width */}
           <div className="form-group md:col-span-2">
-            <label htmlFor="password" className="block text-sm font-medium text-app-text mb-1">
+            <label htmlFor="password" className="block text-sm font-medium text-text mb-1">
               Password
             </label>
             <div className="relative">
@@ -177,7 +177,7 @@ export default function CreateUser() {
                 required
                 value={formData.password}
                 onChange={handleChange}
-                className={`w-full border ${errors.password ? "border-red-500" : "border-gray-300"} rounded-md pl-10 pr-3 py-3 focus:outline-none focus:ring-1 focus:ring-app-button`}
+                className={`w-full border ${errors.password ? "border-red-500" : "border-gray-300"} rounded-md pl-10 pr-3 py-3 focus:outline-none focus:ring-1 focus:ring-primary`}
                 placeholder="••••••••"
               />
             </div>
@@ -186,7 +186,7 @@ export default function CreateUser() {
 
           {/* Role Selection - Left Column */}
           <div className="form-group">
-            <label htmlFor="role" className="block text-sm font-medium text-app-text mb-1">
+            <label htmlFor="role" className="block text-sm font-medium text-text mb-1">
               Role
             </label>
             <div className="relative">
@@ -199,7 +199,7 @@ export default function CreateUser() {
                 required
                 value={formData.role}
                 onChange={handleChange}
-                className={`w-full border ${errors.role ? "border-red-500" : "border-gray-300"} rounded-md pl-10 pr-3 py-3 focus:outline-none focus:ring-1 focus:ring-app-button appearance-none bg-white`}
+                className={`w-full border ${errors.role ? "border-red-500" : "border-gray-300"} rounded-md pl-10 pr-3 py-3 focus:outline-none focus:ring-1 focus:ring-primary appearance-none bg-background`}
               >
                 <option value="" disabled>
                   Select a role
@@ -216,9 +216,9 @@ export default function CreateUser() {
 
           {/* PIN Input - Right Column */}
           <div className="form-group">
-            <label htmlFor="pin" className="block text-sm font-medium text-app-text mb-1">
+            <label htmlFor="pin" className="block text-sm font-medium text-text mb-1">
               PIN (For Internal Use)
-              <span className="inline-block ml-1 text-gray-500">
+              <span className="inline-block ml-1 text-text-secondary">
                 <FaInfoCircle size={14} title="This PIN is auto-generated" />
               </span>
             </label>
@@ -233,7 +233,7 @@ export default function CreateUser() {
                 required
                 value={formData.pin}
                 onChange={handleChange}
-                className={`w-full border ${errors.pin ? "border-red-500" : "border-gray-300"} rounded-l-md pl-10 pr-3 py-3 focus:outline-none focus:ring-inset focus:ring-1 focus:ring-app-button`}
+                className={`w-full border ${errors.pin ? "border-red-500" : "border-gray-300"} rounded-l-md pl-10 pr-3 py-3 focus:outline-none focus:ring-inset focus:ring-1 focus:ring-primary`}
                 placeholder="Auto-generated PIN"
                 maxLength={6}
               />
@@ -255,7 +255,7 @@ export default function CreateUser() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-app-button hover:bg-app-button-hover text-white py-3 rounded-md transition duration-200 flex items-center justify-center disabled:opacity-50"
+            className="w-full bg-primary hover:bg-primary-hover text-text-inverse py-3 rounded-md transition duration-200 flex items-center justify-center disabled:opacity-50"
           >
             <FaUserPlus className="mr-2" />
             {isSubmitting ? "Creating..." : "Create User"}

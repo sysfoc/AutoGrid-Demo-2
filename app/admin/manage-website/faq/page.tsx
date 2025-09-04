@@ -88,11 +88,11 @@ export default function Page() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 p-6">
+      <div className="min-h-screen bg-gradient-to-br from-background-secondary to-primary-light p-6">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-center h-64">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
-            <span className="ml-3 text-slate-600 font-medium">Loading FAQs...</span>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+            <span className="ml-3 text-text-secondary font-medium">Loading FAQs...</span>
           </div>
         </div>
       </div>
@@ -101,9 +101,9 @@ export default function Page() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 p-6">
+      <div className="min-h-screen bg-gradient-to-br from-background-secondary to-primary-light p-6">
         <div className="max-w-7xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-lg border border-red-200 p-8 text-center">
+          <div className="bg-background rounded-2xl shadow-lg border border-red-200 p-8 text-center">
             <div className="w-16 h-16 mx-auto mb-4 bg-red-100 rounded-full flex items-center justify-center">
               <svg className="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -118,28 +118,28 @@ export default function Page() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-background-secondary to-primary-light p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
        <div className="mb-8">
-  <div className="bg-white rounded-2xl shadow-lg border border-slate-200 p-4 sm:p-6 lg:p-8">
+  <div className="bg-background rounded-2xl shadow-lg border border-text-secondary/20 p-4 sm:p-6 lg:p-8">
     <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-6 lg:space-y-0">
       <div className="flex-1">
-        <h1 className="text-2xl sm:text-3xl font-bold text-app-text mb-2">
+        <h1 className="text-2xl sm:text-3xl font-bold text-text mb-2">
           FAQ Management
         </h1>
-        <p className="text-slate-600 text-sm sm:text-base">
+        <p className="text-text-secondary text-sm sm:text-base">
           Manage frequently asked questions and help content
         </p>
       </div>
       <div className="flex flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0 sm:space-x-6">
         <div className="text-center sm:text-right">
-          <p className="text-sm text-slate-500">Total FAQs</p>
-          <p className="text-xl sm:text-2xl font-bold text-app-text">{faqs.length}</p>
+          <p className="text-sm text-text-secondary">Total FAQs</p>
+          <p className="text-xl sm:text-2xl font-bold text-text">{faqs.length}</p>
         </div>
         <Link
           href="/admin/manage-website/faq/add"
-          className="bg-app-button hover:bg-app-button-hover text-white font-semibold px-4 sm:px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center space-x-2 text-sm sm:text-base"
+          className="bg-primary hover:bg-primary-hover text-text-inverse font-semibold px-4 sm:px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center space-x-2 text-sm sm:text-base"
         >
           <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" />
@@ -151,19 +151,19 @@ export default function Page() {
   </div>
 </div>
         {/* Content Section */}
-        <div className="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
+        <div className="bg-background rounded-2xl shadow-lg border border-text-secondary/20 overflow-hidden">
           {faqs.length === 0 ? (
             <div className="p-12 text-center">
-              <div className="w-24 h-24 mx-auto mb-6 bg-slate-100 rounded-full flex items-center justify-center">
-                <svg className="w-12 h-12 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-24 h-24 mx-auto mb-6 bg-background-secondary rounded-full flex items-center justify-center">
+                <svg className="w-12 h-12 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-app-text mb-2">No FAQs found</h3>
-              <p className="text-slate-500 mb-6">Get started by creating your first FAQ entry.</p>
+              <h3 className="text-xl font-semibold text-text mb-2">No FAQs found</h3>
+              <p className="text-text-secondary mb-6">Get started by creating your first FAQ entry.</p>
               <Link
                 href="/admin/manage-website/faq/add"
-                className="bg-app-button hover:bg-app-button-hover text-white font-medium px-6 py-3 rounded-lg transition-colors duration-200"
+                className="bg-primary hover:bg-primary-hover text-text-inverse font-medium px-6 py-3 rounded-lg transition-colors duration-200"
               >
                 Create First FAQ
               </Link>
@@ -171,39 +171,39 @@ export default function Page() {
           ) : (
             <div className="overflow-x-auto">
               <Table hoverable className="min-w-full">
-                <TableHead className="bg-slate-50">
-                  <TableHeadCell className="text-app-text font-semibold py-4 px-6">
+                <TableHead className="bg-background-secondary">
+                  <TableHeadCell className="text-text font-semibold py-4 px-6">
                     <div className="flex items-center space-x-2">
-                      <svg className="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" />
                       </svg>
                       <span>Order</span>
                     </div>
                   </TableHeadCell>
-                  <TableHeadCell className="text-app-text font-semibold py-4 px-6">
+                  <TableHeadCell className="text-text font-semibold py-4 px-6">
                     FAQ Details
                   </TableHeadCell>
-                  <TableHeadCell className="text-app-text font-semibold py-4 px-6">
+                  <TableHeadCell className="text-text font-semibold py-4 px-6">
                     Description
                   </TableHeadCell>
-                  <TableHeadCell className="text-app-text font-semibold py-4 px-6">
+                  <TableHeadCell className="text-text font-semibold py-4 px-6">
                     Created Date
                   </TableHeadCell>
-                  <TableHeadCell className="text-app-text font-semibold py-4 px-6">
+                  <TableHeadCell className="text-text font-semibold py-4 px-6">
                     Actions
                   </TableHeadCell>
                 </TableHead>
-                <TableBody className="divide-y divide-slate-200">
+                <TableBody className="divide-y divide-text-secondary/20">
                   {faqs
                     .sort((a, b) => a.order - b.order)
                     .map((faq, index) => (
                     <TableRow
                       key={faq._id}
-                      className="bg-white hover:bg-slate-50 transition-colors duration-200"
+                      className="bg-background hover:bg-background-secondary transition-colors duration-200"
                     >
                       <TableCell className="py-4 px-6">
                         <div className="flex items-center justify-center">
-                          <span className="bg-indigo-100 text-indigo-800 text-sm font-semibold px-3 py-1 rounded-full">
+                          <span className="bg-primary-light text-primary text-sm font-semibold px-3 py-1 rounded-full">
                             #{faq.order}
                           </span>
                         </div>
@@ -211,14 +211,14 @@ export default function Page() {
                       
                       <TableCell className="py-4 px-6">
                         <div className="space-y-2">
-                          <h4 className="font-semibold text-app-text text-lg leading-tight">
+                          <h4 className="font-semibold text-text text-lg leading-tight">
                             {faq.title}
                           </h4>
                           <div className="flex items-center space-x-2">
-                            <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-4 h-4 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            <span className="text-xs text-slate-500 font-medium">
+                            <span className="text-xs text-text-secondary font-medium">
                               FAQ #{index + 1}
                             </span>
                           </div>
@@ -226,17 +226,17 @@ export default function Page() {
                       </TableCell>
                       
                       <TableCell className="py-4 px-6 max-w-xs">
-                        <p className="text-slate-600 text-sm line-clamp-3 leading-relaxed">
+                        <p className="text-text-secondary text-sm line-clamp-3 leading-relaxed">
                           {faq.description || "No description provided"}
                         </p>
                       </TableCell>
                       
                       <TableCell className="py-4 px-6">
                         <div className="flex items-center space-x-2">
-                          <svg className="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-4 h-4 text-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3a4 4 0 118 0v4m-9 4h10l2 8H5l2-8z" />
                           </svg>
-                          <span className="text-app-text font-medium">
+                          <span className="text-text font-medium">
                             {faq.createdAt ? new Date(faq.createdAt).toLocaleDateString('en-US', {
                               year: 'numeric',
                               month: 'short',
@@ -250,7 +250,7 @@ export default function Page() {
                         <div className="flex items-center space-x-3">
                           <Link
                             href={`/admin/manage-website/faq/edit/${faq._id}`}
-                            className="bg-blue-500 hover:bg-blue-600 text-white font-medium px-4 py-2 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg flex items-center space-x-2"
+                            className="bg-blue-500 hover:bg-blue-600 text-text-inverse font-medium px-4 py-2 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg flex items-center space-x-2"
                           >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
@@ -259,7 +259,7 @@ export default function Page() {
                           </Link>
                           <button
                             onClick={() => handleDelete(faq._id)}
-                            className="bg-app-button hover:bg-app-button-hover text-white font-medium px-4 py-2 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg flex items-center space-x-2"
+                            className="bg-primary hover:bg-primary-hover text-text-inverse font-medium px-4 py-2 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg flex items-center space-x-2"
                           >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />

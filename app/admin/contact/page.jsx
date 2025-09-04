@@ -443,7 +443,7 @@ const AdminContactPage = () => {
               onClick={() => setFilter(tab.key)}
               className={`rounded-lg px-3 py-2 text-xs sm:text-sm font-medium transition-all duration-200 ${
                 filter === tab.key
-                  ? "border-2 border-red-200 bg-red-100 text-app-button"
+                  ? "border-2 border-app-button bg-app-button text-white"
                   : "border-2 border-transparent bg-gray-100 text-gray-600 hover:bg-gray-200"
               }`}
             >

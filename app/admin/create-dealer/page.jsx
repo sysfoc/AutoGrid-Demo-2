@@ -200,15 +200,15 @@ export default function CreateDealer() {
     );
   }
 
-  return (
-    <div className="flex min-h-screen bg-gray-100">
+return (
+    <div className="flex min-h-screen bg-background-secondary">
       <div className="flex flex-1 items-center justify-center p-6">
-        <div className="w-full max-w-xl rounded-lg bg-white p-8 shadow-lg">
+        <div className="w-full max-w-xl rounded-lg bg-background p-8 shadow-lg">
           <div className="mb-8 text-center">
-            <h1 className="mb-2 text-3xl font-bold text-app-text">
+            <h1 className="mb-2 text-3xl font-bold text-text">
               Create New Dealer
             </h1>
-            <p className="text-gray-600">Add new dealership to the system</p>
+            <p className="text-text-secondary">Add new dealership to the system</p>
           </div>
           {errors.general && (
             <div className="relative mb-6 rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700">
@@ -231,7 +231,7 @@ export default function CreateDealer() {
               <div className="form-group md:col-span-2">
                 <label
                   htmlFor="name"
-                  className="mb-1 block text-sm font-medium text-app-text"
+                  className="mb-1 block text-sm font-medium text-text"
                 >
                   Name
                 </label>
@@ -246,7 +246,7 @@ export default function CreateDealer() {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className={`w-full border ${errors.name ? "border-red-500" : "border-gray-300"} rounded-md py-3 pl-10 pr-3 focus:outline-none focus:ring-1 focus:ring-app-button`}
+                    className={`w-full border ${errors.name ? "border-red-500" : "border-gray-300"} rounded-md py-3 pl-10 pr-3 focus:outline-none focus:ring-1 focus:ring-primary`}
                     placeholder="Dealer Name"
                   />
                 </div>
@@ -259,7 +259,7 @@ export default function CreateDealer() {
               <div className="form-group md:col-span-2">
                 <label
                   htmlFor="address"
-                  className="mb-1 block text-sm font-medium text-app-text"
+                  className="mb-1 block text-sm font-medium text-text"
                 >
                   Address
                 </label>
@@ -274,7 +274,7 @@ export default function CreateDealer() {
                     required
                     value={formData.address}
                     onChange={handleChange}
-                    className={`w-full border ${errors.address ? "border-red-500" : "border-gray-300"} rounded-md py-3 pl-10 pr-3 focus:outline-none focus:ring-1 focus:ring-app-button`}
+                    className={`w-full border ${errors.address ? "border-red-500" : "border-gray-300"} rounded-md py-3 pl-10 pr-3 focus:outline-none focus:ring-1 focus:ring-primary`}
                     placeholder="123 Main St, City, Country"
                   />
                 </div>
@@ -289,7 +289,7 @@ export default function CreateDealer() {
               <div className="form-group">
                 <label
                   htmlFor="contact"
-                  className="mb-1 block text-sm font-medium text-app-text"
+                  className="mb-1 block text-sm font-medium text-text"
                 >
                   Contact
                 </label>
@@ -304,7 +304,7 @@ export default function CreateDealer() {
                     required
                     value={formData.contact}
                     onChange={handleChange}
-                    className={`w-full border ${errors.contact ? "border-red-500" : "border-gray-300"} rounded-md py-3 pl-10 pr-3 focus:outline-none focus:ring-1 focus:ring-app-button`}
+                    className={`w-full border ${errors.contact ? "border-red-500" : "border-gray-300"} rounded-md py-3 pl-10 pr-3 focus:outline-none focus:ring-1 focus:ring-primary`}
                     placeholder="+1234567890"
                   />
                 </div>
@@ -319,7 +319,7 @@ export default function CreateDealer() {
               <div className="form-group">
                 <label
                   htmlFor="licence"
-                  className="mb-1 block text-sm font-medium text-app-text"
+                  className="mb-1 block text-sm font-medium text-text"
                 >
                   Licence
                 </label>
@@ -334,7 +334,7 @@ export default function CreateDealer() {
                     required
                     value={formData.licence}
                     onChange={handleChange}
-                    className={`w-full border ${errors.licence ? "border-red-500" : "border-gray-300"} rounded-md py-3 pl-10 pr-3 focus:outline-none focus:ring-1 focus:ring-app-button`}
+                    className={`w-full border ${errors.licence ? "border-red-500" : "border-gray-300"} rounded-md py-3 pl-10 pr-3 focus:outline-none focus:ring-1 focus:ring-primary`}
                     placeholder="DL123456"
                   />
                 </div>
@@ -349,7 +349,7 @@ export default function CreateDealer() {
               <div className="form-group">
                 <label
                   htmlFor="abn"
-                  className="mb-1 block text-sm font-medium text-app-text"
+                  className="mb-1 block text-sm font-medium text-text"
                 >
                   ABN
                 </label>
@@ -364,7 +364,7 @@ export default function CreateDealer() {
                     required
                     value={formData.abn}
                     onChange={handleChange}
-                    className={`w-full border ${errors.abn ? "border-red-500" : "border-gray-300"} rounded-md py-3 pl-10 pr-3 focus:outline-none focus:ring-1 focus:ring-app-button`}
+                    className={`w-full border ${errors.abn ? "border-red-500" : "border-gray-300"} rounded-md py-3 pl-10 pr-3 focus:outline-none focus:ring-1 focus:ring-primary`}
                     placeholder="12 345 678 901"
                   />
                 </div>
@@ -379,7 +379,7 @@ export default function CreateDealer() {
               <div className="form-group">
                 <label
                   htmlFor="map"
-                  className="mb-1 block text-sm font-medium text-app-text"
+                  className="mb-1 block text-sm font-medium text-text"
                 >
                   Map (Optional)
                 </label>
@@ -393,14 +393,14 @@ export default function CreateDealer() {
                     rows="3"
                     value={formData.map}
                     onChange={handleChange}
-                    className={`w-full border ${errors.map ? "border-red-500" : "border-gray-300"} rounded-md py-3 pl-10 pr-3 focus:outline-none focus:ring-1 focus:ring-app-button`}
+                    className={`w-full border ${errors.map ? "border-red-500" : "border-gray-300"} rounded-md py-3 pl-10 pr-3 focus:outline-none focus:ring-1 focus:ring-primary`}
                     placeholder="Enter Google Maps URL or paste iframe embed code..."
                   />
                 </div>
                 {errors.map && (
                   <div className="mt-1 text-sm text-red-500">{errors.map}</div>
                 )}
-                <div className="mt-1 text-xs text-gray-500">
+                <div className="mt-1 text-xs text-text-secondary">
                   You can paste either a Google Maps URL or the full iframe
                   embed code
                 </div>
@@ -412,7 +412,7 @@ export default function CreateDealer() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex w-full items-center justify-center rounded-md bg-app-button py-3 text-white transition duration-200 hover:bg-app-button-hover disabled:opacity-50"
+                className="flex w-full items-center justify-center rounded-md bg-primary py-3 text-text-inverse transition duration-200 hover:bg-primary-hover disabled:opacity-50"
               >
                 <FaUserPlus className="mr-2" />
                 {isSubmitting ? "Creating..." : "Create Dealer"}

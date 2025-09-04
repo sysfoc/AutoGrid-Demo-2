@@ -12,8 +12,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "app-button": "#662bcc",
-        "app-button-hover": "#5524ab",
+        "app-button": "#2563eb",
+        "app-button-hover": "#1d4ed8",
         // Professional blue color scheme with perfect contrast
         primary: {
           DEFAULT: "#2563eb", // Professional blue (buttons, links, brand)

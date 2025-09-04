@@ -468,7 +468,7 @@ const AdminValuationPage = () => {
                   onClick={() => setFilter(tab.key)}
                   className={`rounded-lg px-3 py-2 text-xs sm:text-sm font-medium transition-all duration-200 ${
                     filter === tab.key
-                      ? "border-2 border-red-200 bg-red-100 text-app-button"
+                      ? "border-2 border-app-button bg-app-button text-white"
                       : "border-2 border-transparent bg-gray-100 text-gray-600 hover:bg-gray-200"
                   }`}
                 >
@@ -503,7 +503,7 @@ const AdminValuationPage = () => {
                   {/* Header Row */}
                   <div className="mb-4 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                     <div className="flex items-center gap-3 sm:gap-4">
-                      <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-gradient-to-r from-app-button to-red-700 flex-shrink-0">
+                      <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-gradient-to-r from-app-button to-app-button/90 flex-shrink-0">
                         <User className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                       </div>
                       <div className="min-w-0 flex-1">
