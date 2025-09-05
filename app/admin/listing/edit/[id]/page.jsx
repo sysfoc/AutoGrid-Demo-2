@@ -23,6 +23,7 @@ const CarEditPage = ({ params }) => {
   const [selectedImages, setSelectedImages] = useState([]);
   const [imagePreviews, setImagePreviews] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [deletedImageUrls, setDeletedImageUrls] = useState([]);
   const [formData, setFormData] = useState({
     make: "",
     model: "",
@@ -261,6 +262,8 @@ const CarEditPage = ({ params }) => {
 
     const formDataToSend = new FormData();
 
+    formDataToSend.append("deletedImageUrls", JSON.stringify(deletedImageUrls));
+
     // Append all form fields
     for (const key in formData) {
       if (key === "_id") continue;
@@ -334,22 +337,31 @@ const CarEditPage = ({ params }) => {
     }
   };
 
-  const handleImageDelete = (index) => {
-    const newImages = [...selectedImages];
-    const newPreviews = [...imagePreviews];
-
-    // Revoke the object URL to avoid memory leaks
-    if (index >= imagePreviews.length - selectedImages.length) {
-      // This is a newly added image (has a blob URL)
-      URL.revokeObjectURL(newPreviews[index]);
+const handleImageDelete = (index) => {
+  const newPreviews = [...imagePreviews];
+  const imageToDelete = newPreviews[index];
+  
+  // If it's an existing image (not a blob URL), add to deleted list
+  if (!imageToDelete.startsWith("blob:")) {
+    setDeletedImageUrls(prev => [...prev, imageToDelete]);
+  } else {
+    // This is a newly added image that hasn't been uploaded yet
+    // Find and remove from selectedImages
+    const blobIndex = selectedImages.findIndex(img => 
+      img.preview === imageToDelete
+    );
+    if (blobIndex !== -1) {
+      const newSelected = [...selectedImages];
+      URL.revokeObjectURL(newSelected[blobIndex].preview);
+      newSelected.splice(blobIndex, 1);
+      setSelectedImages(newSelected);
     }
-
-    newImages.splice(index - (imagePreviews.length - selectedImages.length), 1);
-    newPreviews.splice(index, 1);
-
-    setSelectedImages(newImages);
-    setImagePreviews(newPreviews);
-  };
+  }
+  
+  // Remove from previews
+  newPreviews.splice(index, 1);
+  setImagePreviews(newPreviews);
+};
 
   // Cleanup function for object URLs
   useEffect(() => {
