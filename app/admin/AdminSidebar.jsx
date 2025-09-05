@@ -100,7 +100,7 @@ const AdminSidebar = () => {
   };
 
   const sidebarItems = [
-    { label: "Dashboard", href: "/admin/dashboard", icon: HiChartPie },
+    // { label: "Dashboard", href: "/admin/dashboard", icon: HiChartPie },
     { label: "Contact Submissions", href: "/admin/contact", icon: IoIosContact },
     { label: "Value Submissions", href: "/admin/valuation", icon: BiMessageSquareEdit },
     { label: "Car Enquiry", href: "/admin/enquiries", icon: TbCalendarSearch },
@@ -206,17 +206,15 @@ const AdminSidebar = () => {
       <div className="flex flex-1 flex-col overflow-hidden">
        <div className="flex-1 overflow-y-auto py-4 custom-min-height">
           <nav className="space-y-2 px-4">
-            {/* Single Items */}
-            {sidebarItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="group flex items-center gap-3 rounded-lg px-3 py-2.5 text-app-text transition-colors duration-200 hover:bg-slate-50 hover:text-app-button"
-              >
-                <item.icon className="h-5 w-5 text-slate-500 transition-colors duration-200 group-hover:text-app-button" />
-                <span className="text-sm font-medium">{item.label}</span>
-              </a>
-            ))}
+
+             <a
+    href="/admin/dashboard"
+    className="group flex items-center gap-3 rounded-lg px-3 py-2.5 text-app-text transition-colors duration-200 hover:bg-slate-50 hover:text-app-button"
+  >
+    <HiChartPie className="h-5 w-5 text-slate-500 transition-colors duration-200 group-hover:text-app-button" />
+    <span className="text-sm font-medium">Dashboard</span>
+  </a>
+            
 
             {/* Collapsible Groups */}
             {collapsibleItems.map((group) => (
@@ -250,6 +248,17 @@ const AdminSidebar = () => {
                   </div>
                 )}
               </div>
+            ))}
+
+            {sidebarItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="group flex items-center gap-3 rounded-lg px-3 py-2.5 text-app-text transition-colors duration-200 hover:bg-slate-50 hover:text-app-button"
+              >
+                <item.icon className="h-5 w-5 text-slate-500 transition-colors duration-200 group-hover:text-app-button" />
+                <span className="text-sm font-medium">{item.label}</span>
+              </a>
             ))}
           </nav>
         </div>
