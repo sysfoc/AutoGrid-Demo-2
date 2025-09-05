@@ -255,8 +255,15 @@ const CarEditPage = ({ params }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Prevent multiple submissions
     if (isSubmitting) return;
+
+  const remainingImages = imagePreviews.length
+  const newImages = selectedImages.length
+
+  if (remainingImages === 0 && newImages === 0) {
+    alert("Please add at least one image before updating the car.")
+    return
+  }
 
     setIsSubmitting(true);
 
