@@ -218,96 +218,96 @@ const Page = () => {
     }));
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  
-  // Prevent multiple submissions
-  if (isSubmitting) return;
-  
-  setIsSubmitting(true);
-  
-  const formElement = e.target;
-  const formData = new FormData(formElement);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const selectedFeatures = featuresList
-    .filter((feature) => formData.get(feature.id) === "on")
-    .map((feature) => feature.label);
+    // Prevent multiple submissions
+    if (isSubmitting) return;
 
-  formData.set("features", JSON.stringify(selectedFeatures));
+    setIsSubmitting(true);
 
-  // Handle boolean field properly
-  const isLease = formData.get("isLease");
-  if (isLease === "on") {
-    formData.set("isLease", "true");
-  } else {
-    formData.set("isLease", "false");
-  }
+    const formElement = e.target;
+    const formData = new FormData(formElement);
 
-  try {
-    const response = await fetch("/api/cars", {
-      method: "POST",
-      body: formData,
-    });
-    const result = await response.json();
-    if (response.ok) {
-      Swal.fire("Success!", result.message, "success");
-      formElement.reset();
-      // Reset state
-      setSelectedMake("");
-      setSelectedModel("");
-      setFormData({
-        make: "",
-        model: "",
-        price: "",
-        description: "",
-        type: "used",
-        tag: "default",
-        kms: "",
-        fuelType: "petrol",
-        fuelTankFillPrice: "",
-        fuelCapacityPerTank: "",
-        noOfGears: "",
-        cylinder: "",
-        features: {},
-        doors: "",
-        seats: "",
-        gearbox: "manual",
-        engineCapacity: "",
-        images: [],
-        video: "",
-        sellerComments: "",
-        condition: "",
-        location: "",
-        year: "",
-        modelYear: "",
-        registerationPlate: "",
-        registerationExpire: "",
-        mileage: "",
-        bodyType: "",
-        color: "",
-        batteryRange: "",
-        unit: "km",
-        chargingTime: "",
-        engineSize: "",
-        enginePower: "",
-        fuelConsumption: "",
-        isFinance: "finance",
-        slug: "",
-        co2Emission: "",
-        driveType: "",
-        isLease: false,
-        dealerId: "",
-      });
+    const selectedFeatures = featuresList
+      .filter((feature) => formData.get(feature.id) === "on")
+      .map((feature) => feature.label);
+
+    formData.set("features", JSON.stringify(selectedFeatures));
+
+    // Handle boolean field properly
+    const isLease = formData.get("isLease");
+    if (isLease === "on") {
+      formData.set("isLease", "true");
     } else {
-      Swal.fire("Error!", result.error || "Something went wrong.", "error");
+      formData.set("isLease", "false");
     }
-  } catch (error) {
-    Swal.fire("Error!", "Server error occurred.", "error");
-  } finally {
-    // Re-enable the submit button whether successful or not
-    setIsSubmitting(false);
-  }
-};
+
+    try {
+      const response = await fetch("/api/cars", {
+        method: "POST",
+        body: formData,
+      });
+      const result = await response.json();
+      if (response.ok) {
+        Swal.fire("Success!", result.message, "success");
+        formElement.reset();
+        // Reset state
+        setSelectedMake("");
+        setSelectedModel("");
+        setFormData({
+          make: "",
+          model: "",
+          price: "",
+          description: "",
+          type: "used",
+          tag: "default",
+          kms: "",
+          fuelType: "petrol",
+          fuelTankFillPrice: "",
+          fuelCapacityPerTank: "",
+          noOfGears: "",
+          cylinder: "",
+          features: {},
+          doors: "",
+          seats: "",
+          gearbox: "manual",
+          engineCapacity: "",
+          images: [],
+          video: "",
+          sellerComments: "",
+          condition: "",
+          location: "",
+          year: "",
+          modelYear: "",
+          registerationPlate: "",
+          registerationExpire: "",
+          mileage: "",
+          bodyType: "",
+          color: "",
+          batteryRange: "",
+          unit: "km",
+          chargingTime: "",
+          engineSize: "",
+          enginePower: "",
+          fuelConsumption: "",
+          isFinance: "finance",
+          slug: "",
+          co2Emission: "",
+          driveType: "",
+          isLease: false,
+          dealerId: "",
+        });
+      } else {
+        Swal.fire("Error!", result.error || "Something went wrong.", "error");
+      }
+    } catch (error) {
+      Swal.fire("Error!", "Server error occurred.", "error");
+    } finally {
+      // Re-enable the submit button whether successful or not
+      setIsSubmitting(false);
+    }
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -315,22 +315,26 @@ const handleSubmit = async (e) => {
 
   return (
     <section className="my-10">
-      <h2 className="text-xl font-semibold text-app-text">Add Listing</h2>
+      <h2 className="text-app-text text-xl font-semibold">Add Listing</h2>
       <div className="mt-5">
         <form onSubmit={handleSubmit} encType="multipart/form-data">
           <div>
-            <Label htmlFor="image" className="text-app-text">Add Vehical Images Or Videos</Label>
+            <Label htmlFor="image" className="text-app-text">
+              Add Vehical Images Or Videos
+            </Label>
             <FileInput type="file" name="images" multiple className="mt-1" />
           </div>
           <div>
-            <h3 className="mt-3 text-sm font-semibold text-app-text dark:text-app-button">
+            <h3 className="text-app-text mt-3 text-sm font-semibold dark:text-app-button">
               General Details:
             </h3>
             <div className="mb-3 mt-1 border border-gray-300"></div>
           </div>
           <div className="grid grid-cols-1 gap-x-5 gap-y-3 sm:grid-cols-2 md:grid-cols-3">
             <div>
-              <Label htmlFor="brand-make" className="text-app-text">Vehicle Make:</Label>
+              <Label htmlFor="brand-make" className="text-app-text">
+                Vehicle Make:
+              </Label>
               <Select
                 id="brand-make"
                 name="make"
@@ -348,7 +352,9 @@ const handleSubmit = async (e) => {
               </Select>
             </div>
             <div>
-              <Label htmlFor="brand-Model" className="text-app-text">Brand Model:</Label>
+              <Label htmlFor="brand-Model" className="text-app-text">
+                Brand Model:
+              </Label>
               <Select
                 id="brand-Model"
                 name="model"
@@ -367,7 +373,9 @@ const handleSubmit = async (e) => {
               </Select>
             </div>
             <div>
-              <Label htmlFor="price" className="text-app-text">Price:</Label>
+              <Label htmlFor="price" className="text-app-text">
+                Price:
+              </Label>
               <TextInput
                 id="price"
                 name="price"
@@ -379,7 +387,9 @@ const handleSubmit = async (e) => {
               />
             </div>
             <div>
-              <Label htmlFor="type" className="text-app-text">Type:</Label>
+              <Label htmlFor="type" className="text-app-text">
+                Type:
+              </Label>
               <Select
                 id="type"
                 name="type"
@@ -403,11 +413,15 @@ const handleSubmit = async (e) => {
                   }
                   className="text-app-button focus:ring-app-button"
                 />
-                <Label htmlFor="isLease" className="text-app-text">Available for Lease</Label>
+                <Label htmlFor="isLease" className="text-app-text">
+                  Available for Lease
+                </Label>
               </div>
             </div>
             <div>
-              <Label htmlFor="tag" className="text-app-text">Tag:</Label>
+              <Label htmlFor="tag" className="text-app-text">
+                Tag:
+              </Label>
               <Select
                 id="tag"
                 name="tag"
@@ -421,7 +435,9 @@ const handleSubmit = async (e) => {
               </Select>
             </div>
             <div>
-              <Label htmlFor="description" className="text-app-text">Description:</Label>
+              <Label htmlFor="description" className="text-app-text">
+                Description:
+              </Label>
               <Textarea
                 id="description"
                 className="mb-4 h-28 focus:border-app-button focus:ring-app-button"
@@ -434,14 +450,16 @@ const handleSubmit = async (e) => {
           </div>
           <div className="mt-5">
             <div>
-              <h3 className="text-sm font-semibold text-app-text dark:text-app-button">
+              <h3 className="text-app-text text-sm font-semibold dark:text-app-button">
                 Driving Details:
               </h3>
               <div className="mb-3 mt-1 border border-gray-300"></div>
             </div>
             <div className="grid grid-cols-1 gap-x-5 gap-y-3 sm:grid-cols-2 md:grid-cols-3">
               <div>
-                <Label htmlFor="total-driven" className="text-app-text">Total Driven (in km):</Label>
+                <Label htmlFor="total-driven" className="text-app-text">
+                  Total Driven (in km):
+                </Label>
                 <TextInput
                   id="total-driven"
                   type="number"
@@ -452,7 +470,9 @@ const handleSubmit = async (e) => {
                 />
               </div>
               <div>
-                <Label htmlFor="fuel-type" className="text-app-text">Fuel Type:</Label>
+                <Label htmlFor="fuel-type" className="text-app-text">
+                  Fuel Type:
+                </Label>
                 <Select
                   id="fuel-type"
                   name="fuelType"
@@ -482,7 +502,9 @@ const handleSubmit = async (e) => {
                 </Select>
               </div>
               <div>
-                <Label htmlFor="fuel-capacity" className="text-app-text">Fuel Capacity Per Tank:</Label>
+                <Label htmlFor="fuel-capacity" className="text-app-text">
+                  Fuel Capacity Per Tank:
+                </Label>
                 <TextInput
                   id="fuel-capacity"
                   type="number"
@@ -494,7 +516,9 @@ const handleSubmit = async (e) => {
                 />
               </div>
               <div>
-                <Label htmlFor="filling-cost" className="text-app-text">Fuel Tank Fill Price:</Label>
+                <Label htmlFor="filling-cost" className="text-app-text">
+                  Fuel Tank Fill Price:
+                </Label>
                 <TextInput
                   id="filling-cost"
                   name="fuelTankFillPrice"
@@ -507,7 +531,9 @@ const handleSubmit = async (e) => {
                 />
               </div>
               <div>
-                <Label htmlFor="gearbox" className="text-app-text">Gear Box:</Label>
+                <Label htmlFor="gearbox" className="text-app-text">
+                  Gear Box:
+                </Label>
                 <Select
                   id="gearbox"
                   name="gearbox"
@@ -521,7 +547,9 @@ const handleSubmit = async (e) => {
                 </Select>
               </div>
               <div>
-                <Label htmlFor="noOfGears" className="text-app-text">No of Gears:</Label>
+                <Label htmlFor="noOfGears" className="text-app-text">
+                  No of Gears:
+                </Label>
                 <Select
                   id="noOfGears"
                   name="noOfGears"
@@ -545,7 +573,9 @@ const handleSubmit = async (e) => {
                 </Select>
               </div>
               <div>
-                <Label htmlFor="doors" className="text-app-text">No of Doors:</Label>
+                <Label htmlFor="doors" className="text-app-text">
+                  No of Doors:
+                </Label>
                 <Select
                   id="doors"
                   name="doors"
@@ -563,7 +593,9 @@ const handleSubmit = async (e) => {
                 </Select>
               </div>
               <div>
-                <Label htmlFor="seats" className="text-app-text">No of Seats:</Label>
+                <Label htmlFor="seats" className="text-app-text">
+                  No of Seats:
+                </Label>
                 <Select
                   id="seats"
                   name="seats"
@@ -586,7 +618,9 @@ const handleSubmit = async (e) => {
                 </Select>
               </div>
               <div>
-                <Label htmlFor="cylinder" className="text-app-text">Cylinders:</Label>
+                <Label htmlFor="cylinder" className="text-app-text">
+                  Cylinders:
+                </Label>
                 <Select
                   id="cylinder"
                   name="cylinder"
@@ -607,7 +641,9 @@ const handleSubmit = async (e) => {
                 </Select>
               </div>
               <div>
-                <Label htmlFor="condition" className="text-app-text">Condition:</Label>
+                <Label htmlFor="condition" className="text-app-text">
+                  Condition:
+                </Label>
                 <Select
                   id="condition"
                   name="condition"
@@ -621,7 +657,9 @@ const handleSubmit = async (e) => {
                 </Select>
               </div>
               <div>
-                <Label htmlFor="BodyType" className="text-app-text">Body Type:</Label>
+                <Label htmlFor="BodyType" className="text-app-text">
+                  Body Type:
+                </Label>
                 <Select
                   id="BodyType"
                   name="bodyType"
@@ -653,7 +691,9 @@ const handleSubmit = async (e) => {
                 </Select>
               </div>
               <div>
-                <Label htmlFor="color" className="text-app-text">Color:</Label>
+                <Label htmlFor="color" className="text-app-text">
+                  Color:
+                </Label>
                 <TextInput
                   id="color"
                   type="text"
@@ -664,7 +704,9 @@ const handleSubmit = async (e) => {
                 />
               </div>
               <div>
-                <Label htmlFor="location" className="text-app-text">Location:</Label>
+                <Label htmlFor="location" className="text-app-text">
+                  Location:
+                </Label>
                 <TextInput
                   id="location"
                   type="text"
@@ -675,7 +717,9 @@ const handleSubmit = async (e) => {
                 />
               </div>
               <div>
-                <Label htmlFor="year" className="text-app-text">Build Date:</Label>
+                <Label htmlFor="year" className="text-app-text">
+                  Build Date:
+                </Label>
                 <TextInput
                   id="year"
                   type="text"
@@ -686,7 +730,9 @@ const handleSubmit = async (e) => {
                 />
               </div>
               <div>
-                <Label htmlFor="modelYear" className="text-app-text">Model Year:</Label>
+                <Label htmlFor="modelYear" className="text-app-text">
+                  Model Year:
+                </Label>
                 <TextInput
                   id="modelYear"
                   type="text"
@@ -697,7 +743,9 @@ const handleSubmit = async (e) => {
                 />
               </div>
               <div>
-                <Label htmlFor="registerationPlate" className="text-app-text">Registeration Plate:</Label>
+                <Label htmlFor="registerationPlate" className="text-app-text">
+                  Registeration Plate:
+                </Label>
                 <TextInput
                   id="registerationPlate"
                   type="text"
@@ -721,7 +769,9 @@ const handleSubmit = async (e) => {
                 />
               </div>
               <div>
-                <Label htmlFor="mileage" className="text-app-text">Mileage:</Label>
+                <Label htmlFor="mileage" className="text-app-text">
+                  Mileage:
+                </Label>
                 <TextInput
                   id="mileage"
                   type="text"
@@ -732,7 +782,9 @@ const handleSubmit = async (e) => {
                 />
               </div>
               <div>
-                <Label htmlFor="unit" className="text-app-text">Select Default Unit:</Label>
+                <Label htmlFor="unit" className="text-app-text">
+                  Select Default Unit:
+                </Label>
                 <Select
                   id="unit"
                   name="unit"
@@ -745,7 +797,9 @@ const handleSubmit = async (e) => {
                 </Select>
               </div>
               <div>
-                <Label htmlFor="batteryRange" className="text-app-text">Battery Range:</Label>
+                <Label htmlFor="batteryRange" className="text-app-text">
+                  Battery Range:
+                </Label>
                 <Select
                   id="batteryRange"
                   name="batteryRange"
@@ -762,7 +816,9 @@ const handleSubmit = async (e) => {
                 </Select>
               </div>
               <div>
-                <Label htmlFor="chargingTime" className="text-app-text">Charging Time:</Label>
+                <Label htmlFor="chargingTime" className="text-app-text">
+                  Charging Time:
+                </Label>
                 <TextInput
                   id="chargingTime"
                   type="number"
@@ -773,7 +829,9 @@ const handleSubmit = async (e) => {
                 />
               </div>
               <div>
-                <Label htmlFor="engineSize" className="text-app-text">Engine Size:</Label>
+                <Label htmlFor="engineSize" className="text-app-text">
+                  Engine Size:
+                </Label>
                 <TextInput
                   id="engineSize"
                   type="number"
@@ -784,7 +842,9 @@ const handleSubmit = async (e) => {
                 />
               </div>
               <div>
-                <Label htmlFor="enginePower" className="text-app-text">Engine Power:</Label>
+                <Label htmlFor="enginePower" className="text-app-text">
+                  Engine Power:
+                </Label>
                 <TextInput
                   id="enginePower"
                   type="number"
@@ -795,7 +855,9 @@ const handleSubmit = async (e) => {
                 />
               </div>
               <div>
-                <Label htmlFor="fuelConsumption" className="text-app-text">Fuel Consumption:</Label>
+                <Label htmlFor="fuelConsumption" className="text-app-text">
+                  Fuel Consumption:
+                </Label>
                 <TextInput
                   id="fuelConsumption"
                   type="number"
@@ -806,7 +868,9 @@ const handleSubmit = async (e) => {
                 />
               </div>
               <div>
-                <Label htmlFor="isFinance" className="text-app-text">Select Finance status:</Label>
+                <Label htmlFor="isFinance" className="text-app-text">
+                  Select Finance status:
+                </Label>
                 <Select
                   id="isFinance"
                   name="isFinance"
@@ -819,7 +883,9 @@ const handleSubmit = async (e) => {
                 </Select>
               </div>
               <div>
-                <Label htmlFor="co2Emission" className="text-app-text">Co2 Emission</Label>
+                <Label htmlFor="co2Emission" className="text-app-text">
+                  Co2 Emission
+                </Label>
                 <TextInput
                   id="co2Emission"
                   type="number"
@@ -830,7 +896,9 @@ const handleSubmit = async (e) => {
                 />
               </div>
               <div>
-                <Label htmlFor="driveType" className="text-app-text">drive Type</Label>
+                <Label htmlFor="driveType" className="text-app-text">
+                  drive Type
+                </Label>
                 <TextInput
                   id="driveType"
                   type="text"
@@ -841,7 +909,9 @@ const handleSubmit = async (e) => {
                 />
               </div>
               <div>
-                <Label htmlFor="engineCapacity" className="text-app-text">Engine Capacity:</Label>
+                <Label htmlFor="engineCapacity" className="text-app-text">
+                  Engine Capacity:
+                </Label>
                 <TextInput
                   id="engineCapacity"
                   type="text"
@@ -852,7 +922,9 @@ const handleSubmit = async (e) => {
                 />
               </div>
               <div>
-                <Label htmlFor="video" className="text-app-text">Video URL:</Label>
+                <Label htmlFor="video" className="text-app-text">
+                  Video URL:
+                </Label>
                 <TextInput
                   id="video"
                   type="url"
@@ -863,7 +935,9 @@ const handleSubmit = async (e) => {
                 />
               </div>
               <div>
-                <Label htmlFor="slug" className="text-app-text">Slug (Optional):</Label>
+                <Label htmlFor="slug" className="text-app-text">
+                  Slug (Optional):
+                </Label>
                 <TextInput
                   id="slug"
                   type="text"
@@ -876,7 +950,7 @@ const handleSubmit = async (e) => {
             </div>
           </div>
           <div className="mt-5">
-            <h3 className="text-sm font-semibold text-app-text dark:text-app-button">
+            <h3 className="text-app-text text-sm font-semibold dark:text-app-button">
               Vehicle Features:
             </h3>
             <div className="mb-3 mt-1 border border-gray-300"></div>
@@ -890,13 +964,15 @@ const handleSubmit = async (e) => {
                     onChange={handleChange}
                     className="text-app-button focus:ring-app-button"
                   />
-                  <Label htmlFor={feature.id} className="text-app-text">{feature.label}</Label>
+                  <Label htmlFor={feature.id} className="text-app-text">
+                    {feature.label}
+                  </Label>
                 </div>
               ))}
             </div>
           </div>
           <div className="mt-5">
-            <h3 className="text-sm font-semibold text-app-text dark:text-app-button">
+            <h3 className="text-app-text text-sm font-semibold dark:text-app-button">
               Dealor Comments:
             </h3>
             <div className="mb-3 mt-1 border border-gray-300"></div>
@@ -914,13 +990,15 @@ const handleSubmit = async (e) => {
             </div>
           </div>
           <div className="mt-8">
-            <h3 className="text-sm font-semibold text-app-text dark:text-app-button">
+            <h3 className="text-app-text text-sm font-semibold dark:text-app-button">
               Contact Details
             </h3>
             <div className="mb-3 mt-1 border border-gray-300"></div>
             <div className="grid grid-cols-1 gap-x-5 gap-y-3 sm:grid-cols-2 md:grid-cols-3">
               <div>
-                <Label htmlFor="dealerId" className="text-app-text">Select Dealer</Label>
+                <Label htmlFor="dealerId" className="text-app-text">
+                  Select Dealer
+                </Label>
                 <Select
                   id="dealerId"
                   name="dealerId"
@@ -940,17 +1018,21 @@ const handleSubmit = async (e) => {
             </div>
           </div>
           <div className="my-8">
-         <Button 
-  type="submit" 
-  size={"md"} 
-  disabled={isSubmitting}
-  className={`w-full bg-app-button hover:bg-app-button-hover text-white border-app-button hover:border-app-button-hover ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
->
-  {isSubmitting ? 'Submitting...' : 'Submit'}
-</Button>
+            <Button
+              type="submit"
+              size="md"
+              color="dark"
+              className="w-full"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Submitting..." : "Submit"}
+            </Button>
             <div className="mt-5 text-sm text-gray-600">
               By submitting this form, you agree to the Car Dealer App{" "}
-              <Link href="/terms" className="text-app-button hover:text-app-button-hover">
+              <Link
+                href="/terms"
+                className="text-app-button hover:text-app-button-hover"
+              >
                 Terms of Service
               </Link>
             </div>
