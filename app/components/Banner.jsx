@@ -55,7 +55,7 @@ const websiteOptions = [
             <div className="relative flex-shrink-0">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex min-w-[80px] items-center justify-between gap-1 rounded-md bg-slate-700 px-2 py-1.5 text-xs font-medium transition-colors duration-200 hover:bg-slate-600 sm:min-w-[120px] sm:px-3 sm:py-2 sm:text-sm"
+                className="flex min-w-[75px] items-center justify-between gap-1 rounded-md bg-slate-700 px-2 py-1.5 text-xs font-medium transition-colors duration-200 hover:bg-slate-600 sm:min-w-[200px] sm:px-3 sm:py-2 sm:text-sm"
               >
                 <span className="max-w-[60px] truncate sm:max-w-[100px]">
                   {selectedOption?.label}
@@ -69,7 +69,7 @@ const websiteOptions = [
 
               {/* Dropdown Menu */}
               {isDropdownOpen && (
-                <div className="absolute left-0 top-full z-50 mt-1 w-[140px] rounded-md border border-slate-600 bg-slate-700 shadow-lg sm:w-full">
+                <div className="absolute left-0 top-full z-50 mt-1 min-w-[75px] sm:min-w-[200px] rounded-md border border-slate-600 bg-slate-700 shadow-lg sm:w-full">
                   {websiteOptions.map((option) => (
                     <button
                       key={option.value}
