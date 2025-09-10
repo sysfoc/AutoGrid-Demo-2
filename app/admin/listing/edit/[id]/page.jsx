@@ -80,6 +80,31 @@ const CarEditPage = ({ params }) => {
   const [loading, setLoading] = useState(false);
   const { currency, selectedCurrency } = useCurrency();
 
+  const featuresList = [
+    { id: "bluetooth", label: "Bluetooth connectivity" },
+    { id: "usb-ports", label: "USB ports" },
+    { id: "carplay-androidauto", label: "Apple CarPlay and Android Auto" },
+    { id: "wifi-hotspot", label: "Wi-Fi hotspot" },
+    { id: "satellite-radio", label: "Satellite radio" },
+    { id: "navigation-system", label: "Navigation system" },
+    { id: "touchscreen-display", label: "Touchscreen infotainment display" },
+    { id: "voice-recognition", label: "Voice recognition" },
+    { id: "wireless-charging", label: "Wireless charging pad" },
+    { id: "rear-seat-entertainment", label: "Rear-seat entertainment system" },
+    { id: "air-conditioning", label: "Air conditioning" },
+    { id: "climate-control", label: "Dual-zone or tri-zone climate control" },
+    { id: "heated-seats", label: "Heated and ventilated seats" },
+    { id: "power-adjustable-seats", label: "Power-adjustable seats" },
+    { id: "leather-upholstery", label: "Leather upholstery" },
+    { id: "keyless-entry", label: "Keyless entry and push-button start" },
+    { id: "remote-start", label: "Remote start" },
+    { id: "power-windows", label: "Power windows and mirrors" },
+    { id: "sunroof", label: "Sunroof or moonroof" },
+    { id: "ambient-lighting", label: "Ambient interior lighting" },
+    { id: "valid-mot", label: "Valid MOT" },
+    { id: "road-tax-paid", label: "Road Tax Paid" },
+  ];
+
   useEffect(() => {
     const fetchCarDetails = async () => {
       try {
@@ -87,14 +112,14 @@ const CarEditPage = ({ params }) => {
         if (res.ok) {
           const data = await res.json();
 
-         if (data.car.imageUrls && data.car.imageUrls.length > 0) {
-  const previewsWithIds = data.car.imageUrls.map(url => ({
-    id: `existing-${url}`,
-    url,
-    isNew: false
-  }));
-  setImagePreviews(previewsWithIds);
-}
+          if (data.car.imageUrls && data.car.imageUrls.length > 0) {
+            const previewsWithIds = data.car.imageUrls.map((url) => ({
+              id: `existing-${url}`,
+              url,
+              isNew: false,
+            }));
+            setImagePreviews(previewsWithIds);
+          }
 
           setFormData({
             ...data.car,
@@ -261,13 +286,13 @@ const CarEditPage = ({ params }) => {
 
     if (isSubmitting) return;
 
-  const remainingImages = imagePreviews.length
-  const newImages = selectedImages.length
+    const remainingImages = imagePreviews.length;
+    const newImages = selectedImages.length;
 
-  if (remainingImages === 0 && newImages === 0) {
-    alert("Please add at least one image before updating the car.")
-    return
-  }
+    if (remainingImages === 0 && newImages === 0) {
+      alert("Please add at least one image before updating the car.");
+      return;
+    }
 
     setIsSubmitting(true);
 
@@ -300,11 +325,11 @@ const CarEditPage = ({ params }) => {
       }
     }
 
-   imagePreviews.forEach((preview) => {
-  if (!preview.isNew) {
-    formDataToSend.append("existingImages", preview.url);
-  }
-});
+    imagePreviews.forEach((preview) => {
+      if (!preview.isNew) {
+        formDataToSend.append("existingImages", preview.url);
+      }
+    });
 
     try {
       const res = await fetch(`/api/cars/${id}`, {
@@ -330,80 +355,80 @@ const CarEditPage = ({ params }) => {
     }
   };
 
-// When adding new images
-const handleImageChange = (e) => {
-  const files = Array.from(e.target.files);
-  if (files && files.length > 0) {
-    const newImages = files.map((file) => {
-      const uniqueId = `new-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-      return {
-        id: uniqueId,
-        file,
-        preview: URL.createObjectURL(file),
-        isNew: true
-      };
-    });
+  // When adding new images
+  const handleImageChange = (e) => {
+    const files = Array.from(e.target.files);
+    if (files && files.length > 0) {
+      const newImages = files.map((file) => {
+        const uniqueId = `new-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+        return {
+          id: uniqueId,
+          file,
+          preview: URL.createObjectURL(file),
+          isNew: true,
+        };
+      });
 
-    setSelectedImages([...selectedImages, ...newImages]);
-    setImagePreviews([
-      ...imagePreviews,
-      ...newImages.map((img) => ({ 
-        id: img.id, 
-        url: img.preview,
-        isNew: true 
-      })),
-    ]);
-  }
-};
-
-const handleImageDelete = (id) => {
-  const imageToDelete = imagePreviews.find(img => img.id === id);
-  
-  if (!imageToDelete.isNew) {
-    // Existing image - add to deleted list
-    setDeletedImageUrls(prev => [...prev, imageToDelete.url]);
-  } else {
-    // New image - remove from selectedImages and revoke object URL
-    const newSelected = selectedImages.filter(img => img.id !== id);
-    const imageToRevoke = selectedImages.find(img => img.id === id);
-    if (imageToRevoke) {
-      URL.revokeObjectURL(imageToRevoke.preview);
+      setSelectedImages([...selectedImages, ...newImages]);
+      setImagePreviews([
+        ...imagePreviews,
+        ...newImages.map((img) => ({
+          id: img.id,
+          url: img.preview,
+          isNew: true,
+        })),
+      ]);
     }
-    setSelectedImages(newSelected);
-  }
-  
-  // Remove from previews
-  setImagePreviews(prev => prev.filter(img => img.id !== id));
-};
-
-// Cleanup function for object URLs
-useEffect(() => {
-  return () => {
-    imagePreviews.forEach((preview) => {
-      if (preview.url && preview.url.startsWith("blob:")) {
-        URL.revokeObjectURL(preview.url);
-      }
-    });
   };
-}, [imagePreviews]);
 
-useEffect(() => {
-  return () => {
-    // Clean up object URLs for new images
-    selectedImages.forEach((image) => {
-      if (image.preview && image.preview.startsWith("blob:")) {
-        URL.revokeObjectURL(image.preview);
+  const handleImageDelete = (id) => {
+    const imageToDelete = imagePreviews.find((img) => img.id === id);
+
+    if (!imageToDelete.isNew) {
+      // Existing image - add to deleted list
+      setDeletedImageUrls((prev) => [...prev, imageToDelete.url]);
+    } else {
+      // New image - remove from selectedImages and revoke object URL
+      const newSelected = selectedImages.filter((img) => img.id !== id);
+      const imageToRevoke = selectedImages.find((img) => img.id === id);
+      if (imageToRevoke) {
+        URL.revokeObjectURL(imageToRevoke.preview);
       }
-    });
-    
-    // Clean up any blob URLs in imagePreviews
-    imagePreviews.forEach((preview) => {
-      if (preview.isNew && preview.url && preview.url.startsWith("blob:")) {
-        URL.revokeObjectURL(preview.url);
-      }
-    });
+      setSelectedImages(newSelected);
+    }
+
+    // Remove from previews
+    setImagePreviews((prev) => prev.filter((img) => img.id !== id));
   };
-}, [selectedImages, imagePreviews]);
+
+  // Cleanup function for object URLs
+  useEffect(() => {
+    return () => {
+      imagePreviews.forEach((preview) => {
+        if (preview.url && preview.url.startsWith("blob:")) {
+          URL.revokeObjectURL(preview.url);
+        }
+      });
+    };
+  }, [imagePreviews]);
+
+  useEffect(() => {
+    return () => {
+      // Clean up object URLs for new images
+      selectedImages.forEach((image) => {
+        if (image.preview && image.preview.startsWith("blob:")) {
+          URL.revokeObjectURL(image.preview);
+        }
+      });
+
+      // Clean up any blob URLs in imagePreviews
+      imagePreviews.forEach((preview) => {
+        if (preview.isNew && preview.url && preview.url.startsWith("blob:")) {
+          URL.revokeObjectURL(preview.url);
+        }
+      });
+    };
+  }, [selectedImages, imagePreviews]);
 
   if (!car) {
     return <div>Loading...</div>;
@@ -947,86 +972,61 @@ useEffect(() => {
         <div className="mt-5">
           <h3 className="text-app-text text-sm font-semibold">Features:</h3>
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3">
-            {[
-              "Air Conditioning",
-              "Bluetooth",
-              "Backup Camera",
-              "Sunroof",
-              "Bluetooth connectivity",
-              "USB ports",
-              "Apple CarPlay and Android Auto",
-              "Wi-Fi hotspot",
-              "Satellite radio",
-              "Navigation system",
-              "Touchscreen infotainment display",
-              "Voice recognition",
-              "Wireless charging pad",
-              "Rear-seat entertainment system",
-              "Dual-zone or tri-zone climate control",
-              "Heated and ventilated seats",
-              "Power-adjustable seats",
-              "Leather upholstery",
-              "Keyless entry and push-button start",
-              "Remote start",
-              "Power windows and mirrors",
-              "Moonroof",
-              "Ambient interior lighting",
-            ].map((feature) => (
-              <div key={feature} className="flex items-center">
+            {featuresList.map((feature) => (
+              <div key={feature.id} className="flex items-center">
                 <Checkbox
-                  id={feature}
-                  value={feature}
-                  checked={formData.features.includes(feature)}
+                  id={feature.id}
+                  value={feature.label}
+                  checked={formData.features.includes(feature.label)}
                   onChange={handleFeatureChange}
                 />
-                <Label htmlFor={feature} className="text-app-text ml-2">
-                  {feature}
+                <Label htmlFor={feature.id} className="text-app-text ml-2">
+                  {feature.label}
                 </Label>
               </div>
             ))}
           </div>
         </div>
-    <div className="mt-5">
-  <Label className="text-app-text">Images:</Label>
-  <div className="mt-2 flex flex-wrap gap-4">
-    {imagePreviews.length > 0 ? (
-      imagePreviews.map((image) => (
-        <div key={image.id} className="relative h-24 w-24">
-          <Image
-            src={image.url}
-            alt="Car Image"
-            width={96}
-            height={96}
-            className="h-full w-full rounded-md object-cover"
-          />
-          <button
-            type="button"
-            onClick={() => handleImageDelete(image.id)}
-            className="absolute -right-2 -top-2 rounded-full bg-red-500 p-1 text-white"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
+        <div className="mt-5">
+          <Label className="text-app-text">Images:</Label>
+          <div className="mt-2 flex flex-wrap gap-4">
+            {imagePreviews.length > 0 ? (
+              imagePreviews.map((image) => (
+                <div key={image.id} className="relative h-24 w-24">
+                  <Image
+                    src={image.url}
+                    alt="Car Image"
+                    width={96}
+                    height={96}
+                    className="h-full w-full rounded-md object-cover"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => handleImageDelete(image.id)}
+                    className="absolute -right-2 -top-2 rounded-full bg-red-500 p-1 text-white"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              ))
+            ) : (
+              <p className="text-app-text">No images available.</p>
+            )}
+          </div>
         </div>
-      ))
-    ) : (
-      <p className="text-app-text">No images available.</p>
-    )}
-  </div>
-</div>
-
 
         <div className="mt-5">
           <Label htmlFor="images" className="text-app-text">
@@ -1056,7 +1056,8 @@ useEffect(() => {
           <Button
             type="submit"
             disabled={isSubmitting}
-            className={`bg-app-button text-white transition-colors duration-200 hover:bg-app-button-hover ${isSubmitting ? "cursor-not-allowed opacity-70" : ""}`}
+            color="dark"
+            className={`${isSubmitting ? "cursor-not-allowed opacity-70" : ""}`}
           >
             {isSubmitting ? "Updating..." : "Update Car"}
           </Button>

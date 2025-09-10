@@ -505,7 +505,7 @@ const AdminContactPage = () => {
                       className={`flex items-center justify-center gap-1 sm:gap-2 rounded-lg px-2 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm font-medium transition-colors ${
                         message.status === "pending"
                           ? "bg-app-button text-white hover:bg-app-button-hover"
-                          : "bg-emerald-600 text-white hover:bg-emerald-700"
+                          : "bg-app-button/90 text-white hover:bg-app-button-hover/90"
                       }`}
                     >
                       <Reply size={12} className="sm:w-3.5 sm:h-3.5" />

@@ -8,9 +8,30 @@ export const PUT = async (req, { params }) => {
   try {
     const { id } = params
     const body = await req.json()
-    
+    if (body.email) {
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email.trim())) {
+        return NextResponse.json(
+          { error: "Valid email is required" },
+          { status: 400 }
+        );
+      }
+
+      const existingDealer = await Dealer.findOne({ 
+        email: body.email.trim().toLowerCase(),
+        _id: { $ne: id }
+      });
+      if (existingDealer) {
+        return NextResponse.json(
+          { error: "A dealer with this email already exists" },
+          { status: 400 }
+        );
+      }
+
+      body.email = body.email.trim().toLowerCase();
+    }
+        
     const updatedDealer = await Dealer.findByIdAndUpdate(id, body, { new: true })
-    
+        
     if (!updatedDealer) {
       return NextResponse.json({ error: "Dealer not found" }, { status: 404 })
     }

@@ -361,7 +361,7 @@ const AdminRateRequestsPage = () => {
             <div className="flex items-center gap-3">
               <button
                 onClick={fetchRateRequests}
-                className="flex items-center gap-2 rounded-lg border border-gray-300 bg-blue-600 hover:bg-blue-700 px-3 py-2 sm:px-4 text-sm font-medium text-white transition-colors"
+                className="flex items-center gap-2 rounded-lg border border-gray-300 bg-app-button hover:bg-app-button-hover px-3 py-2 sm:px-4 text-sm font-medium text-white transition-colors"
               >
                 <RefreshCw size={16} />
                 <span className="hidden sm:inline">Refresh</span>
@@ -378,8 +378,8 @@ const AdminRateRequestsPage = () => {
                 <p className="text-sm font-medium text-gray-500">Total Requests</p>
                 <p className="text-2xl sm:text-3xl font-bold text-gray-900">{stats.total}</p>
               </div>
-              <div className="rounded-xl bg-blue-100 p-2 sm:p-3">
-                <Calculator className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600" />
+              <div className="rounded-xl bg-primary-light p-2 sm:p-3">
+                <Calculator className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
               </div>
             </div>
           </div>
@@ -400,10 +400,10 @@ const AdminRateRequestsPage = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-500">Answered</p>
-                <p className="text-2xl sm:text-3xl font-bold text-emerald-600">{stats.answered}</p>
+                <p className="text-2xl sm:text-3xl font-bold text-primary">{stats.answered}</p>
               </div>
-              <div className="rounded-xl bg-emerald-100 p-2 sm:p-3">
-                <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-emerald-600" />
+              <div className="rounded-xl bg-primary-light p-2 sm:p-3">
+                <CheckCircle className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
               </div>
             </div>
           </div>
@@ -421,13 +421,13 @@ const AdminRateRequestsPage = () => {
                   placeholder="Search requests..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full rounded-lg border border-gray-300 py-2 pl-10 pr-4 text-sm focus:border-transparent focus:ring-2 focus:ring-blue-600"
+                  className="w-full rounded-lg border border-gray-300 py-2 pl-10 pr-4 text-sm focus:border-transparent focus:ring-2 focus:ring-primary"
                 />
               </div>
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-transparent focus:ring-2 focus:ring-blue-600 sm:w-auto"
+                className="rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-transparent focus:ring-2 focus:ring-primary sm:w-auto"
               >
                 <option value="newest">Newest First</option>
                 <option value="oldest">Oldest First</option>
@@ -447,7 +447,7 @@ const AdminRateRequestsPage = () => {
                   onClick={() => setFilter(tab.key)}
                   className={`rounded-lg px-3 py-2 text-xs sm:text-sm font-medium transition-all duration-200 ${
                     filter === tab.key
-                      ? "border-2 border-blue-200 bg-blue-100 text-blue-600"
+                      ? "border-2 border-app-border bg-primary-light text-primary"
                       : "border-2 border-transparent bg-gray-100 text-gray-600 hover:bg-gray-200"
                   }`}
                 >
@@ -482,7 +482,7 @@ const AdminRateRequestsPage = () => {
                   {/* Header Row */}
                   <div className="mb-4 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                     <div className="flex items-center gap-3 sm:gap-4">
-                      <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 flex-shrink-0">
+                      <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-gradient-to-r from-primary to-app-dark flex-shrink-0">
                         <User className="h-5 w-5 sm:h-6 sm:w-6 text-white" />
                       </div>
                       <div className="min-w-0 flex-1">
@@ -498,9 +498,6 @@ const AdminRateRequestsPage = () => {
                       </div>
                     </div>
 
-
-                   
-
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
                       {getStatusBadge(request.status)}
                       <div className="flex flex-wrap gap-2">
@@ -515,8 +512,8 @@ const AdminRateRequestsPage = () => {
                           onClick={() => openReplyModal(request)}
                           className={`flex items-center justify-center gap-1 sm:gap-2 rounded-lg px-2 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm font-medium transition-colors ${
                             request.status === "pending"
-                              ? "bg-blue-600 text-white hover:bg-blue-700"
-                              : "bg-emerald-600 text-white hover:bg-emerald-700"
+                              ? "bg-app-button text-white hover:bg-app-button-hover"
+                              : "bg-primary text-white hover:bg-primary-hover"
                           }`}
                         >
                           <Reply size={12} className="sm:w-3.5 sm:h-3.5" />
@@ -619,7 +616,7 @@ const AdminRateRequestsPage = () => {
                       onClick={() => goToPage(page)}
                       className={`rounded-lg px-2 py-1.5 sm:px-3 sm:py-2 text-xs sm:text-sm font-medium transition-colors ${
                         currentPage === page
-                          ? "bg-blue-600 text-white"
+                          ? "bg-app-button text-white"
                           : "border border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
                       }`}
                     >
@@ -645,8 +642,8 @@ const AdminRateRequestsPage = () => {
         <Modal show={showReplyModal} onClose={() => setShowReplyModal(false)} size="lg">
           <ModalHeader>
             <div className="flex items-center gap-3">
-              <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg bg-blue-100">
-                <Reply className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600" />
+              <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg bg-primary-light">
+                <Reply className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
               </div>
               <div>
                 <h3 className="text-base sm:text-lg font-semibold text-gray-900">
@@ -692,7 +689,7 @@ const AdminRateRequestsPage = () => {
                 value={adminReply}
                 onChange={(e) => setAdminReply(e.target.value)}
                 rows={6}
-                className="w-full rounded-lg border border-gray-300 p-3 text-sm focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+                className="w-full rounded-lg border border-gray-300 p-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary"
                 placeholder="Type your reply here..."
               />
             </div>
@@ -717,7 +714,7 @@ const AdminRateRequestsPage = () => {
               <button
                 onClick={handleReply}
                 disabled={!adminReply.trim() || replying}
-                className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-lg bg-blue-600 hover:bg-blue-700 px-4 py-2 text-sm font-medium text-white transition-colors disabled:cursor-not-allowed disabled:opacity-50"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-lg bg-app-button hover:bg-app-button-hover px-4 py-2 text-sm font-medium text-white transition-colors disabled:cursor-not-allowed disabled:opacity-50"
               >
                 {replying ? (
                   <>
@@ -827,14 +824,14 @@ const AdminRateRequestsPage = () => {
 
                 {/* Admin Reply */}
                 {selectedRequest.adminReply && (
-                  <div className="rounded-lg border border-green-200 bg-green-50 p-3 sm:p-4">
+                  <div className="rounded-lg border border-app-border bg-primary-light p-3 sm:p-4">
                     <div className="mb-3 flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-2">
-                      <h4 className="text-sm sm:text-base font-medium text-green-800">Admin Reply</h4>
+                      <h4 className="text-sm sm:text-base font-medium text-app-dark">Admin Reply</h4>
                       {selectedRequest.repliedBy && (
-                        <span className="text-xs text-green-600">by {selectedRequest.repliedBy}</span>
+                        <span className="text-xs text-primary">by {selectedRequest.repliedBy}</span>
                       )}
                     </div>
-                    <p className="whitespace-pre-wrap text-xs sm:text-sm text-green-700">
+                    <p className="whitespace-pre-wrap text-xs sm:text-sm text-app-dark">
                       {selectedRequest.adminReply}
                     </p>
                   </div>

@@ -24,10 +24,29 @@ export const POST = async (req) => {
   await connectDB();
   try {
     const body = await req.json();
-    const newDealer = new Dealer(body);
+    // Email validation
+if (!body.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email.trim())) {
+  return NextResponse.json(
+    { error: "Valid email is required" },
+    { status: 400 }
+  );
+}
+
+const existingDealer = await Dealer.findOne({ email: body.email.trim().toLowerCase() });
+if (existingDealer) {
+  return NextResponse.json(
+    { error: "A dealer with this email already exists" },
+    { status: 400 }
+  );
+}
+
+const normalizedBody = {
+  ...body,
+  email: body.email.trim().toLowerCase()
+};
+    const newDealer = new Dealer(normalizedBody);
     const savedDealer = await newDealer.save();
     
-    // Convert the saved document to client-safe format
     const responseData = {
       ...savedDealer.toObject(),
       _id: savedDealer._id.toString(),

@@ -33,6 +33,11 @@ const userSchema = new mongoose.Schema(
         ref: "Car",
       },
     ],
+     apiAccess: {
+      uk: { type: Boolean, default: true }, // DVLA Vehicle Enquiry API (requires key)
+      usa: { type: Boolean, default: true }, // NHTSA Vehicle API (free, no key needed)
+      au: { type: Boolean, default: true }, // NSW RMS / NEVDIS APIs (no free public API)
+    },
   },
   { timestamps: true },
 )
