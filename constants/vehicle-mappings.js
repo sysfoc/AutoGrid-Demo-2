@@ -20,6 +20,7 @@ export const BODY_TYPE_MAPPING = {
   "4x4": "SUV (Sports Utility Vehicle)",
   Crossover: "SUV (Sports Utility Vehicle)",
   Coupe: "Coupe",
+  "Passenger Car": "Passenger Car",
   Convertible: "Convertible",
   Cabriolet: "Convertible",
   Roadster: "Roadster",

@@ -966,6 +966,7 @@ if (apiData.features && Array.isArray(apiData.features)) {
                   <option value="Roadster">Roadster</option>
                   <option value="Supercar">Supercar</option>
                   <option value="Hypercar">Hypercar</option>
+                  <option value="Passenger Car">Passenger Car</option>
                   <option value="Grand Tourer (GT)">Grand Tourer (GT)</option>
                   <option value="Van">Van</option>
                   <option value="Box Truck">Box Truck</option>

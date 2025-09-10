@@ -84,9 +84,9 @@ const DrawerSidebar = () => {
   return (
   <div>
     <Button
-      className="mx-3 mt-3 bg-app-text hover:bg-app-text/90 border-app-text text-white"
-      color={"none"}
+      className="mx-3 mt-3"
       size={"sm"}
+      color="dark"
       onClick={() => setIsDrawerOpen(true)}
     >
       <RiMenu2Fill fontSize={20} />
