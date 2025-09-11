@@ -20,45 +20,39 @@ const Tables = ({ loadingState, carData, translation: t }) => {
   ]
 
   return (
-    <div className="space-y-4">
-      {/* Header */}
-      <div className="flex items-center gap-2 p-3 bg-[var(--primary)] hover:bg-[var(--primary-hover)] rounded-md transition-colors duration-200">
-        <MenuIcon className="h-5 w-5 dark:text-gray-100 text-[var(--text-inverse)]" />
-        <h3 className="text-sm font-semibold text-[var(--text-inverse)] dark:text-gray-100">{t("vehicalDetail")}</h3>
-      </div>
-
-      {/* Specifications */}
-      <div className="space-y-2">
-        {loading
-          ? Array.from({ length: 8 }).map((_, i) => (
-              <div 
-                key={i} 
-                className="flex items-center justify-between p-3 border border-gray-200 dark:border-gray-600 rounded-md bg-[var(--bg)] dark:bg-[var(--bg-secondary)]"
-              >
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 bg-gray-200 dark:bg-gray-700 rounded" />
-                  <Skeleton width={80} height={16} />
-                </div>
-                <Skeleton width={100} height={16} />
-              </div>
-            ))
-          : specifications.map((spec, i) => (
-              <div 
-                key={i} 
-                className="flex items-center justify-between p-3 border border-gray-200 dark:border-gray-600 rounded-md bg-[var(--bg)] dark:bg-[var(--bg-secondary)] hover:bg-[var(--bg-secondary)] dark:hover:bg-gray-600 transition-colors duration-200"
-              >
-                <div className="flex items-center gap-2">
-                  <spec.icon className="h-4 w-4 text-[var(--primary)]" />
-                  <span className="text-sm text-[var(--text)]">{spec.label}</span>
-                </div>
-                <span className="text-sm text-[var(--text-secondary)]">
-                  {spec.value}
-                </span>
-              </div>
-            ))}
-      </div>
+  <div className="space-y-4" role="region" aria-label="Vehicle specifications">
+    {/* Header */}
+    <div className="flex items-center gap-2 p-3 bg-purple-600 rounded-md" role="banner" aria-label="Vehicle details section header">
+      <MenuIcon className="h-5 w-5 text-white" role="img" aria-label="Menu icon" />
+      <h3 className="text-sm font-semibold text-white" role="heading" aria-level="3">{t("vehicalDetail")}</h3>
     </div>
-  )
+
+    {/* Specifications */}
+    <div className="space-y-2" role="list" aria-label="Vehicle specifications list">
+      {loading
+        ? Array.from({ length: 8 }).map((_, i) => (
+            <div key={i} className="flex items-center justify-between p-3 border rounded-md" role="listitem" aria-label="Loading specification">
+              <div className="flex items-center gap-2">
+                <div className="w-6 h-6 bg-gray-200 dark:bg-gray-700 rounded" role="img" aria-label="Loading icon" />
+                <Skeleton width={80} height={16} aria-label="Loading specification label" />
+              </div>
+              <Skeleton width={100} height={16} aria-label="Loading specification value" />
+            </div>
+          ))
+        : specifications.map((spec, i) => (
+            <div key={i} className="flex items-center justify-between p-3 border rounded-md" role="listitem" aria-label={`${spec.label}: ${spec.value}`}>
+              <div className="flex items-center gap-2">
+                <spec.icon className="h-4 w-4 text-purple-600 dark:text-purple-400" role="img" aria-label={`${spec.label} icon`} />
+                <span className="text-sm text-gray-900 dark:text-white" role="term">{spec.label}</span>
+              </div>
+              <span className="text-sm text-gray-700 dark:text-gray-300" role="definition" aria-label={`Value: ${spec.value}`}>
+                {spec.value}
+              </span>
+            </div>
+          ))}
+    </div>
+  </div>
+)
 }
 
 export default Tables

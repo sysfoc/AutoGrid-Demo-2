@@ -9,15 +9,43 @@ const Banner = () => {
   const [selectedWebsite, setSelectedWebsite] = useState("main");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-const websiteOptions = [
-  { value: "main", label: "Automotive Web Solutions", url: "https://www.automotivewebsolutions.com/" },
-  { value: "theme1", label: "Theme 1 – Classic", url: "https://theme1.automotivewebsolutions.com/" },
-  { value: "theme2", label: "Theme 2 – Modern", url: "https://theme2.automotivewebsolutions.com/" },
-  { value: "theme3", label: "Theme 3 – Premium", url: "https://theme3.automotivewebsolutions.com/" },
-  { value: "theme4", label: "Theme 4 – Sporty", url: "https://theme4.automotivewebsolutions.com/" },
-  { value: "theme5", label: "Theme 5 – Luxury", url: "https://theme5.automotivewebsolutions.com/" },
-  { value: "theme6", label: "Theme 6 – Elegant", url: "https://theme6.automotivewebsolutions.com/" },
-];
+  const websiteOptions = [
+    {
+      value: "main",
+      label: "Automotive Web Solutions",
+      url: "https://www.automotivewebsolutions.com/",
+    },
+    {
+      value: "theme1",
+      label: "Theme 1 – Classic",
+      url: "https://theme1.automotivewebsolutions.com/",
+    },
+    {
+      value: "theme2",
+      label: "Theme 2 – Modern",
+      url: "https://theme2.automotivewebsolutions.com/",
+    },
+    {
+      value: "theme3",
+      label: "Theme 3 – Premium",
+      url: "https://theme3.automotivewebsolutions.com/",
+    },
+    {
+      value: "theme4",
+      label: "Theme 4 – Sporty",
+      url: "https://theme4.automotivewebsolutions.com/",
+    },
+    {
+      value: "theme5",
+      label: "Theme 5 – Luxury",
+      url: "https://theme5.automotivewebsolutions.com/",
+    },
+    {
+      value: "theme6",
+      label: "Theme 6 – Elegant",
+      url: "https://theme6.automotivewebsolutions.com/",
+    },
+  ];
 
   const handleWebsiteChange = (option) => {
     setSelectedWebsite(option.value);
@@ -55,7 +83,7 @@ const websiteOptions = [
             <div className="relative flex-shrink-0">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex min-w-[75px] items-center justify-between gap-1 rounded-md bg-slate-700 px-2 py-1.5 text-xs font-medium transition-colors duration-200 hover:bg-slate-600 sm:min-w-[200px] sm:px-3 sm:py-2 sm:text-sm"
+                className="flex min-w-[75px] items-center justify-between gap-1 rounded-md bg-slate-700 px-2 py-1.5 text-xs font-medium transition-colors duration-200 hover:bg-slate-600 sm:min-w-[170px] sm:px-3 sm:py-2 sm:text-sm"
               >
                 <span className="max-w-[60px] truncate sm:max-w-[100px]">
                   {selectedOption?.label}
@@ -69,7 +97,7 @@ const websiteOptions = [
 
               {/* Dropdown Menu */}
               {isDropdownOpen && (
-                <div className="absolute left-0 top-full z-50 mt-1 min-w-[75px] sm:min-w-[200px] rounded-md border border-slate-600 bg-slate-700 shadow-lg sm:w-full">
+                <div className="absolute left-0 top-full z-50 mt-1 min-w-[75px] rounded-md border border-slate-600 bg-slate-700 shadow-lg sm:w-full sm:min-w-[170px]">
                   {websiteOptions.map((option) => (
                     <button
                       key={option.value}
@@ -84,7 +112,9 @@ const websiteOptions = [
             </div>
           </div>
 
+          {/* Center Section - Theme Customization */}
           <Link
+            aria-label="Go to add on plans"
             href="https://www.automotivewebsolutions.com/add-ons"
             target="_blank"
             rel="noopener noreferrer"
@@ -96,7 +126,7 @@ const websiteOptions = [
                   Theme Customization
                 </h2>
               </div>
-              <p className="text-blue-300 relative -right-12 -top-2 text-xs font-medium">
+              <p className="relative -right-12 -top-2 text-xs font-medium text-blue-300">
                 Get a free quote
               </p>
             </div>
@@ -121,7 +151,7 @@ const websiteOptions = [
                 href="https://sysfoc.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-300 text-xs font-bold hover:underline md:ml-1 lg:text-sm"
+                className="text-xs font-bold text-blue-300 hover:underline md:ml-1 lg:text-sm"
               >
                 Sysfoc
               </Link>
@@ -143,6 +173,7 @@ const websiteOptions = [
                 href="https://www.automotivewebsolutions.com/pricing"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Subscribe to pricing plans"
                 className="flex h-8 w-8 items-center justify-center rounded-full bg-purple-600 transition-colors duration-200 hover:bg-purple-700 sm:h-9 sm:w-9 lg:hidden"
               >
                 <Bell className="h-3.5 w-3.5 text-white sm:h-4 sm:w-4" />

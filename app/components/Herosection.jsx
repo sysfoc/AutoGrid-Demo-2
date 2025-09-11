@@ -46,7 +46,7 @@ const CustomSelect = ({
         id={id}
         type="button"
         onClick={() => !disabled && setIsOpen(!isOpen)}
-        className={`focus:border-app-border focus:ring-app-bg hover:border-app-hover w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-left text-black transition-colors duration-200 focus:outline-none focus:ring-2 ${
+        className={`focus:border-app-border hover:border-app-hover w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-left text-black transition-colors duration-200 focus:outline-none focus:ring-2 ${
           disabled ? "cursor-not-allowed bg-gray-100" : "cursor-pointer"
         } ${className}`}
         disabled={disabled}
@@ -60,7 +60,7 @@ const CustomSelect = ({
               : placeholder}
           </span>
           {loading ? (
-            <div className="border-app-bg h-4 w-4 animate-spin rounded-full border-2 border-t-transparent"></div>
+            <div className="h-4 w-4 animate-spin rounded-full border-2 border-t-transparent"></div>
           ) : (
             <ChevronDown
               className={`h-4 w-4 text-gray-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}

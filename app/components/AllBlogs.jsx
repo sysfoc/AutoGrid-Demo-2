@@ -92,7 +92,7 @@ const BlogsPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background-secondary dark:bg-background-dark mt-14">
+    <div className="min-h-screen bg-background-secondary dark:bg-background-dark mt-32">
       {/* Header Section */}
       <div className="bg-background dark:bg-background-dark border-b border-gray-200 dark:border-gray-600">
         <div className="container mx-auto px-4 py-12">

@@ -711,11 +711,19 @@ const CardetailCard = () => {
   }
 
 return (
-    <>
-      <div className="mb-6">
+    <main className="car-listings" role="main" aria-label="Car listings and search results">
+      {/* Controls Section */}
+      <section 
+        className="mb-6" 
+        aria-label="Listing controls and filters"
+      >
         <div className="flex flex-col gap-4 rounded-lg border border-gray-200 bg-[var(--bg)] p-4 shadow-sm dark:border-gray-700 dark:bg-gray-700 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
-            <span className="text-sm font-medium text-[var(--text-secondary)]">
+            <span 
+              className="text-sm font-medium text-[var(--text-secondary)]"
+              aria-live="polite"
+              aria-label={`Showing ${paginationData.startIndex + 1} to ${paginationData.endIndex} of ${paginationData.totalItems} vehicles`}
+            >
               <span className="font-semibold text-[var(--text)]">
                 {paginationData.startIndex + 1}-{paginationData.endIndex}
               </span>{" "}
@@ -728,13 +736,19 @@ return (
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+            {/* Items per page selector */}
+            <label htmlFor="items-per-page" className="sr-only">
+              Items per page
+            </label>
             <Select
+              id="items-per-page"
               className="min-w-[120px] border-gray-300 bg-[var(--bg)] text-sm text-[var(--text)] dark:border-gray-600 dark:bg-gray-700 dark:text-[var(--text)]"
               value={itemsPerPage}
               onChange={(e) => {
                 setItemsPerPage(Number.parseInt(e.target.value));
                 setCurrentPage(1);
               }}
+              aria-label="Select number of items per page"
             >
               <option value={3}>3 per page</option>
               <option value={6}>6 per page</option>
@@ -742,11 +756,17 @@ return (
               <option value={12}>12 per page</option>
             </Select>
 
+            {/* Sort selector */}
+            <label htmlFor="sort-options" className="sr-only">
+              Sort options
+            </label>
             <Select
+              id="sort-options"
               icon={GrSort}
               className="min-w-[160px] border-gray-300 bg-[var(--bg)] text-sm text-[var(--text)] dark:border-gray-600 dark:bg-gray-700 dark:text-[var(--text)]"
               value={sortOption}
               onChange={(e) => setSortOption(e.target.value)}
+              aria-label="Sort vehicles by"
             >
               <option value="default">Sort by</option>
               <option value="price-lh">{t("priceLowToHigh")}</option>
@@ -757,47 +777,62 @@ return (
               <option value="mileage-hl">{t("mileageHighToLow")}</option>
             </Select>
 
-            <div className="flex rounded-lg border border-gray-200 bg-[var(--bg)] p-1 dark:border-gray-600 dark:bg-gray-700">
+            {/* View toggle buttons */}
+            <fieldset className="flex rounded-lg border border-gray-200 bg-[var(--bg)] p-1 dark:border-gray-600 dark:bg-gray-700">
+              <legend className="sr-only">Choose view layout</legend>
               <button
+                type="button"
                 onClick={() => setIsGridView(false)}
                 className={`rounded p-2 transition-colors ${
                   !isGridView
                     ? "bg-[var(--primary)] text-[var(--text-inverse)]"
                     : "text-[var(--text-secondary)] hover:text-[var(--text)]"
                 }`}
+                aria-pressed={!isGridView}
+                aria-label="Switch to list view"
               >
-                <FiList size={16} />
+                <FiList size={16} aria-hidden="true" />
               </button>
               <button
+                type="button"
                 onClick={() => setIsGridView(true)}
                 className={`rounded p-2 transition-colors ${
                   isGridView
                     ? "bg-[var(--primary)] text-[var(--text-inverse)]"
                     : "text-[var(--text-secondary)] hover:text-[var(--text)]"
                 }`}
+                aria-pressed={isGridView}
+                aria-label="Switch to grid view"
               >
-                <FiGrid size={16} />
+                <FiGrid size={16} aria-hidden="true" />
               </button>
-            </div>
+            </fieldset>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div
+      {/* Car Listings */}
+      <section 
         className={`transition-opacity duration-200 ${isPageTransitioning ? "opacity-50" : "opacity-100"} ${
           isGridView
             ? "grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
             : "space-y-6"
         }`}
+        aria-label="Available vehicles"
+        aria-busy={isPageTransitioning}
       >
         {paginationData.currentItems.map((car, index) => (
-          <div key={car._id} className="group">
-            <Link href={`car-detail/${car.slug}`}>
+          <article key={car._id} className="group">
+            <Link 
+              href={`car-detail/${car.slug}`}
+              aria-label={`View details for ${car.make} ${car.model} - ${selectedCurrency?.symbol}${Math.round(car.price)}`}
+            >
               <div
                 className={`h-full overflow-hidden rounded-lg border border-gray-200 bg-[var(--bg-secondary)] shadow-sm transition-all duration-300 hover:shadow-md dark:border-gray-700 dark:bg-gray-700 dark:hover:shadow-lg ${
                   isGridView ? "flex flex-col" : "flex flex-col sm:flex-row"
                 }`}
               >
+                {/* Image section */}
                 <div
                   className={`relative ${isGridView ? "h-48 w-full" : "h-48 w-full flex-shrink-0 sm:h-40 sm:w-64"}`}
                 >
@@ -814,6 +849,8 @@ return (
                       e.stopPropagation();
                     }}
                     className="h-full w-full overflow-hidden rounded-t-lg sm:rounded-l-lg sm:rounded-tr-none"
+                    role="region"
+                    aria-label={`Images of ${car.make} ${car.model}`}
                   >
                     {Array.isArray(car.imageUrls) &&
                     car.imageUrls.length > 0 ? (
@@ -823,16 +860,23 @@ return (
                             src={image.src || image}
                             alt={
                               image.alt ||
-                              `${car.make} ${car.model} Image ${i + 1}`
+                              `${car.make} ${car.model} - Image ${i + 1} of ${car.imageUrls.length}`
                             }
                             width={600}
                             height={400}
                             className="h-full w-full object-cover"
+                            loading={index < 3 ? "eager" : "lazy"}
+                            decoding="async"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           />
                         </div>
                       ))
                     ) : (
-                      <div className="flex h-full items-center justify-center bg-[var(--bg-secondary)]">
+                      <div 
+                        className="flex h-full items-center justify-center bg-[var(--bg-secondary)]"
+                        role="img"
+                        aria-label="No images available for this vehicle"
+                      >
                         <div className="text-center">
                           <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--bg)]">
                             <svg
@@ -840,6 +884,7 @@ return (
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
+                              aria-hidden="true"
                             >
                               <path
                                 strokeLinecap="round"
@@ -857,33 +902,44 @@ return (
                     )}
                   </Carousel>
 
-                  {/* Featured banner */}
-                  {!car.sold && (
+                  {/* Status banners */}
+                  {!car.sold && car.tag && (
                     <div className="absolute left-0 top-0">
-                      <div className="bg-[var(--primary)] px-3 py-1 text-xs font-bold text-gray-100">
-                        {car?.tag.toUpperCase()}
+                      <div 
+                        className="bg-[var(--primary)] px-3 py-1 text-xs font-bold text-gray-100"
+                        role="status"
+                        aria-label={`This vehicle is ${car.tag}`}
+                      >
+                        {car.tag.toUpperCase()}
                       </div>
                     </div>
                   )}
 
-                  {/* Sold banner */}
                   {car.sold && (
                     <div className="absolute left-0 top-0">
-                      <div className="bg-red-500 px-3 py-1 text-xs font-bold text-gray-100">
+                      <div 
+                        className="bg-red-500 px-3 py-1 text-xs font-bold text-gray-100"
+                        role="status"
+                        aria-label="This vehicle has been sold"
+                      >
                         SOLD
                       </div>
                     </div>
                   )}
 
-                  {/* Heart icon and image count */}
+                  {/* Image count and favorite button */}
                   <div className="absolute right-3 top-3 flex items-center gap-2">
                     {Array.isArray(car.imageUrls) &&
                       car.imageUrls.length > 1 && (
-                        <div className="flex items-center gap-1 rounded bg-black/70 px-2 py-1 text-xs text-[var(--text-inverse)]">
+                        <div 
+                          className="flex items-center gap-1 rounded bg-black/70 px-2 py-1 text-xs text-[var(--text-inverse)]"
+                          aria-label={`${car.imageUrls.length} images available`}
+                        >
                           <svg
                             className="h-3 w-3"
                             fill="currentColor"
                             viewBox="0 0 20 20"
+                            aria-hidden="true"
                           >
                             <path
                               fillRule="evenodd"
@@ -895,33 +951,42 @@ return (
                         </div>
                       )}
                     <button
+                      type="button"
                       onClick={(e) => {
                         e.stopPropagation();
                         e.preventDefault();
                         handleLikeToggle(car._id);
                       }}
-                      className="rounded-full bg-[var(--bg)] p-2 shadow-sm transition-colors hover:bg-[var(--bg-secondary)]"
+                      className="rounded-full bg-[var(--bg)] p-2 shadow-sm transition-colors hover:bg-[var(--bg-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2"
+                      aria-label={
+                        userLikedCars &&
+                        Array.isArray(userLikedCars) &&
+                        userLikedCars.includes(car._id)
+                          ? `Remove ${car.make} ${car.model} from favorites`
+                          : `Add ${car.make} ${car.model} to favorites`
+                      }
                     >
                       {userLikedCars &&
                       Array.isArray(userLikedCars) &&
                       userLikedCars.includes(car._id) ? (
-                        <FaHeart className="h-4 w-4 text-red-500" />
+                        <FaHeart className="h-4 w-4 text-red-500" aria-hidden="true" />
                       ) : (
-                        <FaRegHeart className="h-4 w-4 text-[var(--text-secondary)]" />
+                        <FaRegHeart className="h-4 w-4 text-[var(--text-secondary)]" aria-hidden="true" />
                       )}
                     </button>
                   </div>
                 </div>
 
+                {/* Content section */}
                 <div
                   className={`flex flex-1 flex-col p-4 ${!isGridView ? "sm:p-6" : ""}`}
                 >
                   {/* Title and Price */}
-                  <div
+                  <header
                     className={`flex items-start justify-between ${isGridView ? "mb-3" : "mb-4"}`}
                   >
                     <div className="flex-1">
-                      <h3
+                      <h2
                         className={`font-bold text-[var(--text)] ${
                           isGridView ? "text-lg" : "text-xl"
                         }`}
@@ -931,12 +996,13 @@ return (
                         ) : (
                           `${car.make || "Unknown"} ${car.model || "Unknown"}`
                         )}
-                      </h3>
+                      </h2>
                     </div>
 
                     <div className={`text-right ${!isGridView ? "ml-4" : ""}`}>
                       <div
                         className={`font-bold text-[var(--primary)] ${isGridView ? "text-xl" : "text-2xl"}`}
+                        aria-label={`Price: ${selectedCurrency?.symbol}${Math.round(car.price) || 0}`}
                       >
                         {loading ? (
                           <Skeleton height={28} width={100} />
@@ -945,27 +1011,32 @@ return (
                         )}
                       </div>
                     </div>
-                  </div>
+                  </header>
 
                   {/* Features */}
                   {!isGridView && car.features?.length > 0 && (
-                    <div className="mb-2 grid grid-cols-1 gap-x-4 gap-y-1 sm:grid-cols-2 lg:grid-cols-3">
+                    <ul 
+                      className="mb-2 grid grid-cols-1 gap-x-4 gap-y-1 sm:grid-cols-2 lg:grid-cols-3"
+                      aria-label="Vehicle features"
+                    >
                       {car.features.slice(0, 6).map((feature, idx) => (
-                        <span
+                        <li
                           key={idx}
                           className="flex items-center gap-1.5 text-xs text-[var(--text-secondary)]"
                         >
-                          <Check className="h-3 w-3 flex-shrink-0 text-[var(--primary)]" />
+                          <Check className="h-3 w-3 flex-shrink-0 text-[var(--primary)]" aria-hidden="true" />
                           {feature}
-                        </span>
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                   )}
 
-                  <div
-                    className="flex flex-wrap items-start gap-2 mb-3"
-                  >
-                    <span className="rounded bg-[var(--primary)] dark:text-gray-100 px-2 py-1 text-xs font-medium text-[var(--text-inverse)]">
+                  {/* Vehicle details */}
+                  <div className="flex flex-wrap items-start gap-2 mb-3">
+                    <span 
+                      className="rounded bg-[var(--primary)] dark:text-gray-100 px-2 py-1 text-xs font-medium text-[var(--text-inverse)]"
+                      aria-label={`Year: ${car.year || car.modelYear || "Unknown"}`}
+                    >
                       {car.year || car.modelYear || ""}
                     </span>
                     <div className="flex flex-col md:flex-[0.8] min-w-0 text-sm text-[var(--text-secondary)]">
@@ -993,32 +1064,42 @@ return (
                   </div>
 
                   {/* Action button */}
-                  <div className="mt-auto">
+                  <footer className="mt-auto">
                     <button
+                      type="button"
                       onClick={(e) => {
                         e.preventDefault();
                         e.stopPropagation();
                         setSelectedCar(car);
                         setOpenModal(true);
                       }}
-                      className={`w-fit rounded-lg bg-[var(--primary)] dark:text-gray-100 px-3 font-medium text-[var(--text-inverse)] transition-colors hover:bg-[var(--primary-hover)] ${
+                      className={`w-fit rounded-lg bg-[var(--primary)] dark:text-gray-100 px-3 font-medium text-[var(--text-inverse)] transition-colors hover:bg-[var(--primary-hover)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 ${
                         isGridView ? "py-2 text-sm" : "py-2"
                       }`}
+                      aria-label={`Enquire about ${car.make} ${car.model}`}
                     >
                       {t("enquireNow")}
                     </button>
-                  </div>
+                  </footer>
                 </div>
               </div>
             </Link>
-          </div>
+          </article>
         ))}
-      </div>
+      </section>
 
+      {/* Pagination */}
       {paginationData.totalPages > 1 && (
-        <div className="mt-12 flex flex-col items-center gap-6">
+        <nav 
+          className="mt-12 flex flex-col items-center gap-6"
+          role="navigation"
+          aria-label="Pagination Navigation"
+        >
           <div className="text-center">
-            <p className="text-sm text-[var(--text-secondary)]">
+            <p 
+              className="text-sm text-[var(--text-secondary)]"
+              aria-live="polite"
+            >
               Showing{" "}
               <span className="font-semibold text-[var(--text)]">
                 {paginationData.startIndex + 1}
@@ -1037,19 +1118,22 @@ return (
 
           <div className="flex items-center justify-center gap-2">
             <button
+              type="button"
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={!paginationData.hasPrevPage || isPageTransitioning}
-              className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
+              className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 ${
                 paginationData.hasPrevPage && !isPageTransitioning
                   ? "border border-gray-300 bg-[var(--bg)] text-[var(--text)] hover:bg-[var(--bg-secondary)] dark:border-gray-600 dark:bg-gray-700 dark:text-[var(--text)] dark:hover:bg-[var(--bg)]"
                   : "cursor-not-allowed border border-gray-200 bg-[var(--bg-secondary)] text-[var(--text-secondary)] dark:border-gray-700 dark:bg-[var(--bg)] dark:text-[var(--text-secondary)]"
               }`}
+              aria-label="Go to previous page"
             >
               <svg
                 className="h-4 w-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -1061,22 +1145,28 @@ return (
               Previous
             </button>
 
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1" role="group" aria-label="Page numbers">
               {getVisiblePageNumbers().map((pageNum, index) => (
                 <div key={index}>
                   {pageNum === "..." ? (
-                    <span className="px-3 py-2 text-[var(--text-secondary)]">
+                    <span 
+                      className="px-3 py-2 text-[var(--text-secondary)]"
+                      aria-hidden="true"
+                    >
                       ...
                     </span>
                   ) : (
                     <button
+                      type="button"
                       onClick={() => handlePageChange(pageNum)}
                       disabled={isPageTransitioning}
-                      className={`min-w-[40px] rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                      className={`min-w-[40px] rounded-lg px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 ${
                         currentPage === pageNum
                           ? "bg-[var(--primary)] text-[var(--text-inverse)]"
                           : "border border-gray-300 bg-[var(--bg)] text-[var(--text)] hover:bg-[var(--bg-secondary)] dark:border-gray-600 dark:bg-gray-700 dark:text-[var(--text)] dark:hover:bg-[var(--bg)]"
                       } ${isPageTransitioning ? "cursor-not-allowed opacity-50" : ""}`}
+                      aria-label={`Go to page ${pageNum}`}
+                      aria-current={currentPage === pageNum ? "page" : undefined}
                     >
                       {pageNum}
                     </button>
@@ -1086,13 +1176,15 @@ return (
             </div>
 
             <button
+              type="button"
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={!paginationData.hasNextPage || isPageTransitioning}
-              className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
+              className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 ${
                 paginationData.hasNextPage && !isPageTransitioning
                   ? "border border-gray-300 bg-[var(--bg)] text-[var(--text)] hover:bg-[var(--bg-secondary)] dark:border-gray-600 dark:bg-gray-700 dark:text-[var(--text)] dark:hover:bg-[var(--bg)]"
                   : "cursor-not-allowed border border-gray-200 bg-[var(--bg-secondary)] text-[var(--text-secondary)] dark:border-gray-700 dark:bg-[var(--bg)] dark:text-[var(--text-secondary)]"
               }`}
+              aria-label="Go to next page"
             >
               Next
               <svg
@@ -1100,6 +1192,7 @@ return (
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -1113,10 +1206,14 @@ return (
 
           {paginationData.totalPages > 10 && (
             <div className="flex items-center gap-3">
-              <span className="text-sm text-[var(--text-secondary)]">
+              <label 
+                htmlFor="page-jump"
+                className="text-sm text-[var(--text-secondary)]"
+              >
                 Jump to page:
-              </span>
+              </label>
               <input
+                id="page-jump"
                 type="number"
                 min="1"
                 max={paginationData.totalPages}
@@ -1127,31 +1224,38 @@ return (
                     handlePageChange(page);
                   }
                 }}
-                className="w-16 rounded-lg border border-gray-300 bg-[var(--bg)] px-2 py-1 text-center text-sm text-[var(--text)] dark:border-gray-600 dark:bg-gray-700 dark:text-[var(--text)]"
+                className="w-16 rounded-lg border border-gray-300 bg-[var(--bg)] px-2 py-1 text-center text-sm text-[var(--text)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 dark:border-gray-600 dark:bg-gray-700 dark:text-[var(--text)]"
                 disabled={isPageTransitioning}
+                aria-label={`Jump to page (1 to ${paginationData.totalPages})`}
               />
               <span className="text-sm text-[var(--text-secondary)]">
                 of {paginationData.totalPages}
               </span>
             </div>
           )}
-        </div>
+        </nav>
       )}
+
       {/* Enquiry Modal */}
       <Modal
         dismissible
         show={openModal}
         onClose={() => setOpenModal(false)}
         className="backdrop-blur-sm"
+        role="dialog"
+        aria-labelledby="modal-title"
+        aria-describedby="modal-description"
       >
         <ModalHeader className="border-b border-gray-200 pb-4">
-          <h3 className="text-2xl font-bold text-[var(--text)]">Get in Touch</h3>
-          <p className="mt-1 text-sm text-[var(--text-secondary)]">
+          <h3 id="modal-title" className="text-2xl font-bold text-[var(--text)]">
+            Get in Touch
+          </h3>
+          <p id="modal-description" className="mt-1 text-sm text-[var(--text-secondary)]">
             We will get back to you within 24 hours
           </p>
         </ModalHeader>
         <ModalBody className="p-6">
-          <form onSubmit={handleEnquirySubmit} className="space-y-6">
+          <form onSubmit={handleEnquirySubmit} className="space-y-6" noValidate>
             {submitMessage && (
               <div
                 className={`rounded-lg p-4 text-sm ${
@@ -1159,6 +1263,8 @@ return (
                     ? "text-[var(--primary)]"
                     : "border border-red-200 bg-red-50 text-red-800"
                 }`}
+                role="alert"
+                aria-live="polite"
               >
                 {submitMessage}
               </div>
@@ -1174,12 +1280,15 @@ return (
                 <TextInput
                   type="text"
                   id="firstName"
+                  name="firstName"
                   value={formData.firstName}
                   onChange={handleInputChange}
                   placeholder="Enter your first name"
                   className="rounded-lg border-gray-300 focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]"
                   required
                   disabled={isSubmitting}
+                  aria-required="true"
+                  aria-describedby="firstName-error"
                 />
               </div>
               <div className="space-y-2">
@@ -1192,12 +1301,15 @@ return (
                 <TextInput
                   type="text"
                   id="lastName"
+                  name="lastName"
                   value={formData.lastName}
                   onChange={handleInputChange}
                   placeholder="Enter your last name"
                   className="rounded-lg border-gray-300 focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]"
                   required
                   disabled={isSubmitting}
+                  aria-required="true"
+                  aria-describedby="lastName-error"
                 />
               </div>
               <div className="space-y-2">
@@ -1210,12 +1322,16 @@ return (
                 <TextInput
                   type="email"
                   id="email"
+                  name="email"
                   value={formData.email}
                   onChange={handleInputChange}
                   placeholder="your.email@example.com"
                   className="rounded-lg border-gray-300 focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]"
                   required
                   disabled={isSubmitting}
+                  aria-required="true"
+                  aria-describedby="email-error"
+                  autoComplete="email"
                 />
               </div>
               <div className="space-y-2">
@@ -1228,12 +1344,16 @@ return (
                 <TextInput
                   type="tel"
                   id="phone"
+                  name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
                   placeholder="+92 300 1234567"
                   className="rounded-lg border-gray-300 focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]"
                   required
                   disabled={isSubmitting}
+                  aria-required="true"
+                  aria-describedby="phone-error"
+                  autoComplete="tel"
                 />
               </div>
               <div className="space-y-2 sm:col-span-2">
@@ -1245,39 +1365,49 @@ return (
                 </Label>
                 <Textarea
                   id="message"
+                  name="message"
                   value={formData.message}
                   onChange={handleInputChange}
                   rows={4}
                   placeholder="Tell us about your requirements, budget, or any specific questions..."
                   className="resize-none rounded-lg border-gray-300 focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]"
                   disabled={isSubmitting}
+                  aria-describedby="message-help"
                 />
+                <div id="message-help" className="sr-only">
+                  Optional message about your requirements or questions
+                </div>
               </div>
             </div>
             <div className="border-t border-gray-200 pt-4">
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full rounded-lg py-4 text-lg font-semibold text-[var(--text-inverse)] transition-colors ${
+                className={`w-full rounded-lg py-4 text-lg font-semibold text-[var(--text-inverse)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--primary)] focus:ring-offset-2 ${
                   isSubmitting
                     ? "cursor-not-allowed bg-gray-400"
                     : "bg-[var(--primary)] hover:bg-[var(--primary-hover)]"
                 }`}
+                aria-describedby="submit-help"
               >
                 {isSubmitting ? (
                   <div className="flex items-center justify-center gap-2">
-                    <Spinner size="sm" />
-                    Sending...
+                    <Spinner size="sm" aria-hidden="true" />
+                    <span>Sending...</span>
                   </div>
                 ) : (
                   "Send Enquiry"
                 )}
               </button>
+              <div id="submit-help" className="sr-only">
+                Submit form to send your enquiry. We will respond within 24 hours.
+              </div>
             </div>
           </form>
         </ModalBody>
       </Modal>
-    </>
+    </main>
   );
 };
+
 export default CardetailCard;

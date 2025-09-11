@@ -23,6 +23,8 @@ const MainLayout = ({ children }) => {
       
       <main className="pt-16"> 
         {children}
+        
+        {/* <SearchCallToAction onSearchClick={handleOpenSearch} /> */}
       </main>
     </div>
   );

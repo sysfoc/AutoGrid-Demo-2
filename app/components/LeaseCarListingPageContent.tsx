@@ -32,7 +32,8 @@ const CarListingPageContent = () => {
   return (
     <div className="relative mt-40">
 
- <div className="mb-6 px-4 sm:px-2 lg:px-4">
+
+ <div className="mb-6 px-4 sm:px-6 lg:px-8">
         <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 sm:text-3xl lg:text-4xl">
           Filter Vehicles
         </h1>
@@ -47,7 +48,7 @@ const CarListingPageContent = () => {
       {isMobile && (
         <button
           onClick={() => setIsMobileFiltersOpen(!isMobileFiltersOpen)}
-          className="fixed top-36 right-6 z-40 flex items-center gap-2 rounded-full bg-blue-600 px-4 py-3 font-semibold text-white shadow-lg transition-all hover:bg-blue-700 md:hidden"
+          className="fixed top-28 right-6 z-40 flex items-center gap-2 rounded-full bg-blue-600 px-4 py-3 font-semibold text-white shadow-lg transition-all hover:bg-blue-700 md:hidden"
         >
           {isMobileFiltersOpen ? <HiX className="h-5 w-5" /> : <HiMenu className="h-5 w-5" />}
           Filters

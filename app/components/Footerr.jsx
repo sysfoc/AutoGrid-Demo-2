@@ -1,7 +1,7 @@
-// "use client";
+"use client";
 import Link from "next/link";
 import { useEffect, useState, useMemo, useCallback, useRef } from "react";
-import LanguageSwitching from "../components/LanguageSwitching";
+import LanguageSwitching from "./LanguageSwitching";
 import { useTranslations } from "next-intl";
 import { iconComponentsMap, allSocialPlatforms } from "../lib/social-icons";
 
@@ -75,6 +75,70 @@ const DEFAULT_HOMEPAGE_DATA = {
   saturday: null,
 };
 
+// Skeleton Components
+const SkeletonText = ({ width = "100%", height = "16px", className = "" }) => (
+  <div
+    className={`animate-pulse rounded bg-gray-200 dark:bg-gray-700 ${className}`}
+    style={{ width, height }}
+  />
+);
+
+const SkeletonHeading = ({ className = "" }) => (
+  <div className={`mb-6 ${className}`}>
+    <SkeletonText width="60%" height="20px" />
+  </div>
+);
+
+const SkeletonLinks = () => (
+  <nav className="space-y-3">
+    {[1, 2, 3, 4].map((i) => (
+      <SkeletonText key={i} width="80%" height="14px" />
+    ))}
+  </nav>
+);
+
+const SkeletonTradingHours = () => (
+  <div className="space-y-2">
+    {[1, 2, 3, 4, 5, 6, 7].map((i) => (
+      <div
+        key={i}
+        className="flex items-center justify-between rounded-lg px-3 py-2"
+      >
+        <SkeletonText width="40%" height="14px" />
+        <div className="flex items-center space-x-2">
+          <div className="h-2 w-2 animate-pulse rounded-full bg-gray-200 dark:bg-gray-700" />
+          <SkeletonText width="60px" height="12px" />
+        </div>
+      </div>
+    ))}
+  </div>
+);
+
+const SkeletonLanguageSection = () => (
+  <div>
+    <SkeletonHeading />
+    <div className="rounded-xl border border-gray-100 bg-background-secondary p-4 dark:border-gray-800 dark:bg-gray-800">
+      <SkeletonText width="100%" height="40px" className="rounded-lg" />
+    </div>
+  </div>
+);
+
+const SkeletonSocialIcons = () => (
+  <div>
+    <div className="mb-6">
+      <SkeletonText width="40%" height="16px" />
+    </div>
+    <div className="flex flex-wrap gap-3">
+      {[1, 2, 3, 4].map((i) => (
+        <div
+          key={i}
+          className="h-12 w-12 animate-pulse rounded-xl bg-background-secondary dark:bg-gray-800"
+        />
+      ))}
+    </div>
+  </div>
+);
+
 const Footerr = () => {
   const t = useTranslations("Footer");
   const mountedRef = useRef(true);
@@ -84,6 +148,11 @@ const Footerr = () => {
   const [logoLoading, setLogoLoading] = useState(true);
   const [homepageData, setHomepageData] = useState(DEFAULT_HOMEPAGE_DATA);
   const [fetchedSocials, setFetchedSocials] = useState([]);
+  
+  // Loading states
+  const [isLoadingSettings, setIsLoadingSettings] = useState(true);
+  const [isLoadingHomepage, setIsLoadingHomepage] = useState(true);
+  const [isLoadingSocials, setIsLoadingSocials] = useState(true);
 
   const tradingHours = useMemo(
     () => [
@@ -111,6 +180,7 @@ const Footerr = () => {
       const cachedData = CacheManager.get(CACHE_KEYS.HOMEPAGE_DATA);
       if (cachedData) {
         setHomepageData(cachedData);
+        setIsLoadingHomepage(false);
         return;
       }
 
@@ -125,6 +195,7 @@ const Footerr = () => {
 
       if (mountedRef.current) {
         setHomepageData(footerData);
+        setIsLoadingHomepage(false);
         CacheManager.set(CACHE_KEYS.HOMEPAGE_DATA, footerData);
       }
     } catch (error) {
@@ -141,6 +212,10 @@ const Footerr = () => {
           console.warn("Failed to parse stale homepage cache:", parseError);
         }
       }
+      
+      if (mountedRef.current) {
+        setIsLoadingHomepage(false);
+      }
     }
   }, []);
 
@@ -151,6 +226,7 @@ const Footerr = () => {
       const cachedData = CacheManager.get(CACHE_KEYS.SOCIAL_MEDIA);
       if (cachedData) {
         setFetchedSocials(cachedData);
+        setIsLoadingSocials(false);
         return;
       }
 
@@ -181,6 +257,7 @@ const Footerr = () => {
         });
 
         setFetchedSocials(combinedSocials);
+        setIsLoadingSocials(false);
         CacheManager.set(CACHE_KEYS.SOCIAL_MEDIA, combinedSocials);
       }
     } catch (error) {
@@ -198,6 +275,10 @@ const Footerr = () => {
           console.warn("Failed to parse stale socials cache:", parseError);
         }
       }
+      
+      if (mountedRef.current) {
+        setIsLoadingSocials(false);
+      }
     }
   }, []);
 
@@ -213,6 +294,7 @@ const Footerr = () => {
         setFooterSettings(cachedData.footer || DEFAULT_FOOTER_SETTINGS);
         setLogo(cachedData.logo5 || "");
         setLogoLoading(false);
+        setIsLoadingSettings(false);
         return;
       }
 
@@ -232,6 +314,7 @@ const Footerr = () => {
 
         setFooterSettings(settings.footer || DEFAULT_FOOTER_SETTINGS);
         setLogo(settings.logo5 || "");
+        setIsLoadingSettings(false);
       }
     } catch (error) {
       console.error("Failed to fetch footer settings:", error);
@@ -248,6 +331,10 @@ const Footerr = () => {
         } catch (parseError) {
           console.warn("Failed to parse stale settings cache:", parseError);
         }
+      }
+      
+      if (mountedRef.current) {
+        setIsLoadingSettings(false);
       }
     } finally {
       if (mountedRef.current) {
@@ -288,122 +375,173 @@ const Footerr = () => {
   }, [fetchAllData]);
 
   return (
-    <footer className="relative mt-10">
+    <footer className="md:min-h-[400px] min-h-[880px]" role="contentinfo" aria-label="Site footer">
       <div className="bg-background dark:bg-background-dark">
         {/* Main footer content */}
-        <div className="mx-auto max-w-6xl px-6 py-3">
+        <div className="mx-auto max-w-6xl px-6 py-5">
           <div className="grid grid-cols-1 gap-14 lg:grid-cols-12">
             {/* Quick Links - Compact column */}
             <div className="lg:col-span-3">
               <div className="mb-8">
-                <h4 className="mb-6 text-sm font-bold uppercase tracking-widest text-text dark:text-text-inverse sm:text-lg">
-                  {footerSettings?.col1Heading || t("quickLinks")}
-                </h4>
-                <nav className="space-y-3">
-                  {[
-                    { href: "/about", label: t("about") },
-                    { href: "/contact", label: t("contact") },
-                    { href: "/terms", label: t("terms") },
-                    { href: "/privacy", label: t("privacy") },
-                  ].map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className="block text-sm font-medium text-black transition-all duration-300 hover:translate-x-1 hover:text-primary dark:text-text-inverse dark:hover:text-primary"
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </nav>
+                {isLoadingSettings ? (
+                  <SkeletonHeading />
+                ) : (
+                  <h4 className="mb-6 text-sm font-bold uppercase tracking-widest text-text dark:text-text-inverse sm:text-lg">
+                    {footerSettings?.col1Heading || t("quickLinks")}
+                  </h4>
+                )}
+                
+                {isLoadingSettings ? (
+                  <SkeletonLinks />
+                ) : (
+                  <nav className="space-y-3" aria-label="Quick links navigation">
+                    {[
+                      { href: "/about", label: t("about") },
+                      { href: "/contact", label: t("contact") },
+                      { href: "/terms", label: t("terms") },
+                      { href: "/privacy", label: t("privacy") },
+                    ].map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className="block text-sm font-medium text-black transition-all duration-300 hover:translate-x-1 hover:text-primary dark:text-text-inverse dark:hover:text-primary"
+                        aria-label={`Go to ${link.label} page`}
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </nav>
+                )}
               </div>
             </div>
 
             {/* Trading Hours - Wider column */}
             <div className="lg:col-span-5">
-              <h4 className="mb-6 text-sm font-bold uppercase tracking-widest text-text dark:text-text-inverse sm:text-lg">
-                {footerSettings?.col2Heading || t("tradingHours")}
-              </h4>
-              <div className="space-y-2">
-                {tradingHours.map((schedule, index) => (
-                  <div
-                    key={index}
-                    className="flex items-center justify-between rounded-lg px-3 transition-colors"
-                  >
-                    <span className="text-sm font-medium text-text dark:text-text-inverse">
-                      {schedule.day}
-                    </span>
-                    <span className="flex items-center space-x-2">
-                      <div
-                        className={`h-2 w-2 rounded-full ${
-                          schedule.hours === t("closedHours")
-                            ? "bg-red-400"
-                            : "bg-primary"
-                        }`}
-                      ></div>
-                      <span
-                        className={`text-xs font-semibold uppercase tracking-wide ${
-                          schedule.hours === t("closedHours")
-                            ? "text-red-600 dark:text-red-400"
-                            : "text-primary dark:text-primary"
-                        }`}
+              {isLoadingSettings || isLoadingHomepage ? (
+                <SkeletonHeading />
+              ) : (
+                <h4 className="mb-6 text-sm font-bold uppercase tracking-widest text-text dark:text-text-inverse sm:text-lg">
+                  {footerSettings?.col2Heading || t("tradingHours")}
+                </h4>
+              )}
+              
+              {isLoadingHomepage ? (
+                <SkeletonTradingHours />
+              ) : (
+                <div className="space-y-2" role="table" aria-label="Trading hours schedule">
+                  {tradingHours.map((schedule, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center justify-between rounded-lg px-3 transition-colors"
+                      role="row"
+                    >
+                      <span 
+                        className="text-sm font-medium text-text dark:text-text-inverse"
+                        role="rowheader"
                       >
-                        {schedule.hours}
+                        {schedule.day}
                       </span>
-                    </span>
-                  </div>
-                ))}
-              </div>
+                      <span className="flex items-center space-x-2" role="cell">
+                        <div
+                          className={`h-2 w-2 rounded-full ${
+                            schedule.hours === t("closedHours")
+                              ? "bg-red-400"
+                              : "bg-primary"
+                          }`}
+                          aria-hidden="true"
+                        ></div>
+                        <span
+                          className={`text-xs font-semibold uppercase tracking-wide ${
+                            schedule.hours === t("closedHours")
+                              ? "text-red-600 dark:text-red-400"
+                              : "text-primary dark:text-primary"
+                          }`}
+                          aria-label={`${schedule.day}: ${schedule.hours === t("closedHours") ? "Closed" : schedule.hours}`}
+                        >
+                          {schedule.hours}
+                        </span>
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Language & Social - Compact column */}
             <div className="lg:col-span-4">
               <div className="space-y-8">
                 {/* Language Section */}
-                <div>
-                  <h4 className="mb-6 text-sm font-bold uppercase tracking-widest text-text dark:text-text-inverse sm:text-lg">
-                    {footerSettings?.col3Heading || t("language")}
-                  </h4>
-                  <div className="rounded-xl border border-gray-100 bg-background-secondary p-4 dark:border-gray-800 dark:bg-gray-800">
-                    <LanguageSwitching />
-                  </div>
-                </div>
+                {isLoadingSettings ? (
+                  <SkeletonLanguageSection />
+                ) : (
+                  <section aria-labelledby="language-heading">
+                    <h4 
+                      id="language-heading"
+                      className="mb-6 text-sm font-bold uppercase tracking-widest text-text dark:text-text-inverse sm:text-lg"
+                    >
+                      {footerSettings?.col3Heading || t("language")}
+                    </h4>
+                    <div className="rounded-xl border border-gray-100 bg-background-secondary p-4 dark:border-gray-800 dark:bg-gray-800">
+                      <LanguageSwitching />
+                    </div>
+                  </section>
+                )}
 
-                <div>
-                  <h4 className="mb-6 text-xs font-bold uppercase tracking-widest text-text dark:text-text-inverse">
-                    Follow Us
-                  </h4>
-                  <div className="flex flex-wrap gap-3">
-                    {fetchedSocials.length > 0 ? (
-                      fetchedSocials.map((platform, index) => {
-                        const IconComponent =
-                          platform.iconType === "react-icon"
-                            ? iconComponentsMap[platform.iconValue]
-                            : null;
+                {/* Social Media Section */}
+                {isLoadingSocials ? (
+                  <SkeletonSocialIcons />
+                ) : (
+                  <section aria-labelledby="social-heading">
+                    <h4
+                      id="social-heading"
+                      className="mb-6 text-xs font-bold uppercase tracking-widest text-text dark:text-text-inverse"
+                    >
+                      Follow Us
+                    </h4>
+                    <ul className="flex flex-wrap gap-3" aria-label="Social media links">
+                      {fetchedSocials.length > 0 ? (
+                        fetchedSocials.map((platform, index) => {
+                          const IconComponent =
+                            platform.iconType === "react-icon"
+                              ? iconComponentsMap[platform.iconValue]
+                              : null;
 
-                        return (
-                          <a
-                            key={index}
-                            href={platform.url}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="group relative flex h-12 w-12 items-center justify-center rounded-xl bg-background-secondary dark:bg-gray-800 dark:text-gray-100 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:bg-primary dark:hover:bg-primary"
-                            aria-label={`${platform.iconValue} social link`}
-                          >
-                            {IconComponent ? (
-                              <IconComponent className="h-5 w-5 text-text-secondary transition-colors duration-300 group-hover:text-text-inverse dark:text-white group-hover:dark:text-text-inverse" />
-                            ) : (
-                              <div className="h-5 w-5 rounded-full bg-text-secondary transition-colors duration-300 group-hover:bg-text-inverse dark:bg-text-secondary group-hover:dark:bg-text-inverse" />
-                            )}
-                          </a>
-                        );
-                      })
-                    ) : (
-                      <div className="text-sm italic text-text-secondary dark:text-text-secondary">
-                        No socials available
-                      </div>
-                    )}
-                  </div>
-                </div>
+                          return (
+                            <li key={index}>
+                              <a
+                                href={platform.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group relative flex h-12 w-12 items-center justify-center rounded-xl bg-background-secondary dark:bg-gray-800 dark:text-gray-100 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:bg-primary dark:hover:bg-primary"
+                                aria-label={`Follow us on ${platform.iconValue}`}
+                              >
+                                {IconComponent ? (
+                                  <IconComponent 
+                                    className="h-5 w-5 text-text-secondary transition-colors duration-300 group-hover:text-text-inverse dark:text-white group-hover:dark:text-text-inverse" 
+                                    aria-hidden="true"
+                                  />
+                                ) : (
+                                  <div 
+                                    className="h-5 w-5 rounded-full bg-text-secondary transition-colors duration-300 group-hover:bg-text-inverse dark:bg-text-secondary group-hover:dark:bg-text-inverse" 
+                                    aria-hidden="true"
+                                  />
+                                )}
+                              </a>
+                            </li>
+                          );
+                        })
+                      ) : (
+                        <li
+                          className="text-sm italic text-text-secondary dark:text-text-secondary"
+                          role="status"
+                          aria-live="polite"
+                        >
+                          No socials available
+                        </li>
+                      )}
+                    </ul>
+                  </section>
+                )}
               </div>
             </div>
           </div>
@@ -413,31 +551,37 @@ const Footerr = () => {
         <div className="border-t border-gray-100 dark:border-gray-800">
           <div className="mx-auto max-w-6xl px-6 py-3">
             <div className="text-center">
-              <p className="text-xs font-medium text-text-secondary dark:text-text-secondary">
+              <p 
+                className="text-xs font-medium text-text-secondary dark:text-text-secondary"
+                role="contentinfo"
+                aria-label="Copyright information"
+              >
                 © {new Date().getFullYear()}
                 <Link
                   href="https://www.automotivewebsolutions.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-primary"
+                  aria-label="Visit Automotive Web Solutions website"
                 >
                   {t("copyright")}
                 </Link>
-                <span className="mx-2 text-text-secondary dark:text-text-secondary">
+                <span className="mx-2 text-text-secondary" aria-hidden="true">
                   •
                 </span>
-                <span className="">
+                <span className="text-text-secondary">
                   by{" "}
                   <Link
                     className="hover:underline hover:text-primary"
                     href="https://sysfoc.com"
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="Visit Sysfoc website"
                   >
                     Sysfoc
                   </Link>{" "}
                 </span>
-                <span className="mx-2 text-gray-300 dark:text-gray-600">
+                <span className="mx-2 text-gray-300 dark:text-gray-600" aria-hidden="true">
                   •
                 </span>
                 All rights reserved

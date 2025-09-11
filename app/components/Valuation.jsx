@@ -118,20 +118,24 @@ export default function Home() {
     }
   }
 
-return (
+  return (
   <>
-    <section className="relative min-h-screen w-full overflow-hidden mt-16">
+    <section 
+      className="relative min-h-screen w-full overflow-hidden mt-16"
+      aria-labelledby="valuation-heading"
+    >
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat custom-bg"
+        aria-hidden="true"
       />
-      <div className="absolute inset-0 bg-gradient-to-br from-text/90 via-text/85 to-primary/90" />
+      <div className="absolute inset-0 bg-gradient-to-br from-app-text/90 via-app-text/85 to-app-button/90" aria-hidden="true" />
       <div className="relative z-10 flex min-h-screen items-center">
         <div className="container mx-auto px-4 py-8">
           <div className="mx-auto max-w-4xl">
             <div className="mb-6 mt-14 text-center">
-              <h1 className="mb-3 text-3xl font-bold leading-tight text-text-inverse md:text-4xl">
+              <h1 id="valuation-heading" className="mb-3 text-3xl font-bold leading-tight text-white md:text-4xl">
                 Get Your Cars
-                <span className="bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-app-button to-app-button-hover bg-clip-text text-transparent">
                   True Value
                 </span>
               </h1>
@@ -139,54 +143,71 @@ return (
             <div className="mx-auto max-w-xl">
               <div className="rounded-2xl border border-white/20 bg-white/95 p-6 shadow-2xl backdrop-blur-sm dark:border-gray-700 dark:bg-gray-900/95">
                 <div className="mb-6 text-center">
-                  <h2 className="mb-2 text-xl font-bold text-text dark:text-white">Free Car Valuation</h2>
-                  <p className="text-sm text-text-secondary dark:text-gray-400">What type of valuation do you need?</p>
+                  <h2 className="mb-2 text-xl font-bold text-app-text dark:text-white">Free Car Valuation</h2>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">What type of valuation do you need?</p>
                 </div>
                 <div className="mb-6">
-                  <div className="flex flex-wrap justify-center gap-2">
-                    <button
-                      type="button"
-                      onClick={() => handleValuationType("Selling")}
-                      className={`flex items-center rounded-xl border px-4 py-2 transition-all duration-200 ${
-                        formData.valuationType === "Selling"
-                          ? "border-primary bg-primary text-white shadow-md"
-                          : "border-gray-200 bg-white text-text hover:border-primary-hover dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
-                      }`}
-                    >
-                      <AiOutlineDollar className="mr-2 text-lg" />
-                      I&apos;m Selling
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => handleValuationType("Buying")}
-                      className={`flex items-center rounded-xl border px-4 py-2 transition-all duration-200 ${
-                        formData.valuationType === "Buying"
-                          ? "border-primary bg-primary text-white shadow-md"
-                          : "border-gray-200 bg-white text-text hover:border-primary-hover dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
-                      }`}
-                    >
-                      <MdSell className="mr-2 text-lg" />
-                      I&apos;m Buying
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => handleValuationType("Trading")}
-                      className={`flex items-center rounded-xl border px-4 py-2 transition-all duration-200 ${
-                        formData.valuationType === "Trading"
-                          ? "border-primary bg-primary text-white shadow-md"
-                          : "border-gray-200 bg-white text-text hover:border-primary-hover dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
-                      }`}
-                    >
-                      <FaExchangeAlt className="mr-2 text-lg" />
-                      I&apos;m Trading
-                    </button>
-                  </div>
+                  <fieldset>
+                    <legend className="sr-only">Select valuation type</legend>
+                    <div className="flex flex-wrap justify-center gap-2" role="radiogroup" aria-label="Valuation type options">
+                      <button
+                        type="button"
+                        onClick={() => handleValuationType("Selling")}
+                        className={`flex items-center rounded-xl border px-4 py-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-app-button/50 ${
+                          formData.valuationType === "Selling"
+                            ? "border-app-button bg-app-button text-white shadow-md"
+                            : "border-gray-200 bg-white text-app-text hover:border-app-button-hover dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
+                        }`}
+                        role="radio"
+                        aria-checked={formData.valuationType === "Selling"}
+                        aria-label="I'm selling my car - select this for selling valuation"
+                      >
+                        <AiOutlineDollar className="mr-2 text-lg" aria-hidden="true" />
+                        I&apos;m Selling
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleValuationType("Buying")}
+                        className={`flex items-center rounded-xl border px-4 py-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-app-button/50 ${
+                          formData.valuationType === "Buying"
+                            ? "border-app-button bg-app-button text-white shadow-md"
+                            : "border-gray-200 bg-white text-app-text hover:border-app-button-hover dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
+                        }`}
+                        role="radio"
+                        aria-checked={formData.valuationType === "Buying"}
+                        aria-label="I'm buying a car - select this for buying valuation"
+                      >
+                        <MdSell className="mr-2 text-lg" aria-hidden="true" />
+                        I&apos;m Buying
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleValuationType("Trading")}
+                        className={`flex items-center rounded-xl border px-4 py-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-app-button/50 ${
+                          formData.valuationType === "Trading"
+                            ? "border-app-button bg-app-button text-white shadow-md"
+                            : "border-gray-200 bg-white text-app-text hover:border-app-button-hover dark:border-gray-700 dark:bg-gray-800 dark:text-gray-200"
+                        }`}
+                        role="radio"
+                        aria-checked={formData.valuationType === "Trading"}
+                        aria-label="I'm trading my car - select this for trading valuation"
+                      >
+                        <FaExchangeAlt className="mr-2 text-lg" aria-hidden="true" />
+                        I&apos;m Trading
+                      </button>
+                    </div>
+                  </fieldset>
                 </div>
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form 
+                  onSubmit={handleSubmit} 
+                  className="space-y-4"
+                  aria-label="Car valuation form"
+                  noValidate
+                >
                   <div>
                     <label
                       htmlFor="name"
-                      className="mb-2 block text-sm font-semibold text-text dark:text-gray-300"
+                      className="mb-2 block text-sm font-semibold text-app-text dark:text-gray-300"
                     >
                       Full Name *
                     </label>
@@ -199,12 +220,14 @@ return (
                       onChange={handleInputChange}
                       autoComplete="name"
                       required
+                      aria-describedby="name-error"
+                      aria-invalid={!formData.name && isSubmitting ? 'true' : 'false'}
                     />
                   </div>
                   <div>
                     <label
                       htmlFor="email"
-                      className="mb-2 block text-sm font-semibold text-text dark:text-gray-300"
+                      className="mb-2 block text-sm font-semibold text-app-text dark:text-gray-300"
                     >
                       Email Address *
                     </label>
@@ -217,13 +240,15 @@ return (
                       onChange={handleInputChange}
                       autoComplete="email"
                       required
+                      aria-describedby="email-error"
+                      aria-invalid={!formData.email && isSubmitting ? 'true' : 'false'}
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <div>
                       <label
                         htmlFor="make"
-                        className="mb-2 block text-sm font-semibold text-text dark:text-gray-300"
+                        className="mb-2 block text-sm font-semibold text-app-text dark:text-gray-300"
                       >
                         Make *
                       </label>
@@ -233,10 +258,13 @@ return (
                           name="make"
                           id="make"
                           onChange={(e) => setSelectedMake(e.target.value)}
-                          aria-label="Select Make"
+                          aria-label="Select car make"
                           autoComplete="off"
-                          className="w-full rounded-lg border border-gray-300 bg-white p-2.5 text-sm text-text transition-all duration-200 hover:border-primary-hover focus:border-primary focus:ring-2 focus:ring-primary/20 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-primary-hover dark:focus:border-primary dark:focus:ring-primary/20"
+                          className="w-full rounded-lg border border-gray-300 bg-white p-2.5 text-sm text-app-text transition-all duration-200 hover:border-app-button-hover focus:border-app-button focus:ring-2 focus:ring-app-button/20 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-app-button-hover dark:focus:border-app-button dark:focus:ring-app-button/20"
                           disabled={loading}
+                          required
+                          aria-describedby="make-error"
+                          aria-invalid={!selectedMake && isSubmitting ? 'true' : 'false'}
                         >
                           <option value="">Select Make</option>
                           {makes.map((make, index) => (
@@ -246,8 +274,12 @@ return (
                           ))}
                         </select>
                         {loading && (
-                          <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                            <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent"></div>
+                          <div className="absolute right-3 top-1/2 -translate-y-1/2" aria-hidden="true">
+                            <div 
+                              className="h-4 w-4 animate-spin rounded-full border-2 border-app-button border-t-transparent"
+                              role="status"
+                              aria-label="Loading car makes"
+                            ></div>
                           </div>
                         )}
                       </div>
@@ -255,20 +287,23 @@ return (
                     <div>
                       <label
                         htmlFor="model"
-                        className="mb-2 block text-sm font-semibold text-text dark:text-gray-300"
+                        className="mb-2 block text-sm font-semibold text-app-text dark:text-gray-300"
                       >
                         Model *
                       </label>
                       <div className="relative">
                         <select
                           value={selectedModel}
-                          aria-label="Select Model"
+                          aria-label="Select car model"
                           name="model"
                           id="model"
                           autoComplete="off"
                           onChange={(e) => setSelectedModel(e.target.value)}
-                          className="w-full rounded-lg border border-gray-300 bg-white p-2.5 text-sm text-text transition-all duration-200 hover:border-primary-hover focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-60 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-primary-hover dark:focus:border-primary dark:focus:ring-primary/20"
+                          className="w-full rounded-lg border border-gray-300 bg-white p-2.5 text-sm text-app-text transition-all duration-200 hover:border-app-button-hover focus:border-app-button focus:ring-2 focus:ring-app-button/20 focus:outline-none disabled:cursor-not-allowed disabled:opacity-60 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-app-button-hover dark:focus:border-app-button dark:focus:ring-app-button/20"
                           disabled={!selectedMake || loading}
+                          required
+                          aria-describedby="model-error model-help"
+                          aria-invalid={!selectedModel && isSubmitting ? 'true' : 'false'}
                         >
                           <option value="">Select Model</option>
                           {models.map((model, index) => (
@@ -277,9 +312,16 @@ return (
                             </option>
                           ))}
                         </select>
+                        <div id="model-help" className="sr-only">
+                          {!selectedMake ? "Please select a make first" : "Choose your car model"}
+                        </div>
                         {loading && selectedMake && (
-                          <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                            <div className="h-4 w-4 animate-spin rounded-full border-2 border-primary border-t-transparent"></div>
+                          <div className="absolute right-3 top-1/2 -translate-y-1/2" aria-hidden="true">
+                            <div 
+                              className="h-4 w-4 animate-spin rounded-full border-2 border-app-button border-t-transparent"
+                              role="status"
+                              aria-label="Loading car models"
+                            ></div>
                           </div>
                         )}
                       </div>
@@ -289,7 +331,8 @@ return (
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full rounded-lg bg-gradient-to-r from-primary to-primary-hover px-6 py-3 font-semibold text-white shadow-lg transition-all duration-200 hover:from-primary-hover hover:to-primary hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50"
+                      className="w-full rounded-lg bg-gradient-to-r from-app-button to-app-button-hover px-6 py-3 font-semibold text-white shadow-lg transition-all duration-200 hover:from-app-button-hover hover:to-app-button hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 focus:outline-none focus:ring-4 focus:ring-app-button/30"
+                      aria-describedby="submit-help"
                     >
                       {isSubmitting ? (
                         <>
@@ -299,6 +342,8 @@ return (
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
                               viewBox="0 0 24 24"
+                              role="status"
+                              aria-label="Submitting form"
                             >
                               <circle
                                 className="opacity-25"
@@ -315,25 +360,32 @@ return (
                               ></path>
                             </svg>
                           </span>
-                          Submitting...
+                          <span aria-live="polite">Submitting...</span>
                         </>
                       ) : (
                         "Get My Valuation"
                       )}
                     </button>
+                    <div id="submit-help" className="sr-only">
+                      Submit the form to receive your free car valuation
+                    </div>
                   </div>
                   <div className="border-t border-gray-200 pt-4 dark:border-gray-700">
-                    <div className="flex justify-center space-x-6 text-center text-sm text-text-secondary dark:text-gray-300">
-                      <span className="flex items-center">
-                        <FaClock className="mr-1 text-primary" />
+                    <div 
+                      className="flex justify-center space-x-6 text-center text-sm text-gray-600 dark:text-gray-300"
+                      role="list"
+                      aria-label="Service benefits"
+                    >
+                      <span className="flex items-center" role="listitem">
+                        <FaClock className="mr-1 text-app-button" aria-hidden="true" />
                         Quick
                       </span>
-                      <span className="flex items-center">
-                        <AiOutlineDollar className="mr-1 text-green-500" />
+                      <span className="flex items-center" role="listitem">
+                        <AiOutlineDollar className="mr-1 text-green-500" aria-hidden="true" />
                         Free
                       </span>
-                      <span className="flex items-center">
-                        <FaShieldAlt className="mr-1 text-primary-hover" />
+                      <span className="flex items-center" role="listitem">
+                        <FaShieldAlt className="mr-1 text-app-button-hover" aria-hidden="true" />
                         No Obligation
                       </span>
                     </div>

@@ -66,10 +66,8 @@ const CarEditPage = ({ params }) => {
     isFinance: "",
     isLease: false,
     slug: "",
-    // Add missing fields to match the schema
     year: "",
     engineCapacity: "",
-    dealerId: "",
   });
 
   const [makes, setMakes] = useState([]);
@@ -141,8 +139,6 @@ const CarEditPage = ({ params }) => {
             enginePower: data.car.enginePower || "",
             fuelConsumption: data.car.fuelConsumption || "",
             co2Emission: data.car.co2Emission || "",
-            dealerId: data.car.dealerId || "",
-            // Ensure boolean fields are properly handled
             isLease: data.car.isLease || false,
             // Ensure string fields are properly handled
             description: data.car.description || "",
@@ -931,18 +927,6 @@ const CarEditPage = ({ params }) => {
               id="engineCapacity"
               name="engineCapacity"
               value={formData.engineCapacity}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div>
-            <Label htmlFor="dealerId" className="text-app-text">
-              Dealer ID:
-            </Label>
-            <TextInput
-              id="dealerId"
-              name="dealerId"
-              type="number"
-              value={formData.dealerId}
               onChange={handleInputChange}
             />
           </div>
