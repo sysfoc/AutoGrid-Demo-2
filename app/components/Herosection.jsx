@@ -515,7 +515,7 @@ const HeroSection = () => {
               {/* Car Image */}
               <div className="order-1 flex justify-center lg:order-2 lg:justify-center">
                 <Image
-                  src="aCar.png"
+                  src="aCar_11zon.webp"
                   alt="Blue Luxury Car"
                   width={500}
                   height={300}
