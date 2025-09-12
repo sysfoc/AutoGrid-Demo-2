@@ -97,7 +97,7 @@ async function fetchUSAVehicleData(vin) {
       vin: vin.toUpperCase(),
       cylinder: Number.parseInt(getValue("Engine Number of Cylinders")) || null,
       fuelConsumption: Number.parseFloat(getValue("Fuel Economy Combined (mpg)")) || null,
-      batteryRange: Number.parseFloat(getValue("Electric Vehicle Range (miles)")) || null,
+      batteryRange: getValue("Electric Vehicle Range (miles)") || "",
       chargingTime: getValue("Battery Charging Time (hours)") || null,
       co2Emission: Number.parseFloat(getValue("CO2 Equivalent Fuel Economy Combined (g/mi)")) || null,
       type: getValue("Vehicle Type"),

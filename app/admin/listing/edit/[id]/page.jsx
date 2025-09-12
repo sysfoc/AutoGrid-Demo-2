@@ -662,9 +662,10 @@ const CarEditPage = ({ params }) => {
             <TextInput
               id="batteryRange"
               name="batteryRange"
-              type="number"
+              type="text"
               value={formData.batteryRange}
               onChange={handleInputChange}
+              placeholder="e.g., 200 km, 300 miles"
             />
           </div>
           <div>

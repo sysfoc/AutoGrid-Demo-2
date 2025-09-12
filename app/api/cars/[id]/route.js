@@ -168,7 +168,7 @@ export async function PATCH(req, { params }) {
       cylinder: safeParseNumber(formEntries.cylinder, existingCar.cylinder),
       doors: safeParseNumber(formEntries.doors, existingCar.doors),
       seats: safeParseNumber(formEntries.seats, existingCar.seats),
-      batteryRange: safeParseNumber(formEntries.batteryRange, existingCar.batteryRange),
+      batteryRange: safeParseString(formEntries.batteryRange, existingCar.batteryRange),
       chargingTime: safeParseNumber(formEntries.chargingTime, existingCar.chargingTime),
       engineSize: safeParseNumber(formEntries.engineSize, existingCar.engineSize),
       enginePower: safeParseNumber(formEntries.enginePower, existingCar.enginePower),

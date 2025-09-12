@@ -142,7 +142,7 @@ export async function POST(req) {
       cylinder: safeParseNumber(formEntries.cylinder),
       doors: safeParseNumber(formEntries.doors),
       seats: safeParseNumber(formEntries.seats),
-      batteryRange: safeParseNumber(formEntries.batteryRange),
+      batteryRange: safeParseString(formEntries.batteryRange),
       chargingTime: safeParseNumber(formEntries.chargingTime),
       engineSize: safeParseNumber(formEntries.engineSize),
       enginePower: safeParseNumber(formEntries.enginePower),
