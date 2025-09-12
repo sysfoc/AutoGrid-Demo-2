@@ -9,6 +9,7 @@ import {
   Select,
   Textarea,
   TextInput,
+  Input
 } from "flowbite-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
