@@ -9,7 +9,6 @@ import {
   Select,
   Textarea,
   TextInput,
-  Input
 } from "flowbite-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -1142,7 +1141,7 @@ const Page = () => {
                 <Label htmlFor="batteryRange" className="text-app-text">
                   Battery Range:
                 </Label>
-                <Input
+                <TextInput
                   id="batteryRange"
                   name="batteryRange"
                   type="text"
