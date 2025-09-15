@@ -173,15 +173,6 @@ const Page = () => {
                   Manage your website global settings and configurations
                 </p>
               </div>
-              <div className="flex-shrink-0">
-                <Button
-                  gradientDuoTone="purpleToBlue"
-                  className="w-full rounded-xl px-4 py-3 text-sm font-semibold shadow-lg transition-all hover:shadow-xl sm:w-auto sm:px-6 sm:text-base"
-                  onClick={handleSubmit}
-                >
-                  Save Settings
-                </Button>
-              </div>
             </div>
           </div>
         </div>
@@ -241,7 +232,6 @@ const Page = () => {
                         onChange={(e) => setSelectedLogoForEdit(e.target.value)}
                         className="w-full"
                       >
-                       
                         <option value="logo4">Theme-4</option>
                         <option value="logo5">Theme-5</option>
                         <option value="logo6">Theme-6</option>
@@ -939,6 +929,15 @@ const Page = () => {
                 )}
               </div>
             </div>
+          </div>
+          <div className="mt-8 flex justify-end px-4 pb-4">
+            <Button
+              gradientDuoTone="purpleToBlue"
+              className="rounded-xl text-sm font-semibold shadow-lg transition-all hover:shadow-xl sm:text-base"
+              onClick={handleSubmit}
+            >
+              Save Settings
+            </Button>
           </div>
         </div>
       </div>
