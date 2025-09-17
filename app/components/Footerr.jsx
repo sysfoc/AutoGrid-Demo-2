@@ -552,7 +552,7 @@ const Footerr = () => {
           <div className="mx-auto max-w-6xl px-6 py-3">
             <div className="text-center">
               <p 
-                className="text-xs font-medium text-text-secondary dark:text-text-secondary"
+                className="text-sm font-medium text-black dark:text-gray-200"
                 role="contentinfo"
                 aria-label="Copyright information"
               >
@@ -561,16 +561,13 @@ const Footerr = () => {
                   href="https://www.automotivewebsolutions.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-primary"
+                  className="hover:text-primary hover:underline"
                   aria-label="Visit Automotive Web Solutions website"
                 >
-                  {t("copyright")}
+                  {" "}{t("copyright")}
                 </Link>
-                <span className="mx-2 text-text-secondary" aria-hidden="true">
-                  •
-                </span>
-                <span className="text-text-secondary">
-                  by{" "}
+                <span>
+                  {" "}by{" "}
                   <Link
                     className="hover:underline hover:text-primary"
                     href="https://sysfoc.com"
@@ -578,11 +575,8 @@ const Footerr = () => {
                     rel="noopener noreferrer"
                     aria-label="Visit Sysfoc website"
                   >
-                    Sysfoc
+                    Sysfoc.
                   </Link>{" "}
-                </span>
-                <span className="mx-2 text-gray-300 dark:text-gray-600" aria-hidden="true">
-                  •
                 </span>
                 All rights reserved
               </p>
