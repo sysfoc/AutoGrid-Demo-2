@@ -68,12 +68,14 @@ const VehicleCard = ({
               </div>
               <button
                 onClick={prevImage}
+                aria-label="Previous image"
                 className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 dark:bg-black/70 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
               <button
                 onClick={nextImage}
+                aria-label="Next image"
                 className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 dark:bg-black/70 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
               >
                 <ChevronRight className="w-4 h-4" />
@@ -82,6 +84,7 @@ const VehicleCard = ({
                 {images.map((_, index) => (
                   <button
                     key={index}
+                    aria-label={`Go to image ${index + 1}`}
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
@@ -116,6 +119,7 @@ const VehicleCard = ({
           )}
           
           <button 
+          aria-label="Like this car"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
@@ -500,6 +504,7 @@ const getResponsiveConfig = () => {
             {Array.from({ length: maxIndex + 1 }).map((_, index) => (
               <button
                 key={index}
+                aria-label={`Go to slide ${index + 1}`}
                 onClick={() => setCurrentIndex(index)}
                 className={`w-2 h-2 rounded-full transition-all ${
                   index === currentIndex ? 'w-6 bg-blue-600 dark:bg-blue-400' : 'bg-gray-300 dark:bg-gray-600'
