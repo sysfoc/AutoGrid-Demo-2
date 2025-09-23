@@ -106,14 +106,13 @@
 }
 
 
-
 footer {
-  min-height: 415px;
+  min-height: 400px;
 }
 
 @media (max-width: 768px) {
   footer {
-    min-height: 840px;
+    min-height: 930px;
   }
 }
 
