@@ -219,7 +219,7 @@ const Footerr = () => {
       const cachedData = CacheManager.get(CACHE_KEYS.FOOTER_SETTINGS);
       if (cachedData) {
         setFooterSettings(cachedData.footer || DEFAULT_FOOTER_SETTINGS);
-        setLogo(cachedData.logo2 || "");
+        setLogo(cachedData.logo6 || "");
         setIsLoading(false);
         return;
       }
@@ -240,7 +240,7 @@ const Footerr = () => {
 
         const updates = {
           footerSettings: settings.footer || DEFAULT_FOOTER_SETTINGS,
-          logo: settings.logo2 || "",
+          logo: settings.logo6 || "",
         };
 
         setFooterSettings(updates.footerSettings);
@@ -256,7 +256,7 @@ const Footerr = () => {
           const { data } = JSON.parse(staleCache);
           if (data && mountedRef.current) {
             setFooterSettings(data.footer || DEFAULT_FOOTER_SETTINGS);
-            setLogo(data.logo2 || "");
+            setLogo(data.logo6 || "");
           }
         } catch (parseError) {
           console.warn("Failed to parse stale settings cache:", parseError);
