@@ -1,39 +1,44 @@
-"use client"
-import { useEffect, useState } from "react"
-import { MdOutlineArrowOutward, MdSearch, MdViewModule, MdViewList } from "react-icons/md"
+"use client";
+import { useEffect, useState } from "react";
+import {
+  MdOutlineArrowOutward,
+  MdSearch,
+  MdViewModule,
+  MdViewList,
+} from "react-icons/md";
 
 const BlogsPage = () => {
-  const [blogs, setBlogs] = useState([])
-  const [filteredBlogs, setFilteredBlogs] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState("")
-  const [searchTerm, setSearchTerm] = useState("")
-  const [currentPage, setCurrentPage] = useState(1)
-  const [viewMode, setViewMode] = useState("grid") // grid or list
-  const blogsPerPage = 6
+  const [blogs, setBlogs] = useState([]);
+  const [filteredBlogs, setFilteredBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [viewMode, setViewMode] = useState("grid"); // grid or list
+  const blogsPerPage = 6;
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch("/api/blog")
+        const response = await fetch("/api/blog");
         if (!response.ok) {
-          throw new Error("Failed to fetch blogs")
+          throw new Error("Failed to fetch blogs");
         }
-        const data = await response.json()
-        setBlogs(data.blogs)
-        setFilteredBlogs(data.blogs)
+        const data = await response.json();
+        setBlogs(data.blogs);
+        setFilteredBlogs(data.blogs);
       } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to fetch blogs")
+        setError(err instanceof Error ? err.message : "Failed to fetch blogs");
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
+    };
 
-    fetchBlogs()
-  }, [])
+    fetchBlogs();
+  }, []);
 
   useEffect(() => {
-    let filtered = blogs
+    let filtered = blogs;
 
     if (searchTerm) {
       filtered = filtered.filter(
@@ -41,32 +46,32 @@ const BlogsPage = () => {
           blog.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
           blog.slug?.toLowerCase().includes(searchTerm.toLowerCase()) ||
           blog.category?.toLowerCase().includes(searchTerm.toLowerCase()),
-      )
+      );
     }
 
-    setFilteredBlogs(filtered)
-    setCurrentPage(1)
-  }, [searchTerm, blogs])
+    setFilteredBlogs(filtered);
+    setCurrentPage(1);
+  }, [searchTerm, blogs]);
 
-  const indexOfLastBlog = currentPage * blogsPerPage
-  const indexOfFirstBlog = indexOfLastBlog - blogsPerPage
-  const currentBlogs = filteredBlogs.slice(indexOfFirstBlog, indexOfLastBlog)
-  const totalPages = Math.ceil(filteredBlogs.length / blogsPerPage)
+  const indexOfLastBlog = currentPage * blogsPerPage;
+  const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
+  const currentBlogs = filteredBlogs.slice(indexOfFirstBlog, indexOfLastBlog);
+  const totalPages = Math.ceil(filteredBlogs.length / blogsPerPage);
 
   const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber)
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  }
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   if (error) {
     return (
-      <div className="min-h-screen bg-background dark:bg-background-dark mt-20">
+      <div className="mt-20 min-h-screen bg-background dark:bg-background-dark">
         <div className="container mx-auto px-4 py-20">
-          <div className="max-w-md mx-auto">
-            <div className="bg-background dark:bg-background-dark rounded-2xl shadow-lg border border-gray-200 dark:border-gray-600 p-8 text-center">
-              <div className="w-16 h-16 bg-red-50 dark:bg-red-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="mx-auto max-w-md">
+            <div className="rounded-2xl border border-gray-200 bg-background p-8 text-center shadow-lg dark:border-gray-600 dark:bg-background-dark">
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-red-50 dark:bg-red-900/20">
                 <svg
-                  className="w-8 h-8 text-red-600 dark:text-red-400"
+                  className="h-8 w-8 text-red-600 dark:text-red-400"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -79,82 +84,88 @@ const BlogsPage = () => {
                   />
                 </svg>
               </div>
-              <h2 className="text-xl font-semibold text-text dark:text-text-dark mb-2">Error Loading Articles</h2>
-              <p className="text-text-secondary dark:text-text-secondary-dark mb-6">{error}</p>
-              <button className="inline-flex items-center gap-2 bg-primary hover:bg-primary-hover text-text-inverse px-6 py-3 rounded-lg font-medium transition-colors">
+              <h2 className="dark:text-text-dark mb-2 text-xl font-semibold text-text">
+                Error Loading Articles
+              </h2>
+              <p className="dark:text-text-secondary-dark mb-6 text-text-secondary">
+                {error}
+              </p>
+              <button className="inline-flex items-center gap-2 rounded-lg bg-primary px-6 py-3 font-medium text-text-inverse transition-colors hover:bg-primary-hover">
                 Go Back Home
               </button>
             </div>
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   return (
-    <div className="min-h-screen bg-background-secondary dark:bg-background-dark mt-32">
+    <div className="mt-32 min-h-screen bg-background-secondary dark:bg-background-dark">
       {/* Header Section */}
-      <div className="bg-background dark:bg-background-dark border-b border-gray-200 dark:border-gray-600">
+      <div className="border-b border-gray-200 bg-background dark:border-gray-600 dark:bg-background-dark">
         <div className="container mx-auto px-4 py-12">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-primary-light dark:bg-primary-light text-primary dark:text-primary px-4 py-2 rounded-full text-sm font-medium mb-6">
-              <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+          <div className="mx-auto max-w-4xl text-center">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-primary-light px-4 py-2 text-sm font-medium text-primary dark:bg-primary-light dark:text-primary">
+              <div className="h-2 w-2 animate-pulse rounded-full bg-primary"></div>
               Knowledge Hub
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-text dark:text-gray-200 mb-6">
+            <h1 className="mb-6 text-4xl font-bold text-text dark:text-gray-200 md:text-5xl lg:text-6xl">
               Professional <span className="text-primary">Insights</span>
             </h1>
-            <p className="text-xl text-text-secondary dark:text-text-secondary-dark max-w-2xl mx-auto leading-relaxed">
-              Expert articles and industry insights to drive your business forward with proven strategies and best practices.
+            <p className="dark:text-text-secondary-dark mx-auto max-w-2xl text-xl leading-relaxed text-text-secondary">
+              Expert articles and industry insights to drive your business
+              forward with proven strategies and best practices.
             </p>
           </div>
         </div>
       </div>
 
       {/* Controls Section */}
-      <div className="bg-background dark:bg-background-dark border-b border-gray-200 dark:border-gray-600">
+      <div className="border-b border-gray-200 bg-background dark:border-gray-600 dark:bg-background-dark">
         <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
+          <div className="flex flex-col items-center justify-between gap-4 lg:flex-row">
             {/* Search */}
-            <div className="relative flex-1 max-w-md">
-              <MdSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-text-secondary dark:text-text-secondary-dark w-5 h-5" />
+            <div className="relative max-w-md flex-1">
+              <MdSearch className="dark:text-text-secondary-dark absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 transform text-text-secondary" />
               <input
                 type="text"
                 placeholder="Search articles..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 bg-background-secondary dark:bg-background-dark border border-gray-200 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-text dark:text-text-dark placeholder-text-secondary dark:placeholder-text-secondary-dark transition-all"
+                className="dark:text-text-dark dark:placeholder-text-secondary-dark w-full rounded-lg border border-gray-200 bg-background-secondary py-3 pl-12 pr-4 text-text placeholder-text-secondary transition-all focus:border-transparent focus:outline-none focus:ring-2 focus:ring-primary dark:border-gray-600 dark:bg-background-dark"
               />
             </div>
 
             {/* Results Count */}
             {!loading && filteredBlogs.length > 0 && (
-              <div className="text-text-secondary dark:text-text-secondary-dark text-sm">
-                {filteredBlogs.length} article{filteredBlogs.length !== 1 ? "s" : ""} found
+              <div className="dark:text-text-secondary-dark text-sm text-text-secondary">
+                {filteredBlogs.length} article
+                {filteredBlogs.length !== 1 ? "s" : ""} found
               </div>
             )}
 
             {/* View Toggle */}
-            <div className="flex items-center gap-2 bg-background-secondary dark:bg-background-dark rounded-lg p-1 border border-gray-200 dark:border-gray-600">
+            <div className="flex items-center gap-2 rounded-lg border border-gray-200 bg-background-secondary p-1 dark:border-gray-600 dark:bg-background-dark">
               <button
                 onClick={() => setViewMode("grid")}
-                className={`p-2 rounded-md transition-colors ${
+                className={`rounded-md p-2 transition-colors ${
                   viewMode === "grid"
                     ? "bg-primary text-text-inverse shadow-sm"
-                    : "text-text-secondary dark:text-text-secondary-dark hover:text-text dark:hover:text-text-dark"
+                    : "dark:text-text-secondary-dark dark:hover:text-text-dark text-text-secondary hover:text-text"
                 }`}
               >
-                <MdViewModule className="w-5 h-5" />
+                <MdViewModule className="h-5 w-5" />
               </button>
               <button
                 onClick={() => setViewMode("list")}
-                className={`p-2 rounded-md transition-colors ${
+                className={`rounded-md p-2 transition-colors ${
                   viewMode === "list"
                     ? "bg-primary text-text-inverse shadow-sm"
-                    : "text-text-secondary dark:text-text-secondary-dark hover:text-text dark:hover:text-text-dark"
+                    : "dark:text-text-secondary-dark dark:hover:text-text-dark text-text-secondary hover:text-text"
                 }`}
               >
-                <MdViewList className="w-5 h-5" />
+                <MdViewList className="h-5 w-5" />
               </button>
             </div>
           </div>
@@ -164,10 +175,12 @@ const BlogsPage = () => {
       {/* Content Section */}
       <div className="container mx-auto px-4 py-12">
         {loading && (
-          <div className="flex justify-center items-center py-20">
+          <div className="flex items-center justify-center py-20">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 border-3 border-primary-light rounded-full animate-spin border-t-primary"></div>
-              <span className="text-text-secondary dark:text-text-secondary-dark">Loading articles...</span>
+              <div className="border-3 h-8 w-8 animate-spin rounded-full border-primary-light border-t-primary"></div>
+              <span className="dark:text-text-secondary-dark text-text-secondary">
+                Loading articles...
+              </span>
             </div>
           </div>
         )}
@@ -175,58 +188,70 @@ const BlogsPage = () => {
         {!loading && currentBlogs.length > 0 && (
           <>
             {viewMode === "grid" ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                 {currentBlogs.map((blog, index) => (
                   <article
                     key={`${blog.slug}-${index}`}
-                    className="group bg-background dark:bg-background-dark rounded-2xl shadow-sm hover:shadow-xl border border-gray-200 dark:border-gray-600 overflow-hidden transition-all duration-300 hover:-translate-y-1"
+                    className="group overflow-hidden rounded-2xl border border-gray-200 bg-background shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-gray-600 dark:bg-background-dark"
                   >
                     <div className="cursor-pointer">
                       <div className="relative h-48 overflow-hidden">
                         <img
-                          src={blog.image || "/placeholder.svg?height=200&width=400&query=blog article"}
+                          src={
+                            blog.image ||
+                            "/placeholder.svg?height=200&width=400&query=blog article"
+                          }
                           alt={blog.title || blog.slug}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
                       </div>
                     </div>
 
                     <div className="p-6">
-                      <div className="flex items-center gap-3 mb-4">
-                        <span className="bg-primary-light dark:bg-primary-light text-primary px-3 py-1 rounded-full text-sm font-medium">
+                      <div className="mb-4 flex items-center gap-3">
+                        <span className="rounded-full bg-primary-light px-3 py-1 text-sm font-medium text-primary dark:bg-primary-light">
                           {blog.category || "Article"}
                         </span>
                         {blog.readTime && (
-                          <span className="text-text-secondary dark:text-text-secondary-dark text-sm">{blog.readTime} min read</span>
+                          <span className="dark:text-text-secondary-dark text-sm text-text-secondary">
+                            {blog.readTime} min read
+                          </span>
                         )}
                       </div>
 
                       <div className="group/title cursor-pointer">
-                        <h2 className="text-xl font-semibold text-text dark:text-gray-200 group-hover/title:text-primary transition-colors duration-200 line-clamp-2 mb-3">
+                        <h2 className="mb-3 line-clamp-2 text-xl font-semibold text-text transition-colors duration-200 group-hover/title:text-primary dark:text-gray-200">
                           {blog.title || blog.slug}
                         </h2>
                       </div>
 
                       {blog.excerpt && (
-                        <p className="text-text-secondary dark:text-text-secondary-dark text-sm line-clamp-3 mb-4">{blog.excerpt}</p>
+                        <p className="dark:text-text-secondary-dark mb-4 line-clamp-3 text-sm text-text-secondary">
+                          {blog.excerpt}
+                        </p>
                       )}
 
                       <div className="flex items-center justify-between">
                         {blog.publishedAt && (
-                          <time className="text-text-secondary dark:text-text-secondary-dark text-sm">
-                            {new Date(blog.publishedAt).toLocaleDateString("en-US", {
-                              month: "short",
-                              day: "numeric",
-                              year: "numeric",
-                            })}
+                          <time className="dark:text-text-secondary-dark text-sm text-text-secondary">
+                            {new Date(blog.publishedAt).toLocaleDateString(
+                              "en-US",
+                              {
+                                month: "short",
+                                day: "numeric",
+                                year: "numeric",
+                              },
+                            )}
                           </time>
                         )}
 
-                        <button className="inline-flex items-center gap-1 text-primary hover:text-primary-hover text-sm font-medium transition-colors group/link">
-                          Read more
-                          <MdOutlineArrowOutward className="w-4 h-4 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-                        </button>
+                        <Link href={`/blog/${blog.slug}`}>
+                          <span className="group/link inline-flex items-center gap-1 text-sm font-medium text-primary transition-colors hover:text-primary-hover">
+                            Read more
+                            <MdOutlineArrowOutward className="h-4 w-4 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5" />
+                          </span>
+                        </Link>
                       </div>
                     </div>
                   </article>
@@ -237,55 +262,65 @@ const BlogsPage = () => {
                 {currentBlogs.map((blog, index) => (
                   <article
                     key={`${blog.slug}-${index}`}
-                    className="group bg-background dark:bg-background-dark rounded-2xl shadow-sm hover:shadow-lg border border-gray-200 dark:border-gray-600 overflow-hidden transition-all duration-300"
+                    className="group overflow-hidden rounded-2xl border border-gray-200 bg-background shadow-sm transition-all duration-300 hover:shadow-lg dark:border-gray-600 dark:bg-background-dark"
                   >
                     <div className="flex flex-col md:flex-row">
-                      <div className="md:w-80 flex-shrink-0 cursor-pointer">
-                        <div className="relative h-48 md:h-full overflow-hidden">
+                      <div className="flex-shrink-0 cursor-pointer md:w-80">
+                        <div className="relative h-48 overflow-hidden md:h-full">
                           <img
-                            src={blog.image || "/placeholder.svg?height=200&width=320&query=blog article"}
+                            src={
+                              blog.image ||
+                              "/placeholder.svg?height=200&width=320&query=blog article"
+                            }
                             alt={blog.title || blog.slug}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                           />
                         </div>
                       </div>
 
-                      <div className="flex-1 p-6 flex flex-col justify-between">
+                      <div className="flex flex-1 flex-col justify-between p-6">
                         <div>
-                          <div className="flex items-center gap-3 mb-3">
-                            <span className="bg-primary-light dark:bg-primary-light text-primary px-3 py-1 rounded-full text-sm font-medium">
+                          <div className="mb-3 flex items-center gap-3">
+                            <span className="rounded-full bg-primary-light px-3 py-1 text-sm font-medium text-primary dark:bg-primary-light">
                               {blog.category || "Article"}
                             </span>
                             {blog.readTime && (
-                              <span className="text-text-secondary dark:text-text-secondary-dark text-sm">{blog.readTime} min read</span>
+                              <span className="dark:text-text-secondary-dark text-sm text-text-secondary">
+                                {blog.readTime} min read
+                              </span>
                             )}
                           </div>
 
                           <div className="group/title cursor-pointer">
-                            <h2 className="text-2xl font-semibold text-text dark:text-text-dark group-hover/title:text-primary transition-colors duration-200 mb-3">
+                            <h2 className="dark:text-text-dark mb-3 text-2xl font-semibold text-text transition-colors duration-200 group-hover/title:text-primary">
                               {blog.title || blog.slug}
                             </h2>
                           </div>
 
                           {blog.excerpt && (
-                            <p className="text-text-secondary dark:text-text-secondary-dark line-clamp-2 mb-4">{blog.excerpt}</p>
+                            <p className="dark:text-text-secondary-dark mb-4 line-clamp-2 text-text-secondary">
+                              {blog.excerpt}
+                            </p>
                           )}
                         </div>
 
                         <div className="flex items-center justify-between">
                           {blog.publishedAt && (
-                            <time className="text-text-secondary dark:text-text-secondary-dark text-sm">
-                              {new Date(blog.publishedAt).toLocaleDateString("en-US", {
-                                month: "long",
-                                day: "numeric",
-                                year: "numeric",
-                              })}
+                            <time className="dark:text-text-secondary-dark text-sm text-text-secondary">
+                              {new Date(blog.publishedAt).toLocaleDateString(
+                                "en-US",
+                                {
+                                  month: "long",
+                                  day: "numeric",
+                                  year: "numeric",
+                                },
+                              )}
                             </time>
                           )}
 
-                          <button className="inline-flex items-center gap-2 bg-primary hover:bg-primary-hover text-text-inverse px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                          <button className="inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-text-inverse transition-colors hover:bg-primary-hover">
                             Read Article
-                            <MdOutlineArrowOutward className="w-4 h-4" />
+                            <MdOutlineArrowOutward className="h-4 w-4" />
                           </button>
                         </div>
                       </div>
@@ -298,15 +333,15 @@ const BlogsPage = () => {
         )}
 
         {!loading && filteredBlogs.length === 0 && (
-          <div className="text-center py-20">
-            <div className="max-w-md mx-auto">
-              <div className="w-20 h-20 bg-background-secondary dark:bg-background-dark rounded-full flex items-center justify-center mx-auto mb-6 border border-gray-200 dark:border-gray-600">
-                <MdSearch className="w-10 h-10 text-text-secondary dark:text-text-secondary-dark" />
+          <div className="py-20 text-center">
+            <div className="mx-auto max-w-md">
+              <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full border border-gray-200 bg-background-secondary dark:border-gray-600 dark:bg-background-dark">
+                <MdSearch className="dark:text-text-secondary-dark h-10 w-10 text-text-secondary" />
               </div>
-              <h3 className="text-2xl font-semibold text-text dark:text-text-dark mb-3">
+              <h3 className="dark:text-text-dark mb-3 text-2xl font-semibold text-text">
                 {searchTerm ? "No articles found" : "No articles available"}
               </h3>
-              <p className="text-text-secondary dark:text-text-secondary-dark mb-6">
+              <p className="dark:text-text-secondary-dark mb-6 text-text-secondary">
                 {searchTerm
                   ? `We couldn't find any articles matching "${searchTerm}". Try adjusting your search terms.`
                   : "We're working on bringing you fresh content. Check back soon!"}
@@ -314,7 +349,7 @@ const BlogsPage = () => {
               {searchTerm && (
                 <button
                   onClick={() => setSearchTerm("")}
-                  className="bg-primary hover:bg-primary-hover text-text-inverse px-6 py-3 rounded-lg font-medium transition-colors"
+                  className="rounded-lg bg-primary px-6 py-3 font-medium text-text-inverse transition-colors hover:bg-primary-hover"
                 >
                   Clear Search
                 </button>
@@ -325,43 +360,45 @@ const BlogsPage = () => {
 
         {/* Pagination */}
         {!loading && totalPages > 1 && (
-          <div className="flex justify-center mt-12">
+          <div className="mt-12 flex justify-center">
             <nav className="flex items-center gap-2">
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className={`px-4 py-2 rounded-lg border transition-colors ${
+                className={`rounded-lg border px-4 py-2 transition-colors ${
                   currentPage === 1
-                    ? "border-gray-200 dark:border-gray-600 text-text-secondary dark:text-text-secondary-dark cursor-not-allowed"
-                    : "border-gray-200 dark:border-gray-600 text-text dark:text-text-dark hover:bg-background-secondary dark:hover:bg-background-dark"
+                    ? "dark:text-text-secondary-dark cursor-not-allowed border-gray-200 text-text-secondary dark:border-gray-600"
+                    : "dark:text-text-dark border-gray-200 text-text hover:bg-background-secondary dark:border-gray-600 dark:hover:bg-background-dark"
                 }`}
               >
                 Previous
               </button>
 
               <div className="flex items-center gap-1">
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                  <button
-                    key={page}
-                    onClick={() => handlePageChange(page)}
-                    className={`w-10 h-10 rounded-lg transition-colors ${
-                      currentPage === page
-                        ? "bg-primary text-text-inverse"
-                        : "text-text dark:text-text-dark hover:bg-background-secondary dark:hover:bg-background-dark"
-                    }`}
-                  >
-                    {page}
-                  </button>
-                ))}
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                  (page) => (
+                    <button
+                      key={page}
+                      onClick={() => handlePageChange(page)}
+                      className={`h-10 w-10 rounded-lg transition-colors ${
+                        currentPage === page
+                          ? "bg-primary text-text-inverse"
+                          : "dark:text-text-dark text-text hover:bg-background-secondary dark:hover:bg-background-dark"
+                      }`}
+                    >
+                      {page}
+                    </button>
+                  ),
+                )}
               </div>
 
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className={`px-4 py-2 rounded-lg border transition-colors ${
+                className={`rounded-lg border px-4 py-2 transition-colors ${
                   currentPage === totalPages
-                    ? "border-gray-200 dark:border-gray-600 text-text-secondary dark:text-text-secondary-dark cursor-not-allowed"
-                    : "border-gray-200 dark:border-gray-600 text-text dark:text-text-dark hover:bg-background-secondary dark:hover:bg-background-dark"
+                    ? "dark:text-text-secondary-dark cursor-not-allowed border-gray-200 text-text-secondary dark:border-gray-600"
+                    : "dark:text-text-dark border-gray-200 text-text hover:bg-background-secondary dark:border-gray-600 dark:hover:bg-background-dark"
                 }`}
               >
                 Next
@@ -371,7 +408,7 @@ const BlogsPage = () => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default BlogsPage
+export default BlogsPage;
