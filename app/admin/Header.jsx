@@ -168,14 +168,6 @@ const Header = ({ isDarkMode }) => {
               </div>
             ) : null}
           </div>
-          <div className="flex flex-col items-start justify-center">
-            <span className="bg-gradient-to-r from-gray-800 via-red-600 to-gray-800 bg-clip-text text-lg font-bold tracking-tight text-transparent dark:from-white dark:via-red-400 dark:to-white">
-              WindScreen
-            </span>
-            <span className="text-xs font-medium text-app-text/60 dark:text-gray-400">
-              Built to sell cars
-            </span>
-          </div>
         </div>
       </NavbarBrand>
       <div className="flex items-center gap-x-5 md:order-2">

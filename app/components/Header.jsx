@@ -303,19 +303,6 @@ const Header = () => {
 
     if (!isSettingsLoaded) return LogoSkeleton;
 
-    const logoContent = (
-      <div className="flex items-center space-x-3">
-        <div className="flex flex-col">
-          <span className="bg-gradient-to-r from-gray-800 via-green-600 to-gray-800 bg-clip-text text-lg font-bold tracking-tight text-transparent dark:from-white dark:via-green-400 dark:to-white">
-            WindScreen
-          </span>
-          <span className="text-xs font-medium text-gray-600 transition-colors duration-300 group-hover:text-green-600 dark:text-gray-400 dark:group-hover:text-green-400">
-            Built to Sell Cars
-          </span>
-        </div>
-      </div>
-    );
-
     return (
       <Link href="/" className="group flex items-center space-x-3">
         <div className="custom-flex-box">
