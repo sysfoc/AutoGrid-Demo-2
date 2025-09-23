@@ -310,7 +310,7 @@ const getResponsiveConfig = () => {
 
   if (loading) {
     return (
-      <section className="my-10 overflow-hidden rounded-3xl bg-white dark:bg-gray-800 py-6 sm:mx-8 md:my-16 md:py-8">
+      <section className="my-10 overflow-hidden rounded-3xl bg-white dark:bg-gray-800 py-6 sm:mx-8 md:py-8">
         <div className="mb-6 px-4 md:px-6">
           <div className="mb-10 flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
             <div className="flex-1">
@@ -498,21 +498,6 @@ const getResponsiveConfig = () => {
             </>
           )}
         </div>
-        
-        {vehicles.length > itemsToShow && (
-          <div className="flex justify-center mt-8 gap-2">
-            {Array.from({ length: maxIndex + 1 }).map((_, index) => (
-              <button
-                key={index}
-                aria-label={`Go to slide ${index + 1}`}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all ${
-                  index === currentIndex ? 'w-6 bg-blue-600 dark:bg-blue-400' : 'bg-gray-300 dark:bg-gray-600'
-                }`}
-              />
-            ))}
-          </div>
-        )}
       </div>
     </section>
   );

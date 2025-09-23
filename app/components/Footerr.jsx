@@ -75,7 +75,7 @@ const DEFAULT_HOMEPAGE_DATA = {
   saturday: null,
 };
 
-// Skeleton Components
+// Skeleton Components for dynamic content only
 const SkeletonText = ({ width = "100%", height = "16px", className = "" }) => (
   <div
     className={`animate-pulse rounded bg-gray-200 dark:bg-gray-700 ${className}`}
@@ -83,59 +83,14 @@ const SkeletonText = ({ width = "100%", height = "16px", className = "" }) => (
   />
 );
 
-const SkeletonHeading = ({ className = "" }) => (
-  <div className={`mb-6 ${className}`}>
-    <SkeletonText width="60%" height="20px" />
-  </div>
-);
-
-const SkeletonLinks = () => (
-  <nav className="space-y-3">
+const SkeletonSocialIcons = () => (
+  <div className="flex flex-wrap gap-3">
     {[1, 2, 3, 4].map((i) => (
-      <SkeletonText key={i} width="80%" height="14px" />
-    ))}
-  </nav>
-);
-
-const SkeletonTradingHours = () => (
-  <div className="space-y-2">
-    {[1, 2, 3, 4, 5, 6, 7].map((i) => (
       <div
         key={i}
-        className="flex items-center justify-between rounded-lg px-3 py-2"
-      >
-        <SkeletonText width="40%" height="14px" />
-        <div className="flex items-center space-x-2">
-          <div className="h-2 w-2 animate-pulse rounded-full bg-gray-200 dark:bg-gray-700" />
-          <SkeletonText width="60px" height="12px" />
-        </div>
-      </div>
+        className="h-12 w-12 animate-pulse rounded-xl bg-background-secondary dark:bg-gray-800"
+      />
     ))}
-  </div>
-);
-
-const SkeletonLanguageSection = () => (
-  <div>
-    <SkeletonHeading />
-    <div className="rounded-xl border border-gray-100 bg-background-secondary p-4 dark:border-gray-800 dark:bg-gray-800">
-      <SkeletonText width="100%" height="40px" className="rounded-lg" />
-    </div>
-  </div>
-);
-
-const SkeletonSocialIcons = () => (
-  <div>
-    <div className="mb-6">
-      <SkeletonText width="40%" height="16px" />
-    </div>
-    <div className="flex flex-wrap gap-3">
-      {[1, 2, 3, 4].map((i) => (
-        <div
-          key={i}
-          className="h-12 w-12 animate-pulse rounded-xl bg-background-secondary dark:bg-gray-800"
-        />
-      ))}
-    </div>
   </div>
 );
 
@@ -149,7 +104,7 @@ const Footerr = () => {
   const [homepageData, setHomepageData] = useState(DEFAULT_HOMEPAGE_DATA);
   const [fetchedSocials, setFetchedSocials] = useState([]);
   
-  // Loading states
+  // Loading states - only for dynamic content
   const [isLoadingSettings, setIsLoadingSettings] = useState(true);
   const [isLoadingHomepage, setIsLoadingHomepage] = useState(true);
   const [isLoadingSocials, setIsLoadingSocials] = useState(true);
@@ -383,121 +338,108 @@ const Footerr = () => {
             {/* Quick Links - Compact column */}
             <div className="lg:col-span-3">
               <div className="mb-8">
-                {isLoadingSettings ? (
-                  <SkeletonHeading />
-                ) : (
-                  <h4 className="mb-6 text-sm font-bold uppercase tracking-widest text-text dark:text-text-inverse sm:text-lg">
-                    {footerSettings?.col1Heading || t("quickLinks")}
-                  </h4>
-                )}
+                <h4 className="mb-6 text-sm font-bold uppercase tracking-widest text-text dark:text-text-inverse sm:text-lg">
+                  {footerSettings?.col1Heading || t("quickLinks")}
+                </h4>
                 
-                {isLoadingSettings ? (
-                  <SkeletonLinks />
-                ) : (
-                  <nav className="space-y-3" aria-label="Quick links navigation">
-                    {[
-                      { href: "/about", label: t("about") },
-                      { href: "/contact", label: t("contact") },
-                      { href: "/terms", label: t("terms") },
-                      { href: "/privacy", label: t("privacy") },
-                    ].map((link) => (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        className="block text-sm font-medium text-black transition-all duration-300 hover:translate-x-1 hover:text-primary dark:text-text-inverse dark:hover:text-primary"
-                        aria-label={`Go to ${link.label} page`}
-                      >
-                        {link.label}
-                      </Link>
-                    ))}
-                  </nav>
-                )}
+                <nav className="space-y-3" aria-label="Quick links navigation">
+                  {[
+                    { href: "/about", label: t("about") },
+                    { href: "/contact", label: t("contact") },
+                    { href: "/terms", label: t("terms") },
+                    { href: "/privacy", label: t("privacy") },
+                  ].map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="block text-sm font-medium text-black transition-all duration-300 hover:translate-x-1 hover:text-primary dark:text-text-inverse dark:hover:text-primary"
+                      aria-label={`Go to ${link.label} page`}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </nav>
               </div>
             </div>
 
             {/* Trading Hours - Wider column */}
             <div className="lg:col-span-5">
-              {isLoadingSettings || isLoadingHomepage ? (
-                <SkeletonHeading />
-              ) : (
-                <h4 className="mb-6 text-sm font-bold uppercase tracking-widest text-text dark:text-text-inverse sm:text-lg">
-                  {footerSettings?.col2Heading || t("tradingHours")}
-                </h4>
-              )}
+              <h4 className="mb-6 text-sm font-bold uppercase tracking-widest text-text dark:text-text-inverse sm:text-lg">
+                {footerSettings?.col2Heading || t("tradingHours")}
+              </h4>
               
-              {isLoadingHomepage ? (
-                <SkeletonTradingHours />
-              ) : (
-                <div className="space-y-2" role="table" aria-label="Trading hours schedule">
-                  {tradingHours.map((schedule, index) => (
-                    <div
-                      key={index}
-                      className="flex items-center justify-between rounded-lg px-3 transition-colors"
-                      role="row"
+              <div className="space-y-2" role="table" aria-label="Trading hours schedule">
+                {tradingHours.map((schedule, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center justify-between rounded-lg px-3 transition-colors"
+                    role="row"
+                  >
+                    <span 
+                      className="text-sm font-medium text-text dark:text-text-inverse"
+                      role="rowheader"
                     >
-                      <span 
-                        className="text-sm font-medium text-text dark:text-text-inverse"
-                        role="rowheader"
-                      >
-                        {schedule.day}
-                      </span>
-                      <span className="flex items-center space-x-2" role="cell">
-                        <div
-                          className={`h-2 w-2 rounded-full ${
-                            schedule.hours === t("closedHours")
-                              ? "bg-red-400"
-                              : "bg-primary"
-                          }`}
-                          aria-hidden="true"
-                        ></div>
-                        <span
-                          className={`text-xs font-semibold uppercase tracking-wide ${
-                            schedule.hours === t("closedHours")
-                              ? "text-red-600 dark:text-red-400"
-                              : "text-primary dark:text-primary"
-                          }`}
-                          aria-label={`${schedule.day}: ${schedule.hours === t("closedHours") ? "Closed" : schedule.hours}`}
-                        >
-                          {schedule.hours}
-                        </span>
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              )}
+                      {schedule.day}
+                    </span>
+                    <span className="flex items-center space-x-2" role="cell">
+                      {isLoadingHomepage ? (
+                        <SkeletonText width="60px" height="12px" />
+                      ) : (
+                        <>
+                          <div
+                            className={`h-2 w-2 rounded-full ${
+                              schedule.hours === t("closedHours")
+                                ? "bg-red-400"
+                                : "bg-primary"
+                            }`}
+                            aria-hidden="true"
+                          ></div>
+                          <span
+                            className={`text-xs font-semibold uppercase tracking-wide ${
+                              schedule.hours === t("closedHours")
+                                ? "text-red-600 dark:text-red-400"
+                                : "text-primary dark:text-primary"
+                            }`}
+                            aria-label={`${schedule.day}: ${schedule.hours === t("closedHours") ? "Closed" : schedule.hours}`}
+                          >
+                            {schedule.hours}
+                          </span>
+                        </>
+                      )}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* Language & Social - Compact column */}
             <div className="lg:col-span-4">
               <div className="space-y-8">
-                {/* Language Section */}
-                {isLoadingSettings ? (
-                  <SkeletonLanguageSection />
-                ) : (
-                  <section aria-labelledby="language-heading">
-                    <h4 
-                      id="language-heading"
-                      className="mb-6 text-sm font-bold uppercase tracking-widest text-text dark:text-text-inverse sm:text-lg"
-                    >
-                      {footerSettings?.col3Heading || t("language")}
-                    </h4>
-                    <div className="rounded-xl border border-gray-100 bg-background-secondary p-4 dark:border-gray-800 dark:bg-gray-800">
-                      <LanguageSwitching />
-                    </div>
-                  </section>
-                )}
+                {/* Language Section - Always visible */}
+                <section aria-labelledby="language-heading">
+                  <h4 
+                    id="language-heading"
+                    className="mb-6 text-sm font-bold uppercase tracking-widest text-text dark:text-text-inverse sm:text-lg"
+                  >
+                    {footerSettings?.col3Heading || t("language")}
+                  </h4>
+                  <div className="rounded-xl border border-gray-100 bg-background-secondary p-4 dark:border-gray-800 dark:bg-gray-800">
+                    <LanguageSwitching />
+                  </div>
+                </section>
 
                 {/* Social Media Section */}
-                {isLoadingSocials ? (
-                  <SkeletonSocialIcons />
-                ) : (
-                  <section aria-labelledby="social-heading">
-                    <h4
-                      id="social-heading"
-                      className="mb-6 text-xs font-bold uppercase tracking-widest text-text dark:text-text-inverse"
-                    >
-                      Follow Us
-                    </h4>
+                <section aria-labelledby="social-heading">
+                  <h4
+                    id="social-heading"
+                    className="mb-6 text-xs font-bold uppercase tracking-widest text-text dark:text-text-inverse"
+                  >
+                    Follow Us
+                  </h4>
+                  
+                  {isLoadingSocials ? (
+                    <SkeletonSocialIcons />
+                  ) : (
                     <ul className="flex flex-wrap gap-3" aria-label="Social media links">
                       {fetchedSocials.length > 0 ? (
                         fetchedSocials.map((platform, index) => {
@@ -540,14 +482,14 @@ const Footerr = () => {
                         </li>
                       )}
                     </ul>
-                  </section>
-                )}
+                  )}
+                </section>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Copyright section */}
+        {/* Copyright section - Always visible */}
         <div className="border-t border-gray-100 dark:border-gray-800">
           <div className="mx-auto max-w-6xl px-6 py-3">
             <div className="text-center">
