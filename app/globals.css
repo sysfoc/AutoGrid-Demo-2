@@ -42,49 +42,6 @@
       opacity: 1;
     }
   }
-  
-  /* Hide scrollbar but keep scrolling */
-.scrollbar-hide {
-  -ms-overflow-style: none; /* IE/Edge */
-  scrollbar-width: none;    /* Firefox */
-}
-
-.scrollbar-hide::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
-}
-
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-/* Hide scrollbar for webkit browsers (Chrome, Safari, Edge) */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar for Firefox */
-.no-scrollbar {
-  -ms-overflow-style: none;  /* Internet Explorer 10+ */
-  scrollbar-width: none;  /* Firefox */
-}
-
-/* For any element with no-scrollbar class */
-.no-scrollbar {
-  overflow-x: hidden;
-  overflow-y: auto; /* Keep scrolling functionality */
-}
-
-body {
-    overflow-x: hidden !important;
-}
 
 .custom-map {
   width: 100%;
@@ -158,4 +115,273 @@ footer {
   footer {
     min-height: 840px;
   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 9999px;
+    display: inline-block;
+    animation: bounceDot 1.2s infinite ease-in-out;
+  }
+  
+  .delay-0 {
+    animation-delay: 0s;
+  }
+  .delay-150 {
+    animation-delay: 0.15s;
+  }
+  .delay-300 {
+    animation-delay: 0.3s;
+  }
+  
+  @keyframes bounceDot {
+    0%, 80%, 100% {
+      transform: scale(0);
+      opacity: 0.3;
+    }
+    40% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  /* Hide scrollbar but keep scrolling */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none;    /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for webkit browsers (Chrome, Safari, Edge) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* For any element with no-scrollbar class */
+.no-scrollbar {
+  overflow: auto; /* Keep scrolling functionality */
+}
+
+.custom-div {
+  min-height: 0;
+}
+
+.div-style-2 {
+  width: 100%;
+}
+
+.iframe-style-2 {
+  border: 0;
+}
+
+.iframe-style-3 {
+  border: 0;
+}
+
+
+.iframe-style-4 {
+  border: 0;
+  width: 100%;
+}
+
+.div-style-5 {
+  animation-delay: var(--animation-delay);
+}
+
+.div-style-6 {
+  position: absolute;
+  height: 0.5rem; /* h-2 */
+  border-radius: 9999px; /* rounded-full */
+  background-image: linear-gradient(to right, #4ade80, #16a34a); /* from-green-400 to-green-600 */
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); /* shadow-sm */
+  left: var(--left);
+  width: var(--width);
+}
+
+
+.div-style-7 {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: var(--bg-image);
+}
+
+.div-style-8 {
+  transform: translate3d(0, 0, 0);
+}
+.div-style-9 {
+  transform: translate3d(0, 0, 0);
+}
+
+.div-style-10 {
+  aspect-ratio: 16 / 10;
+  max-height: 500px;
+  contain: layout style paint;
+}
+
+.image-style-1 {
+  object-position: center center;
+  will-change: transform, opacity;
+}
+
+.div-style-11 {
+  height: 48px;
+  width: 200px;
+}
+
+.div-style-12 {
+  transform: var(--menu-transform);
+  transition: transform 0.2s ease-out;
+  will-change: transform;
+}
+
+.div-style-13 {
+  width: 64px;
+  height: 64px;
+  position: relative;
+}
+
+.div-style-14 {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+
+
+.div-style-15 {
+  height: 200px;
+  width: 200px;
+}
+
+.div-style-16 {
+  height: 90px;
+  width: 180px;
+}
+.div-style-17 {
+  height: 200px;
+  width: 200px;
+  position: relative;
+}
+
+.iframe-style-5 {
+  border: 0;
+}
+
+.image-style-2 {
+  object-position: center;
+}
+
+.div-style-19 {
+  border-width: 1px;
+}
+.iframe-style-20 {
+  border: 0;
+}
+
+.div-style-21 {
+  background-image: url('/sydney.jpg');
+}
+
+
+.bg-dot-pattern {
+  background-image: radial-gradient(circle at 25% 25%, #3b82f6 2px, transparent 2px),
+                    radial-gradient(circle at 75% 75%, #8b5cf6 2px, transparent 2px);
+  background-size: 50px 50px;
+}
+
+.link-skeleton-about { width: 62px; }
+.link-skeleton-contact { width: 77px; }
+.link-skeleton-terms { width: 136px; }
+.link-skeleton-privacy { width: 95px; }
+
+
+video {
+  z-index: 10;
+}
+
+.carousel button {
+  z-index: 5000;
+  pointer-events: none;
+}
+
+.carousel button svg {
+  pointer-events: auto;
 }
