@@ -148,3 +148,14 @@ body {
   transform: translate3d(-100%, 0, 0);
 }
 
+
+
+footer {
+  min-height: 415px;
+}
+
+@media (max-width: 768px) {
+  footer {
+    min-height: 840px;
+  }
+}

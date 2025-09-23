@@ -330,7 +330,7 @@ const Footerr = () => {
   }, [fetchAllData]);
 
   return (
-    <footer className="md:min-h-[400px] min-h-[880px]" role="contentinfo" aria-label="Site footer">
+    <footer role="contentinfo" aria-label="Site footer">
       <div className="bg-background dark:bg-background-dark">
         {/* Main footer content */}
         <div className="mx-auto max-w-6xl px-6 py-5">
